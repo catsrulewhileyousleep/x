@@ -14,7 +14,7 @@ export default function Home() {
       <PageHeader
         hero
         title="Open-source AI tools, carefully picked."
-        lede={`${tools.length} projects, each reviewed by hand and scored on stars and commit activity.`}
+        lede={`${tools.length} tools, each reviewed by hand and scored on stars and commit activity.`}
       />
 
       <div className={ui.headerGap}>

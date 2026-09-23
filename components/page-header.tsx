@@ -20,9 +20,14 @@ export function PageHeader({
   actions?: React.ReactNode;
   hero?: boolean;
 }) {
+  // Hero: size scales with the viewport so the longest line (about 9.1em) always fits beside
+  // the page padding, and the em-based max width holds the break at the same point at every size.
   const h1 = hero
-    ? "max-w-[16ch] text-[2.5rem] leading-[1.05] tracking-[-0.035em] sm:text-[3.5rem]"
+    ? "max-w-[10em] text-[length:clamp(1.875rem,calc((100vw_-_2.5rem)/9.6),3.5rem)] leading-[1.05] tracking-[-0.035em]"
     : "max-w-[24ch] text-[2.25rem] leading-[1.1] tracking-[-0.03em]";
+  const ledeClass = hero
+    ? "mt-5 max-w-[52ch] text-[15px] text-pretty text-fg-muted sm:text-[17px] sm:leading-relaxed"
+    : ui.lede;
   return (
     <header>
       {crumbs && <Breadcrumbs items={crumbs} />}
@@ -33,7 +38,7 @@ export function PageHeader({
           {media && <span className="mt-1 shrink-0">{media}</span>}
           <div className="min-w-0">
             <h1 className={`${h1} font-semibold text-balance`}>{title}</h1>
-            {lede && <p className={hero ? `${ui.lede} mt-5` : ui.lede}>{lede}</p>}
+            {lede && <p className={ledeClass}>{lede}</p>}
           </div>
         </div>
         {actions && <div className="flex shrink-0 flex-wrap gap-2">{actions}</div>}
