@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { AlternativeList } from "@/components/alternative-list";
 import { PageHeader } from "@/components/page-header";
 import { Section } from "@/components/section";
+import { SponsoredSlotRow } from "@/components/sponsored-slot";
 import { ui } from "@/lib/ui";
 import { ItemListSchema } from "@/components/item-list-schema";
 import { ToolTable } from "@/components/tool-table";
@@ -32,6 +33,7 @@ export default async function CategoryPage({ params }: PageProps<"/category/[slu
   if (!category) notFound();
   const list = toolsInCategory(category.slug);
   const related = alternativesInCategory(category.slug);
+  const hasSponsor = list.some((t) => t.sponsored);
 
   return (
     <>
@@ -45,7 +47,12 @@ export default async function CategoryPage({ params }: PageProps<"/category/[slu
       />
 
       <div className={ui.headerGap}>
-        <ToolTable rows={list.map((t) => toRow(t))} label={category.title} pinSponsored />
+        <ToolTable
+          rows={list.map((t) => toRow(t))}
+          label={category.title}
+          pinSponsored
+          lead={hasSponsor ? undefined : <SponsoredSlotRow categoryName={category.name} />}
+        />
         {list.some((t) => t.sponsored) && (
           <p className="mt-3 text-[13px] text-fg-muted">
             Sponsored listings are pinned and labeled. They never affect a Health Score.{" "}

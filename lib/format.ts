@@ -22,6 +22,19 @@ export function formatDate(iso: string | null) {
   return iso ? date.format(new Date(iso)) : "—";
 }
 
+/** 3 → "3 days ago", 45 → "2 months ago". Ages are counted to the data snapshot, not read time. */
+export function formatDaysAgo(days: number): string {
+  if (days <= 0) return "today";
+  if (days === 1) return "yesterday";
+  if (days < 30) return `${days} days ago`;
+  if (days < 365) {
+    const months = Math.round(days / 30);
+    return `${months} ${months === 1 ? "month" : "months"} ago`;
+  }
+  const years = Math.floor(days / 365);
+  return `${years} ${years === 1 ? "year" : "years"} ago`;
+}
+
 export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
 export const siteName = "AI Directory";
 export const repoSlug = "catsrulewhileyousleep/x";

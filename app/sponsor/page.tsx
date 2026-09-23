@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/page-header";
 import { Section } from "@/components/section";
+import { SponsoredSlotRow } from "@/components/sponsored-slot";
+import { ToolTable } from "@/components/tool-table";
 import { tools } from "@/lib/data";
 import { repoUrl } from "@/lib/format";
 import { ui } from "@/lib/ui";
@@ -55,6 +57,18 @@ export default function SponsorPage() {
               ))}
             </ul>
           )}
+        </Section>
+
+        <Section title="What it looks like">
+          <p className={`${ui.label} mb-4 max-w-[65ch] text-pretty`}>
+            The slot as it appears at the top of a category list, before anyone books it:
+          </p>
+          <ToolTable
+            rows={[]}
+            sortable={false}
+            label="Sponsored slot example"
+            lead={<SponsoredSlotRow />}
+          />
         </Section>
 
         <Section title="Get in touch">

@@ -10,9 +10,10 @@ import { LinkedText } from "@/components/linked-text";
 import { PageHeader } from "@/components/page-header";
 import { Section } from "@/components/section";
 import { Avatar } from "@/components/ui/avatar";
+import { Tooltip } from "@/components/ui/tooltip";
 import { ToolTable } from "@/components/tool-table";
 import { getTool, replacesFor, similarTools, snapshotAt, toRow, tools, type Tool } from "@/lib/data";
-import { clip, formatDate, formatNumber, siteName, siteUrl } from "@/lib/format";
+import { clip, formatDaysAgo, formatDate, formatNumber, formatStars, siteName, siteUrl } from "@/lib/format";
 import { ui } from "@/lib/ui";
 
 export const dynamicParams = false;
@@ -58,6 +59,13 @@ export default async function ToolPage({ params }: PageProps<"/tool/[slug]">) {
   // Tools already recommended in "Who it's for" are not listed a second time.
   const similar = similarTools(tool, 4, new Set(tool.elsewhere.links));
   const url = `${siteUrl}/tool/${tool.slug}`;
+  // Ages are counted to the snapshot date, not to when the page is read.
+  const commitDays =
+    h.status === "scored"
+      ? h.daysSinceCommit
+      : tool.lastCommitAt
+        ? Math.floor((Date.parse(snapshotAt) - Date.parse(tool.lastCommitAt)) / 86_400_000)
+        : null;
 
   return (
     <article>
@@ -80,51 +88,77 @@ export default async function ToolPage({ params }: PageProps<"/tool/[slug]">) {
             <ExternalButton href={tool.githubUrl} primary={!tool.website}>
               GitHub
             </ExternalButton>
-            {/* Inline copy of /badge/[slug].svg so maintainers see what they are embedding. */}
-            <span
-              aria-hidden="true"
-              className="hidden h-5 items-center sm:inline-flex"
-              dangerouslySetInnerHTML={{ __html: badgeSvg(tool.health) }}
-            />
-            <CopyButton
-              text={`[![Health Score](${siteUrl}/badge/${tool.slug}.svg)](${url})`}
-              label="Copy badge"
-              hint="Markdown for a Health Score badge in your README"
-            />
+            {/* Inline copy of /badge/[slug].svg, grouped with the button that copies it. */}
+            <div className="flex items-center gap-2.5">
+              <span
+                aria-hidden="true"
+                className="hidden sm:inline-flex"
+                dangerouslySetInnerHTML={{ __html: badgeSvg(tool.health) }}
+              />
+              <CopyButton
+                text={`[![Health Score](${siteUrl}/badge/${tool.slug}.svg)](${url})`}
+                label="Copy badge"
+                hint="Markdown for a Health Score badge in your README"
+              />
+            </div>
           </>
         }
       />
 
-      <dl className={`${ui.headerGap} grid grid-cols-2 gap-x-6 gap-y-5 border-y border-hairline py-5 sm:grid-cols-3 lg:grid-cols-6`}>
-        <Fact label="Health" wide>
-          <span className="flex flex-wrap items-baseline gap-x-3">
-            <HealthValue health={h} />
-            <span className={ui.label}>
-              {h.status === "scored" ? `Popularity ${h.popularity} · Maintenance ${h.maintenance}` : h.reason}
-            </span>
-          </span>
-        </Fact>
-        <Fact label="Stars">
-          <span className="tabular-nums">{tool.stars == null ? "—" : formatNumber(tool.stars)}</span>
-        </Fact>
-        <Fact label="License">
-          {tool.license ?? "Unknown"}
-          {tool.licenseNote && <span className={`mt-1 block text-pretty ${ui.label}`}>{tool.licenseNote}</span>}
-        </Fact>
-        <Fact label="Language">{tool.language ?? "—"}</Fact>
-        <Fact label="Last commit">
-          <time dateTime={tool.lastCommitAt ?? undefined} className="tabular-nums">
-            {formatDate(tool.lastCommitAt)}
-          </time>
-        </Fact>
+      <div className={ui.headerGap}>
         {tool.sponsored && (
-          <Fact label="Listing">
-            <Link href="/sponsor" className={ui.link}>
-              Sponsored
-            </Link>
-          </Fact>
+          <p className="mb-4 text-[13px] text-pretty text-fg-muted">
+            <Link href="/sponsor" className={`font-medium ${ui.link}`}>
+              Sponsored listing
+            </Link>{" "}
+            — pinned in {tool.categoryName}. It never affects the Health Score or the review criteria.
+          </p>
         )}
-      </dl>
+        <dl className="grid grid-cols-2 gap-x-6 gap-y-5 border-y border-hairline py-5 sm:grid-cols-3 lg:grid-cols-6">
+          <Fact label="Health" wide>
+            <span className="flex flex-wrap items-baseline gap-x-3">
+              <HealthValue health={h} />
+              <span className={ui.label}>
+                {h.status === "scored" ? (
+                  <>
+                    Popularity {h.popularity} · Maintenance {h.maintenance} ·{" "}
+                    <Link href="/health-score" className={ui.link}>
+                      how it works
+                    </Link>
+                  </>
+                ) : (
+                  h.reason
+                )}
+              </span>
+            </span>
+          </Fact>
+          <Fact label="Stars">
+            {tool.stars == null ? (
+              "—"
+            ) : (
+              <Tooltip content={`${formatNumber(tool.stars)} stars`}>
+                <span className="tabular-nums">{formatStars(tool.stars)}</span>
+              </Tooltip>
+            )}
+          </Fact>
+          <Fact label="License">
+            {tool.license ?? "Unknown"}
+            {tool.licenseNote && <span className={`mt-1 block text-pretty ${ui.label}`}>{tool.licenseNote}</span>}
+          </Fact>
+          <Fact label="Language">{tool.language ?? "—"}</Fact>
+          <Fact label="Last commit">
+            {tool.lastCommitAt == null || commitDays == null ? (
+              "—"
+            ) : (
+              <Tooltip content={`Last commit ${formatDate(tool.lastCommitAt)}`}>
+                <time dateTime={tool.lastCommitAt} className="tabular-nums">
+                  {formatDaysAgo(commitDays)}
+                </time>
+              </Tooltip>
+            )}
+          </Fact>
+        </dl>
+      </div>
 
       <Section title={`About ${tool.name}`} narrow>
         <div className={ui.prose}>
