@@ -72,7 +72,7 @@
     "category": "coding-agents",
     "tagline": "AI pair programming in your terminal",
     "description": [
-      "Aider works directly on your git repo: describe a change, and Aider edits the files and commits with a clear message, so every change is easy to review or undo.",
+      "Aider works directly on your git repo. Describe a change, and Aider edits the files and commits it with a clear message, so you can review or undo it.",
       "It builds a map of the repo to keep context on large projects, and works with many models, over an API or locally."
     ],
     "fit": "You live in the terminal and want every AI change as a reviewable git commit.",
@@ -573,7 +573,8 @@
     "tagline": "Image generation where you only write the prompt",
     "description": [
       "Fooocus hides technical parameters behind good defaults, so you can focus on the prompt.",
-      "The project is in limited long-term support, mostly receiving bug fixes."
+      "It runs offline on your own GPU and is built on Stable Diffusion XL, with upscaling, variations, inpainting and outpainting included.",
+      "The project is in limited long-term support, mostly receiving bug fixes, and does not plan to add newer model families."
     ],
     "fit": "You want good images from a prompt with sensible defaults and few settings.",
     "elsewhere": {
@@ -631,7 +632,8 @@
     "tagline": "Build AI agents and workflows with drag and drop",
     "description": [
       "Langflow lets you connect models, tools and data sources visually, then go deeper in Python when needed.",
-      "Each flow can be deployed as an API or an MCP server."
+      "A built-in playground lets you test a flow step by step before you ship it.",
+      "Each flow can be deployed as an API, exported as JSON or served as an MCP server."
     ],
     "fit": "You want to prototype agents and RAG flows visually, then expose them as an API or MCP server.",
     "elsewhere": {
@@ -728,7 +730,8 @@
     "tagline": "OpenAI's multilingual speech recognition model",
     "description": [
       "Whisper transcribes speech in many languages and can translate it into English.",
-      "This is the original Python implementation, the basis for many faster variants."
+      "It also identifies the spoken language, and comes in several sizes, from tiny to large, plus a faster turbo model.",
+      "This is the original Python implementation, the basis for many faster variants. It needs PyTorch and ffmpeg."
     ],
     "fit": "You want the reference Python implementation of Whisper, for research or as a baseline.",
     "elsewhere": {
@@ -752,6 +755,7 @@
     "tagline": "Whisper in C/C++, light enough for a CPU",
     "description": [
       "whisper.cpp runs Whisper models without Python, optimized for CPUs and Apple Silicon.",
+      "It is plain C/C++ with no dependencies, supports integer quantization, and can use GPUs through Metal, CUDA or Vulkan.",
       "It is well suited to embedding in desktop apps, mobile apps or small devices."
     ],
     "fit": "You need transcription without Python, on CPUs, Apple Silicon or embedded in an app.",
@@ -776,7 +780,8 @@
     "tagline": "Whisper, faster and lighter on CTranslate2",
     "description": [
       "faster-whisper reimplements Whisper on CTranslate2, running faster than the original at the same accuracy while using less memory.",
-      "It supports 8-bit quantization on both CPU and GPU."
+      "It supports 8-bit quantization on both CPU and GPU, and batched transcription for more speed.",
+      "Audio is decoded with PyAV, so FFmpeg does not need to be installed."
     ],
     "fit": "You want Whisper's accuracy with faster transcription and less memory, from Python.",
     "elsewhere": {
@@ -1491,7 +1496,7 @@
     "tagline": "Classic UI, less GPU memory",
     "description": [
       "Forge keeps the familiar Stable Diffusion web UI while reworking memory management, so it runs larger models on smaller GPUs.",
-      "It supports newer model families and most existing extensions."
+      "It supports newer model families such as Flux, including quantized GGUF and NF4 checkpoints, and most existing extensions."
     ],
     "fit": "You like the classic Stable Diffusion web UI but need it to run larger models on a smaller GPU.",
     "elsewhere": {

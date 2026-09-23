@@ -10,7 +10,8 @@
     "test": "node --test lib/*.test.ts",
     "typecheck": "tsc --noEmit",
     "snapshot": "node scripts/snapshot.mjs",
-    "seo:audit": "node scripts/seo-audit.mjs"
+    "seo:audit": "node scripts/seo-audit.mjs",
+    "seo:projects": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/seo-projects.mjs"
   },
   "dependencies": {
     "@base-ui/react": "1.8.0",

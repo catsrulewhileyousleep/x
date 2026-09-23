@@ -35,3 +35,5 @@ A page `/alternative-to/<slug>` is published only when at least three tools list
 ## Writing style
 
 English, plain and short. Say what the tool does, not how great it is. No exclamation marks, no "revolutionary", no "blazing fast".
+
+Before opening a PR that adds or edits a tool, run `pnpm seo:projects`. It checks the title and meta description built from your entry, and flags thin or duplicate copy. The rules are in `.agents/skills/seo-content/SKILL.md`.

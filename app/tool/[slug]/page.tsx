@@ -29,7 +29,7 @@ function pageTitle(tool: Tool): Metadata["title"] {
 }
 
 function pageDescription(tool: Tool) {
-  return metaDescription(tool.description[0], licenseSuffix(tool.license));
+  return metaDescription(tool.description.join(" "), licenseSuffix(tool.license));
 }
 
 export async function generateMetadata({ params }: PageProps<"/tool/[slug]">): Promise<Metadata> {
