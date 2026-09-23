@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { Moon, Sun } from "lucide-react";
 import { Tooltip } from "@/components/ui/tooltip";
+import { useSound } from "@/components/sound";
 
 type Theme = "light" | "dark";
 const KEY = "theme";
@@ -35,6 +36,7 @@ function stored(): Theme | null {
 }
 
 export function ThemeToggle() {
+  const { play } = useSound();
   // Until the user picks a theme, keep following the OS, including changes while the page is open.
   useEffect(() => {
     const mql = matchMedia("(prefers-color-scheme: light)");
@@ -48,6 +50,7 @@ export function ThemeToggle() {
   function toggle() {
     const next: Theme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
     apply(next);
+    play("toggle");
     try {
       // Picking the system's own theme means "follow the system" again, so no third option is needed.
       if (next === systemTheme()) localStorage.removeItem(KEY);
@@ -68,7 +71,7 @@ export function ThemeToggle() {
       <button
         type="button"
         onClick={toggle}
-        className="inline-grid size-9 place-items-center rounded-lg text-fg-muted transition-[color,background-color] duration-100 ease-out hover:bg-surface hover:text-fg"
+        className="inline-grid size-11 place-items-center rounded-lg text-fg-muted transition-[color,background-color] duration-100 ease-out hover:bg-surface hover:text-fg"
       >
         <Sun aria-hidden="true" strokeWidth={1.75} className="size-4 light:hidden" />
         <Moon aria-hidden="true" strokeWidth={1.75} className="hidden size-4 light:block" />

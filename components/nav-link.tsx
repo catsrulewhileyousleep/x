@@ -10,8 +10,9 @@ export function NavLink({ href, children }: { href: string; children: string }) 
   return (
     <Link
       href={href}
+      data-glide-item
       aria-current={active ? "page" : undefined}
-      className={`rounded-lg px-2.5 py-2 underline-offset-[6px] hover:bg-surface hover:text-fg ${
+      className={`inline-flex min-h-11 items-center rounded-lg px-2.5 py-2 underline-offset-[6px] hover:text-fg ${
         active ? "text-fg underline decoration-accent decoration-2" : "text-fg-muted"
       }`}
     >

@@ -23,7 +23,7 @@ type AsyncCheck =
   | { status: "checked"; repo: string; meta: RepoMeta | null; problems: string[]; hasReadme: boolean | null };
 
 const INPUT =
-  "h-10 w-full rounded-lg border border-hairline bg-canvas px-3 text-[13px] text-fg placeholder:text-fg-muted";
+  "h-10 w-full rounded-lg border border-hairline bg-canvas px-3 text-base text-fg placeholder:text-fg-muted sm:text-[13px]";
 
 function Field({ label, hint, children }: { label: string; hint?: string; children: React.ReactNode }) {
   return (
@@ -46,8 +46,8 @@ export function SubmitForm({
   const [repoInput, setRepoInput] = useState("");
   const [async, setAsync] = useState<AsyncCheck>({ status: "idle" });
   const [name, setName] = useState("");
-  const [nameTouched, setNameTouched] = useState(false);
-  const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const nameTouched = useRef(false);
+  const currentRepo = useRef<string | null>(null);
 
   const repo = repoInput.trim() ? parseRepo(repoInput) : null;
   const existing = repo ? listed[repo.toLowerCase()] : undefined;
@@ -64,14 +64,16 @@ export function SubmitForm({
 
   // Live preview of the criteria; the server re-checks everything on submit.
   useEffect(() => {
-    clearTimeout(timer.current);
     if (!repo || existing) return;
-    timer.current = setTimeout(async () => {
+    const controller = new AbortController();
+    const isCurrent = () => !controller.signal.aborted && currentRepo.current === repo;
+    const timer = setTimeout(async () => {
       try {
         const [repoRes, readmeRes] = await Promise.all([
-          fetch(`https://api.github.com/repos/${repo}`),
-          fetch(`https://api.github.com/repos/${repo}/readme`),
+          fetch(`https://api.github.com/repos/${repo}`, { signal: controller.signal }),
+          fetch(`https://api.github.com/repos/${repo}/readme`, { signal: controller.signal }),
         ]);
+        if (!isCurrent()) return;
         if (!repoRes.ok) {
           setAsync(
             repoRes.status === 404
@@ -81,6 +83,7 @@ export function SubmitForm({
           return;
         }
         const data = await repoRes.json();
+        if (!isCurrent()) return;
         const meta: RepoMeta = {
           fullName: data.full_name,
           stars: data.stargazers_count,
@@ -90,14 +93,20 @@ export function SubmitForm({
           isPrivate: data.private,
           createdAt: data.created_at,
         };
-        setName((current) => (current && nameTouched ? current : data.name));
+        setName((current) => {
+          if (!isCurrent() || nameTouched.current) return current;
+          return data.name;
+        });
         setAsync({ status: "checked", repo, meta, problems: repoProblems(meta), hasReadme: readmeRes.ok });
       } catch {
-        setAsync({ status: "unreachable", repo });
+        if (isCurrent()) setAsync({ status: "unreachable", repo });
       }
     }, 600);
-    return () => clearTimeout(timer.current);
-  }, [repo, existing, nameTouched]);
+    return () => {
+      clearTimeout(timer);
+      controller.abort();
+    };
+  }, [repo, existing]);
 
   const done = state.status === "ok";
 
@@ -111,7 +120,11 @@ export function SubmitForm({
           name="repo"
           required
           value={repoInput}
-          onChange={(e) => setRepoInput(e.target.value)}
+          onChange={(e) => {
+            const value = e.target.value;
+            currentRepo.current = value.trim() ? parseRepo(value) : null;
+            setRepoInput(value);
+          }}
           placeholder="https://github.com/owner/repo"
           className={INPUT}
         />
@@ -128,7 +141,7 @@ export function SubmitForm({
             value={name}
             onChange={(e) => {
               setName(e.target.value);
-              setNameTouched(true);
+              nameTouched.current = true;
             }}
             className={INPUT}
           />
@@ -162,43 +175,75 @@ export function SubmitForm({
 
       <button
         type="submit"
+        aria-busy={pending}
         disabled={pending || done || check.status === "listed"}
-        className="inline-flex h-9 items-center rounded-lg bg-fg px-3.5 text-[13px] font-medium text-canvas transition-[scale] duration-100 ease-out active:scale-[0.96] disabled:opacity-50"
+        className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-fg px-3.5 text-[13px] font-medium text-canvas motion-safe:transition-[scale] motion-safe:duration-100 motion-safe:ease-out motion-safe:active:scale-[0.96] disabled:opacity-50"
       >
-        {pending ? "Checking…" : done ? "Submitted" : "Submit for review"}
+        {pending && <LoadingSpinner />}
+        {done ? "Submitted" : "Submit for review"}
       </button>
+
+      <div
+        role="status"
+        aria-atomic="true"
+        className={
+          pending
+            ? "text-[13px] text-fg-muted"
+            : done
+              ? "border-l-2 border-health-high pl-3 text-[13px] text-pretty"
+              : "sr-only"
+        }
+      >
+        {pending ? (
+          "Checking repository and submitting…"
+        ) : done ? (
+          <>
+            <p>{state.message}</p>
+            {state.prUrl && (
+              <p className="mt-1">
+                Track it in the{" "}
+                <a href={state.prUrl} rel="noopener noreferrer" target="_blank" className={ui.link}>
+                  review queue
+                </a>
+                .
+              </p>
+            )}
+          </>
+        ) : null}
+      </div>
 
       {state.status === "error" && (
         <p role="alert" className="border-l-2 border-health-low pl-3 text-[13px] text-pretty">
           {state.message}
         </p>
       )}
-      {done && (
-        <div role="status" className="border-l-2 border-health-high pl-3 text-[13px] text-pretty">
-          <p>{state.message}</p>
-          {state.prUrl && (
-            <p className="mt-1">
-              Track it in the{" "}
-              <a href={state.prUrl} rel="noopener noreferrer" target="_blank" className={ui.link}>
-                review queue
-              </a>
-              .
-            </p>
-          )}
-        </div>
-      )}
     </form>
   );
 }
 
+function LoadingSpinner() {
+  return (
+    <span
+      aria-hidden="true"
+      className="size-3.5 shrink-0 rounded-full border-2 border-current border-t-transparent motion-safe:animate-spin motion-reduce:animate-none"
+    />
+  );
+}
+
 function RepoCheck({ check }: { check: Check }) {
-  if (check.status === "idle") return null;
-  if (check.status === "checking") return <p aria-live="polite" className="text-[13px] text-fg-muted">Checking against GitHub…</p>;
-  if (check.status === "not-repo")
-    return <p aria-live="polite" className="text-[13px]">That does not look like a GitHub repository.</p>;
-  if (check.status === "listed")
-    return (
-      <p aria-live="polite" className="text-[13px]">
+  let message: React.ReactNode = null;
+  if (check.status === "checking") {
+    message = (
+      <p className="inline-flex items-center gap-2 text-[13px] text-fg-muted">
+        <LoadingSpinner />
+        Checking against GitHub…
+      </p>
+    );
+  } else if (check.status === "not-repo") {
+    message = <p className="text-[13px]">That does not look like a GitHub repository.</p>;
+  } else if (check.status === "listed") {
+    message = (
+      <p className="text-[13px]">
         Already listed:{" "}
         <Link href={`/tool/${check.slug}`} className={ui.link}>
           {check.name}
@@ -206,30 +251,37 @@ function RepoCheck({ check }: { check: Check }) {
         .
       </p>
     );
-  if (check.status === "unreachable")
-    return (
-      <p aria-live="polite" className="text-[13px] text-fg-muted">
+  } else if (check.status === "unreachable") {
+    message = (
+      <p className="text-[13px] text-fg-muted">
         GitHub could not be reached. The server will retry on submit.
       </p>
     );
-  if (check.meta == null)
-    return <p aria-live="polite" className="text-[13px]">Repository not found. It may be private.</p>;
-
-  const problems = [...check.problems];
-  if (check.hasReadme === false) problems.push("The repository has no README.");
-  if (problems.length > 0) {
-    return (
-      <ul aria-live="polite" className="list-disc space-y-1 pl-5 text-[13px] marker:text-fg-muted">
-        {problems.map((p) => (
-          <li key={p}>{p}</li>
-        ))}
-      </ul>
-    );
+  } else if (check.status === "checked") {
+    if (check.meta == null) {
+      message = <p className="text-[13px]">Repository not found. It may be private.</p>;
+    } else {
+      const problems = [...check.problems];
+      if (check.hasReadme === false) problems.push("The repository has no README.");
+      message =
+        problems.length > 0 ? (
+          <ul className="list-disc space-y-1 pl-5 text-[13px] marker:text-fg-muted">
+            {problems.map((problem) => (
+              <li key={problem}>{problem}</li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-[13px] text-fg-muted">
+            Meets the criteria: {check.meta.license}, {formatNumber(check.meta.stars)} stars
+            {check.hasReadme ? ", README found." : "."}
+          </p>
+        );
+    }
   }
+
   return (
-    <p aria-live="polite" className="text-[13px] text-fg-muted">
-      Meets the criteria: {check.meta.license}, {formatNumber(check.meta.stars)} stars
-      {check.hasReadme ? ", README found." : "."}
-    </p>
+    <div role="status" aria-atomic="true" className="min-h-5">
+      {message}
+    </div>
   );
 }
