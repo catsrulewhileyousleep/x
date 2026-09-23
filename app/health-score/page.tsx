@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/breadcrumbs";
-import { snapshotAt } from "@/lib/data";
-import { formatDate, formatNumber } from "@/lib/format";
+import { formatNumber } from "@/lib/format";
 import {
   FORMULA_VERSION,
   FRESH_DAYS,
@@ -105,8 +104,8 @@ export default function HealthScorePage() {
 
       <Section title="Source and updates">
         <p>
-          Data comes from the GitHub REST API, last fetched {formatDate(snapshotAt)}. This is formula version{" "}
-          {FORMULA_VERSION}; any change to the formula bumps the version.
+          Data comes from the GitHub REST API. This is formula version {FORMULA_VERSION}; any change to the
+          formula bumps the version.
         </p>
       </Section>
     </article>

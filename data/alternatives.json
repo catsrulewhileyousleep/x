@@ -13,7 +13,11 @@
     "slug": "claude-code",
     "name": "Claude Code",
     "category": "coding-agents",
-    "intro": "Claude Code only runs on Anthropic's models and is not released under an open-source license. The terminal agents below have public source code, and most let you switch model providers."
+    "intro": "Claude Code only runs on Anthropic's models and is not released under an open-source license. The terminal agents below have public source code, and most let you switch model providers.",
+    "freeTier": {
+      "answer": "No. Claude Code is included from the Pro plan up, or billed through API usage. The free Claude plan does not include it.",
+      "sourceUrl": "https://claude.com/pricing"
+    }
   },
   {
     "slug": "chatgpt",
@@ -39,7 +43,11 @@
     "slug": "midjourney",
     "name": "Midjourney",
     "category": "image-generation",
-    "intro": "Midjourney only runs on its own servers, charges a monthly plan and limits how much you can steer the generation process. The tools below run open-weight models such as Stable Diffusion on your GPU."
+    "intro": "Midjourney only runs on its own servers, charges a monthly plan and limits how much you can steer the generation process. The tools below run open-weight models such as Stable Diffusion on your GPU.",
+    "freeTier": {
+      "answer": "No. Every Midjourney plan is a paid subscription, and there is no free trial on the website or in Discord.",
+      "sourceUrl": "https://docs.midjourney.com/hc/en-us/articles/27870399340173-Free-Trials"
+    }
   },
   {
     "slug": "cursor",

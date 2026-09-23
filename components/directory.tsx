@@ -3,16 +3,51 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Fuse from "fuse.js";
-import { Search } from "lucide-react";
+import { ChevronDown, Search } from "lucide-react";
 import { Pagination } from "@/components/pagination";
 import { DEFAULT_SORT, ToolTable, sortRows, type Row, type Sort } from "@/components/tool-table";
 import { isClientNavigation, markHydrated } from "@/lib/client-nav";
 
-type Pill = { slug: string; name: string };
-type View = { query: string; category: string | null; sort: Sort; page: number };
+type Category = { slug: string; name: string };
+type License = "any" | "permissive" | "copyleft";
+type View = {
+  query: string;
+  category: string | null;
+  license: License;
+  minHealth: number;
+  sort: Sort;
+  page: number;
+};
 
 const PAGE_SIZE = 20;
-const INITIAL: View = { query: "", category: null, sort: DEFAULT_SORT, page: 1 };
+const INITIAL: View = { query: "", category: null, license: "any", minHealth: 0, sort: DEFAULT_SORT, page: 1 };
+
+const LICENSES: { value: License; label: string }[] = [
+  { value: "any", label: "Any license" },
+  { value: "permissive", label: "Permissive" },
+  { value: "copyleft", label: "Copyleft" },
+];
+const HEALTH: { value: number; label: string }[] = [
+  { value: 0, label: "Any score" },
+  { value: 70, label: "70 and above" },
+  { value: 40, label: "40 and above" },
+];
+
+function licenseGroup(spdx: string | null): License | null {
+  if (!spdx) return null;
+  if (/^(A?GPL|LGPL|MPL)/.test(spdx)) return "copyleft";
+  if (/^(MIT|Apache|BSD|ISC|0BSD|Unlicense)/.test(spdx)) return "permissive";
+  return null;
+}
+
+type Filters = Pick<View, "category" | "license" | "minHealth">;
+
+function matches(r: Row, f: Filters) {
+  if (f.category && r.category !== f.category) return false;
+  if (f.license !== "any" && licenseGroup(r.license) !== f.license) return false;
+  if (f.minHealth > 0 && !(r.health.status === "scored" && r.health.score >= f.minHealth)) return false;
+  return true;
+}
 
 // View state is saved per history entry (bfcacheId), so Back restores search, filter, sort and
 // page, while a fresh visit to the home page starts clean. Nothing is written to the URL.
@@ -34,12 +69,12 @@ export function Directory({
   contributeUrl,
 }: {
   rows: Row[];
-  categories: Pill[];
+  categories: Category[];
   contributeUrl: string;
 }) {
   const { bfcacheId } = useRouter();
   const [view, setView] = useState<View>(() => readView(bfcacheId));
-  const { query, category, sort } = view;
+  const { query, category, license, minHealth, sort } = view;
   const input = useRef<HTMLInputElement>(null);
   const results = useRef<HTMLDivElement>(null);
 
@@ -73,14 +108,18 @@ export function Directory({
 
   const q = query.trim();
   const matched = useMemo(() => (q ? fuse.search(q).map((r) => r.item) : rows), [fuse, q, rows]);
-  const filtered = category ? matched.filter((r) => r.category === category) : matched;
-  const sorted = useMemo(() => sortRows(filtered, sort), [filtered, sort]);
+  const filters: Filters = { category, license, minHealth };
+  const sorted = useMemo(
+    () => sortRows(matched.filter((r) => matches(r, { category, license, minHealth })), sort),
+    [matched, category, license, minHealth, sort],
+  );
   const pages = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE));
   const page = Math.min(view.page, pages);
   const start = (page - 1) * PAGE_SIZE;
   const visible = sorted.slice(start, start + PAGE_SIZE);
-  const countIn = (slug: string | null) =>
-    slug ? matched.filter((r) => r.category === slug).length : matched.length;
+  // Each option counts what you would get by choosing it, given the other filters.
+  const countWith = (patch: Partial<Filters>) => matched.filter((r) => matches(r, { ...filters, ...patch })).length;
+  const filtersActive = category !== null || license !== "any" || minHealth > 0;
 
   // Any change to what is listed starts again from page 1.
   const update = (patch: Partial<Omit<View, "page">>) => setView((v) => ({ ...v, ...patch, page: 1 }));
@@ -112,7 +151,6 @@ export function Directory({
     input.current?.focus();
   }
 
-  const activeName = categories.find((c) => c.slug === category)?.name;
 
   if (rows.length === 0) {
     return (
@@ -170,27 +208,40 @@ export function Directory({
           </kbd>
         </label>
 
-        <div role="group" aria-label="Filter by category" className="flex flex-wrap gap-2">
-          {[{ slug: null, name: "All" } as { slug: string | null; name: string }, ...categories].map(
-            (c) => {
-              const active = category === c.slug;
-              return (
-                <button
-                  key={c.slug ?? "all"}
-                  type="button"
-                  aria-pressed={active}
-                  onClick={() => update({ category: c.slug })}
-                  className={`inline-flex min-h-8 items-center gap-1 rounded-full border px-3 text-[13px] whitespace-nowrap transition-[color,border-color] duration-100 ease-out ${
-                    active
-                      ? "border-accent bg-surface text-fg"
-                      : "border-hairline text-fg-muted hover:text-fg"
-                  }`}
-                >
-                  {c.name}
-                  <span className={`tabular-nums ${active ? "text-accent" : ""}`}>({countIn(c.slug)})</span>
-                </button>
-              );
-            },
+        <div role="group" aria-label="Filters" className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:items-center">
+          <FilterSelect
+            wide
+            label="Category"
+            value={category ?? ""}
+            active={category !== null}
+            onChange={(v) => update({ category: v || null })}
+            options={[
+              { value: "", label: "All categories", count: countWith({ category: null }) },
+              ...categories.map((c) => ({ value: c.slug, label: c.name, count: countWith({ category: c.slug }) })),
+            ]}
+          />
+          <FilterSelect
+            label="License"
+            value={license}
+            active={license !== "any"}
+            onChange={(v) => update({ license: v as License })}
+            options={LICENSES.map((l) => ({ ...l, count: countWith({ license: l.value }) }))}
+          />
+          <FilterSelect
+            label="Health Score"
+            value={String(minHealth)}
+            active={minHealth > 0}
+            onChange={(v) => update({ minHealth: Number(v) })}
+            options={HEALTH.map((h) => ({ value: String(h.value), label: h.label, count: countWith({ minHealth: h.value }) }))}
+          />
+          {filtersActive && (
+            <button
+              type="button"
+              onClick={() => update({ category: null, license: "any", minHealth: 0 })}
+              className="col-span-2 h-9 justify-self-start rounded-lg px-2.5 text-[13px] text-fg-muted hover:bg-surface hover:text-fg sm:col-auto"
+            >
+              Clear filters
+            </button>
           )}
         </div>
       </div>
@@ -210,14 +261,13 @@ export function Directory({
         ) : (
           <div className="border-y border-hairline py-10">
             <p className="font-medium">
-              No tools match {q && <>“{q}”</>}
-              {q && activeName && " "}
-              {activeName && <>in {activeName}</>}.
+              No tools match {q ? <>“{q}”</> : "these filters"}
+              {q && filtersActive && " with these filters"}.
             </p>
             <p className="mt-1 text-fg-muted">
               Try a shorter term or{" "}
               <button type="button" onClick={reset} className="text-fg underline">
-                clear the filters
+                clear search and filters
               </button>
               .
             </p>
@@ -229,5 +279,48 @@ export function Directory({
         <Pagination page={page} pages={pages} onChange={goToPage} />
       </div>
     </div>
+  );
+}
+
+/** Native select: keyboard, screen reader and mobile pickers work without extra code. */
+function FilterSelect({
+  label,
+  value,
+  active,
+  onChange,
+  options,
+  wide = false,
+}: {
+  wide?: boolean;
+  label: string;
+  value: string;
+  active: boolean;
+  onChange: (value: string) => void;
+  options: { value: string; label: string; count: number }[];
+}) {
+  return (
+    <label className={`relative ${wide ? "col-span-2 sm:col-auto" : ""}`}>
+      <span className="sr-only">{label}</span>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className={`h-9 w-full appearance-none truncate rounded-lg border bg-canvas pr-8 pl-3 text-[13px] tabular-nums transition-[color,border-color] duration-100 ease-out hover:text-fg ${
+          active ? "border-accent text-fg" : "border-hairline text-fg-muted"
+        }`}
+      >
+        {/* The selected option omits its count: the result line already states it. Options that
+            would empty the list are disabled rather than offered. */}
+        {options.map((o) => (
+          <option key={o.value} value={o.value} disabled={o.count === 0 && o.value !== value}>
+            {o.value === value ? o.label : `${o.label} (${o.count})`}
+          </option>
+        ))}
+      </select>
+      <ChevronDown
+        aria-hidden="true"
+        strokeWidth={1.75}
+        className="pointer-events-none absolute top-1/2 right-2.5 size-3.5 -translate-y-1/2 text-fg-muted"
+      />
+    </label>
   );
 }

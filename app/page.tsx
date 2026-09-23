@@ -1,7 +1,6 @@
-import Link from "next/link";
 import { Directory } from "@/components/directory";
-import { categories, snapshotAt, toRow, tools, toolsInCategory } from "@/lib/data";
-import { formatDate, repoUrl, siteName, siteUrl } from "@/lib/format";
+import { categories, toRow, tools, toolsInCategory } from "@/lib/data";
+import { repoUrl, siteName, siteUrl } from "@/lib/format";
 import { JsonLd } from "@/components/json-ld";
 
 export default function Home() {
@@ -11,11 +10,7 @@ export default function Home() {
         Open-source AI tools, carefully picked.
       </h1>
       <p className="mt-5 max-w-[60ch] text-[15px] text-pretty text-fg-muted">
-        {tools.length} projects, each reviewed by hand. Health Score is based on stars and the latest
-        commit, with data from {formatDate(snapshotAt)}.{" "}
-        <Link href="/health-score" className="text-fg underline decoration-fg-muted hover:decoration-fg">
-          How it works
-        </Link>
+        {tools.length} projects, each reviewed by hand and scored on stars and commit activity.
       </p>
 
       <div className="mt-12">

@@ -11,7 +11,7 @@ export type AlternativeTarget = {
   name: string;
   category: string;
   intro: string;
-  freeTier?: { answer: string; sourceUrl: string };
+  freeTier: { answer: string; sourceUrl: string };
 };
 
 type ToolEntry = {
@@ -77,6 +77,9 @@ for (const e of entries) {
   }
   if (!(e.repo in snapshot.repos)) throw new Error(`${e.slug}: run scripts/snapshot.mjs`);
 }
+for (const t of alternativeTargets) {
+  if (!categoryBySlug.has(t.category)) throw new Error(`alternative ${t.slug}: unknown category ${t.category}`);
+}
 
 export const tools: Tool[] = entries.map(({ licenseOverride, ...e }) => {
   const repo = snapshot.repos[e.repo];
@@ -125,12 +128,14 @@ export function similarTools(tool: Tool, limit = 4) {
 }
 
 export type Alternative = AlternativeTarget & {
+  categoryName: string;
   tools: (Tool & { why: string })[];
 };
 
 export const alternatives: Alternative[] = alternativeTargets
   .map((target) => ({
     ...target,
+    categoryName: categoryBySlug.get(target.category)?.name ?? target.category,
     tools: tools
       .flatMap((t) => {
         const link = t.alternativeTo.find((a) => a.slug === target.slug);
@@ -153,10 +158,11 @@ export function replacesFor(tool: Tool) {
 }
 
 export function relatedAlternatives(current: Alternative, limit = 3) {
-  return alternatives
-    .filter((a) => a.slug !== current.slug)
-    .sort((a, b) => Number(b.category === current.category) - Number(a.category === current.category))
-    .slice(0, limit);
+  return alternatives.filter((a) => a.slug !== current.slug && a.category === current.category).slice(0, limit);
+}
+
+export function alternativesInCategory(slug: string) {
+  return alternatives.filter((a) => a.category === slug);
 }
 
 export const indexableCategories = categories.filter(
@@ -196,21 +202,8 @@ export function commands() {
       hint: "Alternatives",
       keywords: [a.name],
     })),
-    { href: "/category", label: "All categories", hint: "Page", keywords: ["categories"] },
-    { href: "/alternative-to", label: "All alternatives", hint: "Page", keywords: ["alternatives"] },
-    { href: "/health-score", label: "How Health Score works", hint: "Page", keywords: ["method", "formula"] },
+    { href: "/alternative-to", label: "Alternatives", hint: "Page", keywords: ["all alternatives"] },
+    { href: "/health-score", label: "Health Score", hint: "Page", keywords: ["method", "formula"] },
   ];
 }
 
-/** Neighbours in the category's Health order, wrapping so every tool has both. */
-export function categoryNeighbours(tool: Tool) {
-  const list = toolsInCategory(tool.category);
-  if (list.length < 2) return null;
-  const i = list.findIndex((t) => t.slug === tool.slug);
-  return {
-    prev: list[(i - 1 + list.length) % list.length],
-    next: list[(i + 1) % list.length],
-    position: i + 1,
-    total: list.length,
-  };
-}

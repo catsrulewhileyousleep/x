@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import { AlternativeList } from "@/components/alternative-list";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ItemListSchema } from "@/components/item-list-schema";
 import { ToolTable } from "@/components/tool-table";
@@ -27,7 +27,6 @@ export async function generateMetadata({ params }: PageProps<"/alternative-to/[s
 export default async function AlternativePage({ params }: PageProps<"/alternative-to/[slug]">) {
   const alt = getAlternative((await params).slug);
   if (!alt) notFound();
-  const best = alt.tools[0];
   const related = relatedAlternatives(alt);
 
   return (
@@ -44,49 +43,31 @@ export default async function AlternativePage({ params }: PageProps<"/alternativ
       <p className="mt-4 max-w-[60ch] text-[15px] text-pretty text-fg-muted">{alt.intro}</p>
 
       <div className="mt-12">
-        <ToolTable rows={alt.tools.map((t) => toRow(t, t.why))} label={`Alternatives to ${alt.name}`} />
+        <ToolTable rows={alt.tools.map((t) => toRow(t, t.why))} label={`${alt.name} alternatives`} />
       </div>
 
-      <section className="mt-16 max-w-[65ch]">
-        <h2 className="text-[15px] font-medium">Frequently asked questions</h2>
-        <dl className="mt-4 space-y-6">
-          <div>
-            <dt className="font-medium">What is the best open-source alternative to {alt.name}?</dt>
-            <dd className="mt-1 text-pretty text-fg-muted">
-              By current Health Score,{" "}
-              <Link href={`/tool/${best.slug}`} className="text-fg underline decoration-fg-muted hover:decoration-fg">
-                {best.name}
-              </Link>{" "}
-              ranks first. Health Score only reflects popularity and commit recency, so read each line to
-              find the tool that fits how you work.
-            </dd>
-          </div>
-          {alt.freeTier && (
-            <div>
-              <dt className="font-medium">Is there a free version of {alt.name}?</dt>
-              <dd className="mt-1 text-pretty text-fg-muted">
-                {alt.freeTier.answer}{" "}
-                <a href={alt.freeTier.sourceUrl} rel="nofollow noopener" className="text-fg underline decoration-fg-muted hover:decoration-fg">
-                  Source
-                </a>
-              </dd>
-            </div>
-          )}
-        </dl>
+      <section aria-labelledby="free" className="mt-16 max-w-[65ch]">
+        <h2 id="free" className="text-[15px] font-medium">
+          Is there a free version of {alt.name}?
+        </h2>
+        <p className="mt-2 text-pretty text-fg-muted">
+          {alt.freeTier.answer}{" "}
+          <a
+            href={alt.freeTier.sourceUrl}
+            rel="nofollow noopener"
+            className="text-fg underline decoration-fg-muted underline-offset-[0.2em] hover:decoration-fg"
+          >
+            Source
+          </a>
+        </p>
       </section>
 
       {related.length > 0 && (
-        <section className="mt-16">
-          <h2 className="text-[15px] font-medium">More alternatives</h2>
-          <ul className="mt-3 space-y-2">
-            {related.map((a) => (
-              <li key={a.slug}>
-                <Link href={`/alternative-to/${a.slug}`} className="text-fg-muted hover:text-fg">
-                  Open-source alternatives to {a.name} ({a.tools.length})
-                </Link>
-              </li>
-            ))}
-          </ul>
+        <section aria-labelledby="related" className="mt-16">
+          <h2 id="related" className="mb-3 text-[15px] font-medium">
+            Related alternatives
+          </h2>
+          <AlternativeList items={related} label="Related alternatives" />
         </section>
       )}
 

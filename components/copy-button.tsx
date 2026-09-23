@@ -23,7 +23,7 @@ export function CopyButton({ text, label, done = "Copied" }: { text: string; lab
       <button
         type="button"
         onClick={copy}
-        className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-hairline px-3 text-[13px] font-medium transition-[background-color,scale] duration-100 ease-out hover:bg-surface active:scale-[0.96]"
+        className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-hairline px-3.5 text-[13px] font-medium transition-[background-color,scale] duration-100 ease-out hover:bg-surface active:scale-[0.96]"
       >
         <Icon aria-hidden="true" strokeWidth={2} className="size-3.5" />
         {/* Both labels share one cell so the button keeps its width when the text swaps. */}

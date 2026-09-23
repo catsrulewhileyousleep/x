@@ -29,9 +29,9 @@ To refresh daily, copy `scripts/snapshot-workflow.yml` to `.github/workflows/sna
 
 | Route | Content |
 | --- | --- |
-| `/` | List view with search, category filter, sorting and pagination (20 per page) |
+| `/` | List view with search, filters (category, license, Health Score), sorting and pagination (20 per page) |
 | `/tool/[slug]` | Tool details, Health Score breakdown, similar tools |
-| `/category`, `/category/[slug]` | All categories; tools in one category |
+| `/category/[slug]` | Tools in one category (linked from the footer and breadcrumbs) |
 | `/alternative-to`, `/alternative-to/[slug]` | All alternative pages; alternatives to one product |
 | `/health-score` | Formula, limits and data source |
 | `/badge/[slug].svg` | Embeddable Health badge |

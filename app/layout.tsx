@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Inter_Tight } from "next/font/google";
-import { alternatives, commands, indexableCategories, snapshotAt } from "@/lib/data";
+import { commands, indexableCategories, snapshotAt } from "@/lib/data";
 import { CommandPalette } from "@/components/command-palette";
 import { NavLink } from "@/components/nav-link";
 import { ThemeToggle, themeScript } from "@/components/theme";
@@ -45,7 +45,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             aria-label="Main"
             className="col-span-2 row-start-2 -ml-2.5 flex items-center gap-0.5 sm:row-auto sm:ml-0 sm:flex-1"
           >
-            <NavLink href="/category">Categories</NavLink>
             <NavLink href="/alternative-to">Alternatives</NavLink>
             <NavLink href="/health-score">Health Score</NavLink>
           </nav>
@@ -60,58 +59,33 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </main>
 
         <footer className="border-t border-hairline">
-          <div className="mx-auto grid w-full max-w-5xl gap-10 px-5 py-12 text-[13px] sm:grid-cols-3 sm:px-8">
-            <FooterLinks
-              title="Categories"
-              links={indexableCategories.map((c) => ({ href: `/category/${c.slug}`, name: c.name }))}
-            />
-            <FooterLinks
-              title="Alternatives"
-              links={alternatives.map((a) => ({ href: `/alternative-to/${a.slug}`, name: a.name }))}
-            />
-            <div className="text-fg-muted">
-              <p>
-                GitHub data updated {formatDate(snapshotAt)}. Every tool is reviewed by hand before it is
-                listed.
-              </p>
-              <ul className="mt-3 space-y-2">
-                <li>
-                  <a href={submitUrl} className="text-fg hover:underline">
-                    Submit a tool
-                  </a>
-                </li>
-                <li>
-                  <Link href="/health-score" className="text-fg hover:underline">
-                    How Health Score works
-                  </Link>
-                </li>
-                <li>
-                  <a href={repoUrl} className="text-fg hover:underline">
-                    Source code
-                  </a>
-                </li>
+          <div className="mx-auto flex w-full max-w-5xl flex-col gap-10 px-5 py-12 text-[13px] sm:flex-row sm:justify-between sm:px-8">
+            <nav aria-label="Categories">
+              <ul className="grid grid-cols-2 gap-x-10 gap-y-2">
+                {indexableCategories.map((c) => (
+                  <li key={c.slug}>
+                    <Link href={`/category/${c.slug}`} className="text-fg-muted hover:text-fg">
+                      {c.name}
+                    </Link>
+                  </li>
+                ))}
               </ul>
+            </nav>
+            <div className="space-y-2 text-fg-muted sm:text-right">
+              <p>GitHub data from {formatDate(snapshotAt)}</p>
+              <p>
+                <a href={submitUrl} className="text-fg hover:underline">
+                  Submit a tool
+                </a>
+                <span aria-hidden="true"> · </span>
+                <a href={repoUrl} className="text-fg hover:underline">
+                  Source code
+                </a>
+              </p>
             </div>
           </div>
         </footer>
       </body>
     </html>
-  );
-}
-
-function FooterLinks({ title, links }: { title: string; links: { href: string; name: string }[] }) {
-  return (
-    <nav aria-label={title}>
-      <h2 className="font-medium text-fg">{title}</h2>
-      <ul className="mt-3 space-y-2">
-        {links.map((l) => (
-          <li key={l.href}>
-            <Link href={l.href} className="text-fg-muted hover:text-fg">
-              {l.name}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
   );
 }

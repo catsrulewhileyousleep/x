@@ -6,12 +6,12 @@ const FILL = { high: "#22c373", mid: "#eab532", low: "#e94646", none: "#868686" 
 const LABEL = "health";
 const LABEL_WIDTH = 50;
 
-export function badgeValue(health: Health) {
+function badgeValue(health: Health) {
   return health.status === "scored" ? String(health.score) : "n/a";
 }
 
 // Fixed-width estimate at 11px Verdana, the de facto badge font.
-export function badgeWidth(health: Health) {
+function badgeWidth(health: Health) {
   return LABEL_WIDTH + 12 + badgeValue(health).length * 7;
 }
 
