@@ -74,11 +74,11 @@ function readView(id: string): View {
 export function Directory({
   rows,
   categories,
-  contributeUrl,
+  reportUrl,
 }: {
   rows: Row[];
   categories: Category[];
-  contributeUrl: string;
+  reportUrl: string;
 }) {
   const { bfcacheId } = useRouter();
   const [view, setView] = useState<View>(() => readView(bfcacheId));
@@ -171,7 +171,7 @@ export function Directory({
             Reload the page
           </a>{" "}
           or{" "}
-          <a href={contributeUrl} className={ui.link}>
+          <a href={reportUrl} className={ui.link}>
             report it on GitHub
           </a>
           .

@@ -27,6 +27,8 @@ type ToolEntry = {
   elsewhere: { text: string; links: string[] };
   tags: string[];
   licenseOverride?: { spdx: string; note: string };
+  /** Paid placement, disclosed on /sponsor. Never affects the Health Score or the criteria. */
+  sponsored?: true;
   alternativeTo: { slug: string; why: string }[];
 };
 
@@ -194,6 +196,7 @@ export function toRow(t: Tool, why?: string) {
     stars: t.stars,
     health: t.health,
     avatarUrl: t.avatarUrl,
+    ...(t.sponsored ? { sponsored: true } : {}),
     ...(why ? { why } : {}),
   };
 }
@@ -227,6 +230,8 @@ export function commandGroups(): CommandGroup[] {
         { href: "/category", label: "All categories", keywords: [] },
         { href: "/alternative-to", label: "All alternatives", keywords: [] },
         { href: "/health-score", label: "How Health Score works", keywords: ["method", "formula"] },
+        { href: "/submit", label: "Submit a tool", keywords: ["suggest", "contribute"] },
+        { href: "/sponsor", label: "Sponsor a listing", keywords: ["advertise", "promote"] },
       ],
     },
   ];

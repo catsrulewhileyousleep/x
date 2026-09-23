@@ -4,7 +4,9 @@ The directory is small on purpose. A tool is listed only after someone has check
 
 ## Suggest a tool
 
-The easiest way is the [Submit a tool](https://github.com/catsrulewhileyousleep/x/issues/new?template=submit-tool.yml) issue form. You can also open a pull request directly (see below).
+Use the submit form on the site (`/submit`). It checks the basics against GitHub as you type —
+public repository, not archived, README present, a detectable open-source license, at least
+90 days old — and puts the result in a review queue. No GitHub account needed.
 
 ### Criteria
 
@@ -13,45 +15,18 @@ The easiest way is the [Submit a tool](https://github.com/catsrulewhileyousleep/
 - **Useful on its own**: an app, library or runtime people use directly, not a thin wrapper or a list of links.
 - **At least 90 days old**, so it can receive a Health Score.
 
-Paying for faster review, if it is ever offered, never skips these checks, never guarantees approval and never changes a Health Score.
+Paying for faster review, if it is ever offered, never skips these checks, never guarantees
+approval and never changes a Health Score.
 
-## Add a tool with a pull request
+## Reviewing submissions (maintainers)
 
-1. Add an entry to `data/tools.json`:
+Submissions from the form land in `data/submissions/` as pull requests opened by the
+`SUBMISSIONS_TOKEN` bot. The review steps are in [`data/submissions/README.md`](data/submissions/README.md):
+check the criteria by hand, write the listing, move the entry into `data/tools.json`,
+then run `pnpm snapshot` and the checks. Broken references fail the build on purpose.
 
-   ```json
-   {
-     "slug": "tool-name",
-     "name": "Tool Name",
-     "repo": "owner/repo",
-     "category": "coding-agents",
-     "tagline": "What it does, in under 80 characters",
-     "description": [
-       "What it does and who it is for. Write it yourself; do not paste the README.",
-       "What sets it apart."
-     ],
-     "tags": ["terminal", "cli"],
-     "alternativeTo": [
-       { "slug": "github-copilot", "why": "One sentence on what it shares with, and how it differs from, the product." }
-     ]
-   }
-   ```
-
-   - `category` must match a slug in `data/categories.json`: `coding-agents`, `local-llm`, `chat-interfaces`, `ai-search`, `image-generation`, `agent-frameworks`, `speech-to-text`, `text-to-speech`.
-   - `alternativeTo` slugs must exist in `data/alternatives.json`. Only add one when the tool genuinely replaces the product, and always write the `why`.
-   - If GitHub cannot detect the license, add `"licenseOverride": { "spdx": "Apache-2.0", "note": "Why it was verified manually." }`.
-
-2. Refresh the GitHub data:
-
-   ```bash
-   GITHUB_TOKEN=... pnpm snapshot
-   ```
-
-3. Check that everything builds. Broken references fail the build on purpose:
-
-   ```bash
-   pnpm test && pnpm lint && pnpm build
-   ```
+Deploying the form's queue requires a fine-grained `SUBMISSIONS_TOKEN` with read/write
+access to contents and pull requests. `pnpm snapshot` uses a separate `GITHUB_TOKEN`.
 
 ## Alternative-to pages
 

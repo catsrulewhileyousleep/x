@@ -16,6 +16,7 @@ pnpm seo:audit  # against a running server; BASE defaults to http://127.0.0.1:30
 
 - `data/tools.json`: editorial content (tagline, description, `alternativeTo` with a "why it replaces" sentence).
 - `data/categories.json`, `data/alternatives.json`: categories and the closed-source products used as comparison points.
+- `data/submissions/`: the review queue fed by the `/submit` form. Nothing here is published.
 - `data/github-snapshot.json`: generated, do not edit by hand. Refresh it with:
 
 ```bash
@@ -35,8 +36,21 @@ To refresh daily, copy `scripts/snapshot-workflow.yml` to `.github/workflows/sna
 | `/category`, `/category/[slug]` | All categories; tools in one category |
 | `/alternative-to`, `/alternative-to/[slug]` | All alternative pages; alternatives to one product |
 | `/health-score` | Formula, limits and data source |
+| `/submit` | Submit a tool: live GitHub checks, then a hand-reviewed queue (noindex) |
+| `/sponsor` | How sponsored listings work; always names current sponsors |
 | `/badge/[slug].svg` | Embeddable Health badge |
 | `…/opengraph-image` | Generated 1200×630 share image for home, tool, category and alternative pages |
+
+## Submissions and sponsoring
+
+The `/submit` form validates against GitHub's public API in the browser, re-validates on the
+server, then queues the entry as a pull request in `data/submissions/` using a
+`SUBMISSIONS_TOKEN` (fine-grained PAT, contents + pull requests read/write). Review steps:
+`data/submissions/README.md`.
+
+Sponsored listings are set with `"sponsored": true` on a tool entry: pinned at the top of
+their category page, labeled "Sponsored" in every list, disclosed on `/sponsor`, and never
+scored or ranked differently.
 
 Share images use Inter Tight from `assets/fonts` (SIL Open Font License, see `assets/fonts/OFL.txt`).
 

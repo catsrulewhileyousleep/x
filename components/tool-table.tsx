@@ -21,6 +21,8 @@ export type Row = {
   stars: number | null;
   health: Health;
   avatarUrl: string | null;
+  /** Paid placement; labeled here and disclosed on /sponsor. */
+  sponsored?: boolean;
   why?: string;
 };
 
@@ -52,8 +54,15 @@ function compare(a: Row, b: Row, { key, dir }: Sort) {
 const grid =
   "grid grid-cols-[minmax(0,1fr)_3.5rem] sm:grid-cols-[minmax(0,1fr)_4.5rem_4.5rem_7rem] gap-x-4";
 
-export function sortRows<T extends Row>(rows: T[], sort: Sort): T[] {
-  return [...rows].sort((a, b) => compare(a, b, sort));
+export function sortRows<T extends Row>(rows: T[], sort: Sort, pinSponsored = false): T[] {
+  return [...rows].sort((a, b) => {
+    // Category pages pin paid placements above the chosen order; other lists rank normally.
+    if (pinSponsored && (a.sponsored || b.sponsored)) {
+      const d = (b.sponsored ? 1 : 0) - (a.sponsored ? 1 : 0);
+      if (d !== 0) return d;
+    }
+    return compare(a, b, sort);
+  });
 }
 
 export function nextSort(current: Sort, key: SortKey): Sort {
@@ -67,19 +76,22 @@ export function ToolTable({
   rows,
   sortable = true,
   label,
+  pinSponsored = false,
   sort: controlledSort,
   onSortChange,
 }: {
   rows: Row[];
   sortable?: boolean;
   label: string;
+  /** Keep sponsored rows on top whatever the sort. Category pages only. */
+  pinSponsored?: boolean;
   sort?: Sort;
   onSortChange?: (sort: Sort) => void;
 }) {
   const router = useRouter();
   const [ownSort, setOwnSort] = useState<Sort>(DEFAULT_SORT);
   const sort = controlledSort ?? ownSort;
-  const sorted = sortable ? sortRows(rows, sort) : rows;
+  const sorted = sortable ? sortRows(rows, sort, pinSponsored) : rows;
 
   function toggle(key: SortKey) {
     const next = nextSort(sort, key);
@@ -131,6 +143,12 @@ export function ToolTable({
                 >
                   {r.name}
                 </Link>
+                {r.sponsored && (
+                  <span className="ml-2 text-[12px] text-fg-muted">
+                    Sponsored
+                    <span className="sr-only"> listing</span>
+                  </span>
+                )}
                 <p className="mt-0.5 text-[13px] text-pretty text-fg-muted">
                   {r.why ?? r.tagline}
                   <span className="sm:hidden">
