@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/page-header";
 import { Section } from "@/components/section";
 import { SubmitForm } from "@/components/submit-form";
-import { categories } from "@/lib/data";
+import { categories, listedRepos } from "@/lib/data";
 import { ui } from "@/lib/ui";
 
 export const metadata: Metadata = {
@@ -33,7 +33,7 @@ export default function SubmitPage() {
         </Section>
 
         <Section title="The form">
-          <SubmitForm categories={categories.map(({ slug, name }) => ({ slug, name }))} />
+          <SubmitForm categories={categories.map(({ slug, name }) => ({ slug, name }))} listed={listedRepos} />
         </Section>
 
         <Section title="What happens next">

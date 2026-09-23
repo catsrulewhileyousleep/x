@@ -1,6 +1,6 @@
 "use server";
 
-import { categories } from "@/lib/data";
+import { categories, listedRepos } from "@/lib/data";
 import { repoSlug } from "@/lib/format";
 import { queueSubmission } from "@/lib/submission-queue";
 import { parseRepo, repoProblems, slugify, type RepoMeta, type Submission } from "@/lib/submissions";
@@ -42,6 +42,8 @@ export async function submitTool(_prev: SubmitState, formData: FormData): Promis
 
   const repo = parseRepo(field(formData, "repo"));
   if (!repo) return { status: "error", message: "Enter a GitHub repository, e.g. https://github.com/owner/repo." };
+  const listed = listedRepos[repo.toLowerCase()];
+  if (listed) return { status: "error", message: `${listed.name} is already listed.` };
 
   const name = field(formData, "name");
   const tagline = field(formData, "tagline");

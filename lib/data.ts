@@ -127,6 +127,15 @@ export function getTool(slug: string) {
   return tools.find((t) => t.slug === slug);
 }
 
+/** Listed tools by lowercased "owner/repo", under both the entry's repo and its current name. */
+export const listedRepos: Record<string, { slug: string; name: string }> = Object.fromEntries(
+  entries.flatMap((e) => {
+    const listing = { slug: e.slug, name: e.name };
+    const current = snapshot.repos[e.repo]?.fullName;
+    return [e.repo, ...(current ? [current] : [])].map((r) => [r.toLowerCase(), listing]);
+  }),
+);
+
 export function getCategory(slug: string) {
   return categoryBySlug.get(slug);
 }
@@ -192,6 +201,8 @@ export function toRow(t: Tool, why?: string) {
     category: t.category,
     categoryName: t.categoryName,
     tags: t.tags,
+    // Names of the products it replaces, so searching "cursor" finds Cursor alternatives.
+    replaces: t.alternativeTo.map((a) => targetBySlug.get(a.slug)!.name),
     license: t.license,
     stars: t.stars,
     health: t.health,

@@ -5,7 +5,7 @@ The directory is small on purpose. A tool is listed only after someone has check
 ## Suggest a tool
 
 Use the submit form on the site (`/submit`). It checks the basics against GitHub as you type —
-public repository, not archived, README present, a detectable open-source license, at least
+not already listed, public repository, not archived, README present, a detectable open-source license, at least
 90 days old — and puts the result in a review queue. No GitHub account needed.
 
 ### Criteria

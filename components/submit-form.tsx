@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState, useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { submitTool, type SubmitState } from "@/app/submit/actions";
 import { formatNumber } from "@/lib/format";
 import { parseRepo, repoProblems, type RepoMeta } from "@/lib/submissions";
@@ -10,6 +11,7 @@ type Check =
   | { status: "idle" }
   | { status: "checking" }
   | { status: "not-repo" }
+  | { status: "listed"; slug: string; name: string }
   | { status: "unreachable" }
   | { status: "checked"; meta: RepoMeta | null; problems: string[]; hasReadme: boolean | null };
 
@@ -33,7 +35,13 @@ function Field({ label, hint, children }: { label: string; hint?: string; childr
   );
 }
 
-export function SubmitForm({ categories }: { categories: { slug: string; name: string }[] }) {
+export function SubmitForm({
+  categories,
+  listed,
+}: {
+  categories: { slug: string; name: string }[];
+  listed: Record<string, { slug: string; name: string }>;
+}) {
   const [state, formAction, pending] = useActionState(submitTool, { status: "idle" } satisfies SubmitState);
   const [repoInput, setRepoInput] = useState("");
   const [async, setAsync] = useState<AsyncCheck>({ status: "idle" });
@@ -42,19 +50,22 @@ export function SubmitForm({ categories }: { categories: { slug: string; name: s
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   const repo = repoInput.trim() ? parseRepo(repoInput) : null;
+  const existing = repo ? listed[repo.toLowerCase()] : undefined;
   const check: Check =
     !repoInput.trim()
       ? { status: "idle" }
       : !repo
         ? { status: "not-repo" }
-        : async.status !== "idle" && async.repo === repo
-          ? async
-          : { status: "checking" };
+        : existing
+          ? { status: "listed", ...existing }
+          : async.status !== "idle" && async.repo === repo
+            ? async
+            : { status: "checking" };
 
   // Live preview of the criteria; the server re-checks everything on submit.
   useEffect(() => {
     clearTimeout(timer.current);
-    if (!repo) return;
+    if (!repo || existing) return;
     timer.current = setTimeout(async () => {
       try {
         const [repoRes, readmeRes] = await Promise.all([
@@ -86,7 +97,7 @@ export function SubmitForm({ categories }: { categories: { slug: string; name: s
       }
     }, 600);
     return () => clearTimeout(timer.current);
-  }, [repo, nameTouched]);
+  }, [repo, existing, nameTouched]);
 
   const done = state.status === "ok";
 
@@ -151,7 +162,7 @@ export function SubmitForm({ categories }: { categories: { slug: string; name: s
 
       <button
         type="submit"
-        disabled={pending || done}
+        disabled={pending || done || check.status === "listed"}
         className="inline-flex h-9 items-center rounded-lg bg-fg px-3.5 text-[13px] font-medium text-canvas transition-[scale] duration-100 ease-out active:scale-[0.96] disabled:opacity-50"
       >
         {pending ? "Checking…" : done ? "Submitted" : "Submit for review"}
@@ -185,6 +196,16 @@ function RepoCheck({ check }: { check: Check }) {
   if (check.status === "checking") return <p aria-live="polite" className="text-[13px] text-fg-muted">Checking against GitHub…</p>;
   if (check.status === "not-repo")
     return <p aria-live="polite" className="text-[13px]">That does not look like a GitHub repository.</p>;
+  if (check.status === "listed")
+    return (
+      <p aria-live="polite" className="text-[13px]">
+        Already listed:{" "}
+        <Link href={`/tool/${check.slug}`} className={ui.link}>
+          {check.name}
+        </Link>
+        .
+      </p>
+    );
   if (check.status === "unreachable")
     return (
       <p aria-live="polite" className="text-[13px] text-fg-muted">
