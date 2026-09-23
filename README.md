@@ -39,6 +39,7 @@ To refresh daily, copy `scripts/snapshot-workflow.yml` to `.github/workflows/sna
 | `/submit` | Submit a tool: live GitHub checks, then a hand-reviewed queue (noindex) |
 | `/sponsor` | How sponsored listings work; always names current sponsors |
 | `/badge/[slug].svg` | Embeddable Health badge |
+| `/llms.txt` | Plain-text index of every tool for LLM crawlers ([llmstxt.org](https://llmstxt.org)) |
 | `…/opengraph-image` | Generated 1200×630 share image for home, tool, category and alternative pages |
 
 ## Submissions and sponsoring

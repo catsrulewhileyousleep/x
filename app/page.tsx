@@ -26,7 +26,9 @@ export default function Home() {
           reportUrl={`${repoUrl}/issues`}
         />
       </div>
-      <JsonLd data={{ "@context": "https://schema.org", "@type": "WebSite", name: siteName, url: `${siteUrl}/` }} />
+      <JsonLd
+        data={{ "@context": "https://schema.org", "@type": "WebSite", "@id": `${siteUrl}/#website`, name: siteName, url: `${siteUrl}/` }}
+      />
     </>
   );
 }
