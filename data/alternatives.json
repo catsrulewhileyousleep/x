@@ -1,0 +1,44 @@
+[
+  {
+    "slug": "github-copilot",
+    "name": "GitHub Copilot",
+    "category": "coding-agents",
+    "intro": "GitHub Copilot gửi code tới máy chủ của GitHub, chỉ cho chọn trong danh sách mô hình họ cung cấp và tính phí theo tháng khi vượt gói miễn phí. Các công cụ dưới đây cho phép bạn tự chọn mô hình, tự host máy chủ hoặc dùng mô hình chạy cục bộ.",
+    "freeTier": {
+      "answer": "Có. GitHub Copilot có gói Free giới hạn số lượt dùng mỗi tháng. Xem chi tiết trên trang giá chính thức của GitHub.",
+      "sourceUrl": "https://github.com/features/copilot/plans"
+    }
+  },
+  {
+    "slug": "claude-code",
+    "name": "Claude Code",
+    "category": "coding-agents",
+    "intro": "Claude Code chỉ chạy với mô hình của Anthropic và không phát hành mã nguồn theo giấy phép mở. Các agent terminal dưới đây có mã nguồn công khai, và phần lớn cho phép bạn đổi nhà cung cấp mô hình."
+  },
+  {
+    "slug": "chatgpt",
+    "name": "ChatGPT",
+    "category": "chat-interfaces",
+    "intro": "ChatGPT lưu cuộc trò chuyện trên máy chủ của OpenAI và chỉ dùng mô hình của OpenAI. Các ứng dụng dưới đây chạy trên máy hoặc server của bạn, và kết nối được với mô hình cục bộ hay nhiều nhà cung cấp khác.",
+    "freeTier": {
+      "answer": "Có. ChatGPT có gói miễn phí với giới hạn về mô hình và số lượt dùng. Xem chi tiết trên trang giá của OpenAI.",
+      "sourceUrl": "https://openai.com/chatgpt/pricing/"
+    }
+  },
+  {
+    "slug": "lm-studio",
+    "name": "LM Studio",
+    "category": "local-llm",
+    "intro": "LM Studio miễn phí nhưng không mở mã nguồn: bạn không thể kiểm tra cách ứng dụng xử lý dữ liệu, tự sửa hay đóng gói lại. Các công cụ dưới đây cũng chạy mô hình cục bộ, với mã nguồn công khai.",
+    "freeTier": {
+      "answer": "Có. LM Studio miễn phí cho cả mục đích cá nhân và công việc, nhưng mã nguồn ứng dụng không công khai. Xem điều khoản trên trang chính thức.",
+      "sourceUrl": "https://lmstudio.ai/"
+    }
+  },
+  {
+    "slug": "midjourney",
+    "name": "Midjourney",
+    "category": "image-generation",
+    "intro": "Midjourney chỉ chạy trên máy chủ của họ, tính phí theo gói tháng và giới hạn mức can thiệp vào quy trình tạo ảnh. Các công cụ dưới đây chạy mô hình trọng số mở như Stable Diffusion trên GPU của bạn."
+  }
+]

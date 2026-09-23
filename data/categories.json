@@ -1,0 +1,38 @@
+[
+  {
+    "slug": "coding-agents",
+    "name": "Coding agent",
+    "title": "Coding agent mã nguồn mở",
+    "intro": "Agent và trợ lý lập trình đọc codebase, sửa file và chạy lệnh thay bạn, trong IDE hoặc terminal."
+  },
+  {
+    "slug": "local-llm",
+    "name": "Chạy LLM cục bộ",
+    "title": "Công cụ chạy LLM cục bộ",
+    "intro": "Runtime và server để chạy mô hình ngôn ngữ trọng số mở trên phần cứng của bạn, từ laptop đến cụm GPU."
+  },
+  {
+    "slug": "chat-interfaces",
+    "name": "Giao diện chat",
+    "title": "Giao diện chat AI mã nguồn mở",
+    "intro": "Ứng dụng chat tự host hoặc chạy trên máy, dùng với mô hình cục bộ hay qua API của nhà cung cấp."
+  },
+  {
+    "slug": "image-generation",
+    "name": "Tạo ảnh",
+    "title": "Công cụ tạo ảnh AI mã nguồn mở",
+    "intro": "Giao diện và engine chạy mô hình tạo ảnh trọng số mở như Stable Diffusion trên GPU của bạn."
+  },
+  {
+    "slug": "agent-frameworks",
+    "name": "Framework agent",
+    "title": "Framework xây dựng agent AI",
+    "intro": "Thư viện và công cụ trực quan để thiết kế, điều phối và triển khai agent cùng workflow AI."
+  },
+  {
+    "slug": "speech-to-text",
+    "name": "Giọng nói thành văn bản",
+    "title": "Công cụ chuyển giọng nói thành văn bản",
+    "intro": "Mô hình và runtime nhận dạng giọng nói chạy cục bộ, hỗ trợ nhiều ngôn ngữ, bao gồm tiếng Việt."
+  }
+]

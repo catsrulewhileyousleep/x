@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+/* Tokens from the brief (§6). Components use the semantic Tailwind names below, never raw values. */
+:root {
+  --bg-base: oklch(0.13 0 0);
+  --bg-surface: oklch(0.19 0 0);
+  --text-primary: oklch(0.98 0 0);
+  --text-secondary: oklch(0.62 0 0);
+  --text-inverse: oklch(0.13 0 0);
+  --border-hairline: oklch(0.24 0 0);
+  --accent: oklch(0.62 0.19 275);
+  /* Lighter step of the accent hue: 7.3:1 on --bg-surface, used only for focus rings. */
+  --focus-ring: oklch(0.72 0.14 275);
+  --health-high: oklch(0.72 0.17 155);
+  --health-mid: oklch(0.8 0.15 85);
+  --health-low: oklch(0.63 0.2 25);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-canvas: var(--bg-base);
+  --color-surface: var(--bg-surface);
+  --color-fg: var(--text-primary);
+  --color-fg-muted: var(--text-secondary);
+  --color-hairline: var(--border-hairline);
+  --color-accent: var(--accent);
+  --color-focus: var(--focus-ring);
+  --color-health-high: var(--health-high);
+  --color-health-mid: var(--health-mid);
+  --color-health-low: var(--health-low);
+  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    background: var(--bg-base);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--text-inverse);
+  }
+
+  a {
+    text-decoration-skip-ink: auto;
+    text-underline-offset: 0.2em;
+  }
+}
