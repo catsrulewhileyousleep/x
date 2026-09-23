@@ -69,8 +69,6 @@ const entries = toolsJson as ToolEntry[];
 const categoryBySlug = new Map(categories.map((c) => [c.slug, c]));
 const targetBySlug = new Map(alternativeTargets.map((t) => [t.slug, t]));
 
-const maxStars = Math.max(0, ...Object.values(snapshot.repos).map((r) => r?.stars ?? 0));
-
 // Fail the build on broken references instead of shipping dead links.
 for (const e of entries) {
   if (!categoryBySlug.has(e.category)) throw new Error(`${e.slug}: unknown category ${e.category}`);
@@ -95,7 +93,7 @@ export const tools: Tool[] = entries.map(({ licenseOverride, ...e }) => {
     createdAt: repo?.createdAt ?? null,
     language: repo?.language ?? null,
     health: repo
-      ? computeHealth(repo, maxStars, snapshot.fetchedAt)
+      ? computeHealth(repo, snapshot.fetchedAt)
       : { status: "insufficient", reason: "GitHub data could not be fetched." },
   };
 });
@@ -198,6 +196,21 @@ export function commands() {
       hint: "Alternatives",
       keywords: [a.name],
     })),
+    { href: "/category", label: "All categories", hint: "Page", keywords: ["categories"] },
+    { href: "/alternative-to", label: "All alternatives", hint: "Page", keywords: ["alternatives"] },
     { href: "/health-score", label: "How Health Score works", hint: "Page", keywords: ["method", "formula"] },
   ];
+}
+
+/** Neighbours in the category's Health order, wrapping so every tool has both. */
+export function categoryNeighbours(tool: Tool) {
+  const list = toolsInCategory(tool.category);
+  if (list.length < 2) return null;
+  const i = list.findIndex((t) => t.slug === tool.slug);
+  return {
+    prev: list[(i - 1 + list.length) % list.length],
+    next: list[(i + 1) % list.length],
+    position: i + 1,
+    total: list.length,
+  };
 }

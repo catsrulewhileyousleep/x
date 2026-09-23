@@ -32,7 +32,12 @@ export default async function CategoryPage({ params }: PageProps<"/category/[slu
 
   return (
     <>
-      <Breadcrumbs items={[{ name: category.name, href: `/category/${category.slug}` }]} />
+      <Breadcrumbs
+        items={[
+          { name: "Categories", href: "/category" },
+          { name: category.name, href: `/category/${category.slug}` },
+        ]}
+      />
       <h1 className="mt-6 text-[2.25rem] leading-[1.1] font-semibold tracking-[-0.03em] text-balance">
         {category.title}
       </h1>

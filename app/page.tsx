@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Directory } from "@/components/directory";
 import { categories, snapshotAt, toRow, tools, toolsInCategory } from "@/lib/data";
-import { formatDate, repoUrl } from "@/lib/format";
+import { formatDate, repoUrl, siteName, siteUrl } from "@/lib/format";
+import { JsonLd } from "@/components/json-ld";
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
           contributeUrl={`${repoUrl}/issues`}
         />
       </div>
+      <JsonLd data={{ "@context": "https://schema.org", "@type": "WebSite", name: siteName, url: `${siteUrl}/` }} />
     </>
   );
 }

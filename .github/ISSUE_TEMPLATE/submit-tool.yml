@@ -28,9 +28,11 @@ body:
         - Coding agents
         - Local LLMs
         - Chat interfaces
+        - AI search
         - Image generation
         - Agent frameworks
         - Speech to text
+        - Text to speech
         - Other (explain below)
     validations:
       required: true

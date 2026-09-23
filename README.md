@@ -29,11 +29,14 @@ To refresh daily, copy `scripts/snapshot-workflow.yml` to `.github/workflows/sna
 
 | Route | Content |
 | --- | --- |
-| `/` | List view with search, category filter and sorting |
+| `/` | List view with search, category filter, sorting and pagination (20 per page) |
 | `/tool/[slug]` | Tool details, Health Score breakdown, similar tools |
-| `/category/[slug]` | Tools in one category |
-| `/alternative-to/[slug]` | Open-source alternatives to a closed-source product |
+| `/category`, `/category/[slug]` | All categories; tools in one category |
+| `/alternative-to`, `/alternative-to/[slug]` | All alternative pages; alternatives to one product |
 | `/health-score` | Formula, limits and data source |
 | `/badge/[slug].svg` | Embeddable Health badge |
+| `…/opengraph-image` | Generated 1200×630 share image for home, tool, category and alternative pages |
+
+Share images use Inter Tight from `assets/fonts` (SIL Open Font License, see `assets/fonts/OFL.txt`).
 
 Set `NEXT_PUBLIC_SITE_URL` when deploying so canonical URLs, the sitemap, JSON-LD and badge Markdown use the right domain.

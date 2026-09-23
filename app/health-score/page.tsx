@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/breadcrumbs";
-import { snapshotAt, tools } from "@/lib/data";
+import { snapshotAt } from "@/lib/data";
 import { formatDate, formatNumber } from "@/lib/format";
-import { FORMULA_VERSION, FRESH_DAYS, MIN_REPO_AGE_DAYS, STALE_DAYS, WEIGHTS } from "@/lib/health";
+import {
+  FORMULA_VERSION,
+  FRESH_DAYS,
+  MIN_REPO_AGE_DAYS,
+  POPULARITY_CEILING,
+  POPULARITY_FLOOR,
+  STALE_DAYS,
+  WEIGHTS,
+} from "@/lib/health";
 
 export const metadata: Metadata = {
   title: "How Health Score works",
   description: "The formula, weights, data sources and limits of Health Score.",
   alternates: { canonical: "/health-score" },
 };
-
-const maxStars = Math.max(...tools.map((t) => t.stars ?? 0));
 
 export default function HealthScorePage() {
   return (
@@ -48,9 +54,9 @@ export default function HealthScorePage() {
 
       <Section title="Popularity">
         <p>
-          Stars on a log scale, relative to the most-starred repo in the current dataset (
-          {formatNumber(maxStars)} stars): 100 × log(1 + stars) / log(1 + max stars). The log scale makes the
-          gap between 1,000 and 10,000 stars count as much as the gap between 10,000 and 100,000.
+          Stars on a log scale between two fixed anchors: {formatNumber(POPULARITY_FLOOR)} stars or fewer
+          scores 0, {formatNumber(POPULARITY_CEILING)} or more scores 100. The log scale makes the gap
+          between 2,000 and 20,000 stars count as much as the gap between 20,000 and 200,000.
         </p>
       </Section>
 
@@ -86,6 +92,15 @@ export default function HealthScorePage() {
           <Level className="bg-health-low" label="Below 40" />
         </ul>
         <p className="mt-3 text-fg-muted">Color only helps you scan; the number is always shown next to it.</p>
+      </Section>
+
+      <Section title="Changes">
+        <p>
+          <span className="font-medium">Version 2.</span> Popularity used to be measured from zero stars
+          against the most-starred repo in the dataset. Every listed repo landed between 66 and 100, so the
+          score barely told tools apart. Fixed anchors spread the range and keep a tool’s score from changing
+          just because another tool was added.
+        </p>
       </Section>
 
       <Section title="Source and updates">

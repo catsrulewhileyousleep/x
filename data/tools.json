@@ -18,6 +18,10 @@
       {
         "slug": "github-copilot",
         "why": "Lives in VS Code like Copilot, but you pick the model and approve each change before it lands."
+      },
+      {
+        "slug": "cursor",
+        "why": "Agent editing inside VS Code like Cursor, without switching editors, and with any model."
       }
     ]
   },
@@ -40,6 +44,10 @@
       {
         "slug": "github-copilot",
         "why": "Autocomplete and chat in the IDE like Copilot, without being locked to one model provider."
+      },
+      {
+        "slug": "cursor",
+        "why": "Chat, autocomplete and edits in VS Code or JetBrains, as an open-source extension instead of a forked editor."
       }
     ]
   },
@@ -585,5 +593,539 @@
       "ctranslate2"
     ],
     "alternativeTo": []
+  },
+  {
+    "slug": "zed",
+    "name": "Zed",
+    "repo": "zed-industries/zed",
+    "category": "coding-agents",
+    "tagline": "Fast, collaborative code editor with built-in AI",
+    "description": [
+      "Zed is a native code editor written in Rust, built for speed and real-time collaboration. Its agent panel can edit across files, run commands and follow your instructions.",
+      "You choose the model: hosted providers with your own key, or local models through Ollama and similar runtimes."
+    ],
+    "tags": [
+      "editor",
+      "rust",
+      "agent"
+    ],
+    "licenseOverride": {
+      "spdx": "GPL-3.0",
+      "note": "Editor under GPL-3.0; some crates under Apache-2.0. Verified manually from the LICENSE files."
+    },
+    "alternativeTo": [
+      {
+        "slug": "cursor",
+        "why": "A full editor with an AI agent built in like Cursor, but native rather than a VS Code fork, and open source."
+      }
+    ]
+  },
+  {
+    "slug": "kilo-code",
+    "name": "Kilo Code",
+    "repo": "Kilo-Org/kilocode",
+    "category": "coding-agents",
+    "tagline": "Open-source coding agent for VS Code, JetBrains and the CLI",
+    "description": [
+      "Kilo Code plans, edits files and runs commands across VS Code, JetBrains IDEs and the terminal, with separate modes for planning, coding and debugging.",
+      "It works with hundreds of models, through its own gateway or your own API keys."
+    ],
+    "tags": [
+      "vs-code",
+      "jetbrains",
+      "cli"
+    ],
+    "alternativeTo": [
+      {
+        "slug": "cursor",
+        "why": "Brings Cursor-style agent editing into the editor you already use, with open source code and your choice of model."
+      },
+      {
+        "slug": "github-copilot",
+        "why": "Works in VS Code and JetBrains like Copilot, with agent modes and any model you want."
+      }
+    ]
+  },
+  {
+    "slug": "vane",
+    "name": "Vane",
+    "repo": "ItzCrazyKns/Vane",
+    "category": "ai-search",
+    "tagline": "Self-hosted AI answer engine with cited sources (formerly Perplexica)",
+    "description": [
+      "Vane, previously called Perplexica, searches the web through SearxNG and answers questions with the sources it used.",
+      "It runs on your own hardware and works with local models through Ollama or with cloud providers."
+    ],
+    "tags": [
+      "self-hosted",
+      "searxng",
+      "rag"
+    ],
+    "alternativeTo": [
+      {
+        "slug": "perplexity",
+        "why": "Answers with citations like Perplexity, but self-hosted, so your searches stay private."
+      }
+    ]
+  },
+  {
+    "slug": "morphic",
+    "name": "Morphic",
+    "repo": "miurla/morphic",
+    "category": "ai-search",
+    "tagline": "AI search engine with a generative UI",
+    "description": [
+      "Morphic answers questions by searching the web and presents results with interactive, generated interface components.",
+      "It is a Next.js app you can deploy yourself and connect to the model and search providers you prefer."
+    ],
+    "tags": [
+      "nextjs",
+      "search",
+      "generative-ui"
+    ],
+    "alternativeTo": [
+      {
+        "slug": "perplexity",
+        "why": "A Perplexity-style answer engine you deploy yourself, with the model and search provider of your choice."
+      }
+    ]
+  },
+  {
+    "slug": "khoj",
+    "name": "Khoj",
+    "repo": "khoj-ai/khoj",
+    "category": "ai-search",
+    "tagline": "Self-hostable AI assistant for the web and your own documents",
+    "description": [
+      "Khoj answers questions from the web or from your notes and documents, and can run deep research and scheduled automations.",
+      "It works with local or online models and connects to Obsidian, Emacs, the browser and your phone."
+    ],
+    "tags": [
+      "self-hosted",
+      "rag",
+      "obsidian"
+    ],
+    "alternativeTo": [
+      {
+        "slug": "perplexity",
+        "why": "Searches the web with citations like Perplexity, and also answers from your own documents."
+      },
+      {
+        "slug": "chatgpt",
+        "why": "A personal assistant you can self-host, grounded in your own notes as well as the web."
+      }
+    ]
+  },
+  {
+    "slug": "scira",
+    "name": "Scira",
+    "repo": "zaidmukaddam/scira",
+    "category": "ai-search",
+    "tagline": "Minimal AI search engine that cites its sources",
+    "description": [
+      "Scira, formerly MiniPerplx, plans a search, retrieves results and answers with citations in a clean, minimal interface.",
+      "It is built on the Vercel AI SDK and can be self-hosted with your own provider keys."
+    ],
+    "tags": [
+      "search",
+      "vercel-ai-sdk",
+      "minimal"
+    ],
+    "alternativeTo": [
+      {
+        "slug": "perplexity",
+        "why": "The same cited-answer experience in a minimal interface you can host yourself."
+      }
+    ]
+  },
+  {
+    "slug": "gpt-researcher",
+    "name": "GPT Researcher",
+    "repo": "assafelovic/gpt-researcher",
+    "category": "ai-search",
+    "tagline": "Autonomous agent that writes research reports with citations",
+    "description": [
+      "GPT Researcher breaks a question into sub-queries, searches the web or your documents, and writes a detailed report with sources.",
+      "It works with many model providers and can be used as a Python library, an API or a web app."
+    ],
+    "tags": [
+      "research",
+      "agent",
+      "python"
+    ],
+    "alternativeTo": [
+      {
+        "slug": "perplexity",
+        "why": "Comparable to Perplexity's deep research: multi-step research into a sourced report, on any model."
+      }
+    ]
+  },
+  {
+    "slug": "storm",
+    "name": "STORM",
+    "repo": "stanford-oval/storm",
+    "category": "ai-search",
+    "tagline": "Research a topic and write a Wikipedia-style article",
+    "description": [
+      "STORM, from Stanford, researches a topic from several perspectives and writes a long, cited article in the style of Wikipedia.",
+      "It is a research system and Python library rather than a chat app, useful for drafting well-sourced overviews."
+    ],
+    "tags": [
+      "research",
+      "python",
+      "writing"
+    ],
+    "alternativeTo": []
+  },
+  {
+    "slug": "chatterbox",
+    "name": "Chatterbox",
+    "repo": "resemble-ai/chatterbox",
+    "category": "text-to-speech",
+    "tagline": "Open-source text-to-speech with voice cloning and emotion control",
+    "description": [
+      "Chatterbox from Resemble AI generates natural speech and clones a voice from a short reference clip.",
+      "You can dial expressiveness up or down, and outputs carry an inaudible watermark to help detect generated audio."
+    ],
+    "tags": [
+      "voice-cloning",
+      "python",
+      "watermark"
+    ],
+    "alternativeTo": [
+      {
+        "slug": "elevenlabs",
+        "why": "Voice cloning and expressive speech like ElevenLabs, running on your own GPU."
+      }
+    ]
+  },
+  {
+    "slug": "gpt-sovits",
+    "name": "GPT-SoVITS",
+    "repo": "RVC-Boss/GPT-SoVITS",
+    "category": "text-to-speech",
+    "tagline": "Train a voice from one minute of audio",
+    "description": [
+      "GPT-SoVITS clones a voice from a few seconds of audio and can be fine-tuned with about a minute of recordings.",
+      "It supports several languages, including English, Chinese, Japanese, Korean and Cantonese, and ships a web UI for data preparation and training."
+    ],
+    "tags": [
+      "voice-cloning",
+      "few-shot",
+      "web-ui"
+    ],
+    "alternativeTo": [
+      {
+        "slug": "elevenlabs",
+        "why": "Few-shot voice cloning comparable to ElevenLabs, trained and run locally with no usage limits."
+      }
+    ]
+  },
+  {
+    "slug": "f5-tts",
+    "name": "F5-TTS",
+    "repo": "SWivid/F5-TTS",
+    "category": "text-to-speech",
+    "tagline": "Zero-shot text-to-speech from a short reference clip",
+    "description": [
+      "F5-TTS is a research model and toolkit that speaks in a new voice from a short reference recording, without fine-tuning.",
+      "It includes inference scripts, a Gradio app and training code."
+    ],
+    "tags": [
+      "zero-shot",
+      "research",
+      "python"
+    ],
+    "alternativeTo": [
+      {
+        "slug": "elevenlabs",
+        "why": "Zero-shot voice cloning from a short sample, with open code you can run and fine-tune yourself."
+      }
+    ]
+  },
+  {
+    "slug": "kokoro",
+    "name": "Kokoro",
+    "repo": "hexgrad/kokoro",
+    "category": "text-to-speech",
+    "tagline": "Small, fast text-to-speech model with open weights",
+    "description": [
+      "Kokoro is an 82-million-parameter model that produces high-quality speech while staying fast and cheap to run.",
+      "Both the code and the weights are Apache-licensed, so you can use it anywhere, from production to personal projects."
+    ],
+    "tags": [
+      "lightweight",
+      "python",
+      "open-weights"
+    ],
+    "alternativeTo": [
+      {
+        "slug": "elevenlabs",
+        "why": "High-quality narration from a model small enough to run on a laptop, with no per-character fees."
+      }
+    ]
+  },
+  {
+    "slug": "piper",
+    "name": "Piper",
+    "repo": "OHF-Voice/piper1-gpl",
+    "category": "text-to-speech",
+    "tagline": "Fast, local text-to-speech that runs on small devices",
+    "description": [
+      "Piper is a lightweight neural text-to-speech engine that runs in real time on hardware as small as a Raspberry Pi.",
+      "It is used by Home Assistant and many offline voice projects. This repo continues the original rhasspy/piper, now archived."
+    ],
+    "tags": [
+      "offline",
+      "embedded",
+      "home-assistant"
+    ],
+    "alternativeTo": []
+  },
+  {
+    "slug": "coqui-tts",
+    "name": "Coqui TTS",
+    "repo": "idiap/coqui-ai-TTS",
+    "category": "text-to-speech",
+    "tagline": "Deep learning toolkit for text-to-speech, maintained fork",
+    "description": [
+      "Coqui TTS bundles many speech models, including XTTS for multilingual voice cloning, with tools to train and fine-tune them.",
+      "After Coqui shut down, Idiap Research Institute took over maintenance in this fork."
+    ],
+    "tags": [
+      "toolkit",
+      "xtts",
+      "python"
+    ],
+    "alternativeTo": [
+      {
+        "slug": "elevenlabs",
+        "why": "Multilingual voice cloning with XTTS, plus the tools to train your own models."
+      }
+    ]
+  },
+  {
+    "slug": "dia",
+    "name": "Dia",
+    "repo": "nari-labs/dia",
+    "category": "text-to-speech",
+    "tagline": "Generate realistic dialogue from a transcript in one pass",
+    "description": [
+      "Dia is a 1.6B-parameter model that turns a script with several speakers into natural dialogue, including laughter and other non-verbal sounds.",
+      "You can condition it on reference audio to control voice, emotion and tone."
+    ],
+    "tags": [
+      "dialogue",
+      "open-weights",
+      "python"
+    ],
+    "alternativeTo": [
+      {
+        "slug": "elevenlabs",
+        "why": "Multi-speaker dialogue generation from a script, with open weights you run yourself."
+      }
+    ]
+  },
+  {
+    "slug": "openvoice",
+    "name": "OpenVoice",
+    "repo": "myshell-ai/OpenVoice",
+    "category": "text-to-speech",
+    "tagline": "Instant voice cloning across languages",
+    "description": [
+      "OpenVoice, from MIT and MyShell, clones the tone of a reference voice and can speak in languages the reference was not recorded in.",
+      "It gives fine-grained control over style, such as emotion, accent and rhythm."
+    ],
+    "tags": [
+      "voice-cloning",
+      "multilingual",
+      "python"
+    ],
+    "alternativeTo": [
+      {
+        "slug": "elevenlabs",
+        "why": "Cross-language voice cloning like ElevenLabs, open source and free for commercial use."
+      }
+    ]
+  },
+  {
+    "slug": "exo",
+    "name": "exo",
+    "repo": "exo-explore/exo",
+    "category": "local-llm",
+    "tagline": "Run large models across all your devices as one cluster",
+    "description": [
+      "exo connects your computers, and even phones, into a single AI cluster, so you can run models larger than any one device could hold.",
+      "Devices discover each other automatically, and it exposes an API compatible with common model clients."
+    ],
+    "tags": [
+      "distributed",
+      "cluster",
+      "apple-silicon"
+    ],
+    "alternativeTo": []
+  },
+  {
+    "slug": "sglang",
+    "name": "SGLang",
+    "repo": "sgl-project/sglang",
+    "category": "local-llm",
+    "tagline": "High-performance serving framework for LLMs and multimodal models",
+    "description": [
+      "SGLang serves language and vision models with a fast runtime, using techniques such as RadixAttention to reuse cached prompt prefixes.",
+      "It provides an OpenAI-compatible server and scales from one GPU to large clusters."
+    ],
+    "tags": [
+      "serving",
+      "gpu",
+      "openai-api"
+    ],
+    "alternativeTo": []
+  },
+  {
+    "slug": "mlc-llm",
+    "name": "MLC LLM",
+    "repo": "mlc-ai/mlc-llm",
+    "category": "local-llm",
+    "tagline": "Compile and run LLMs natively on any device",
+    "description": [
+      "MLC LLM uses machine learning compilation to run models efficiently on GPUs, laptops, phones and in the browser through WebGPU.",
+      "The same engine powers native apps on iOS and Android and an OpenAI-compatible server."
+    ],
+    "tags": [
+      "compiler",
+      "mobile",
+      "webgpu"
+    ],
+    "alternativeTo": []
+  },
+  {
+    "slug": "textgen",
+    "name": "TextGen",
+    "repo": "oobabooga/textgen",
+    "category": "local-llm",
+    "tagline": "Desktop app for local LLMs (formerly text-generation-webui)",
+    "description": [
+      "TextGen, long known as text-generation-webui, is a private desktop app for chatting with local models, with vision, tool calling and web search.",
+      "It supports several backends, including llama.cpp and Transformers, and offers an OpenAI- and Anthropic-compatible API."
+    ],
+    "tags": [
+      "desktop",
+      "gguf",
+      "api"
+    ],
+    "alternativeTo": [
+      {
+        "slug": "lm-studio",
+        "why": "A desktop app for running local models like LM Studio, open source with no telemetry."
+      }
+    ]
+  },
+  {
+    "slug": "pydantic-ai",
+    "name": "Pydantic AI",
+    "repo": "pydantic/pydantic-ai",
+    "category": "agent-frameworks",
+    "tagline": "Type-safe Python agent framework from the Pydantic team",
+    "description": [
+      "Pydantic AI brings Pydantic's validation to agents: structured outputs, typed dependencies and tools checked by your type checker.",
+      "It works with most model providers and integrates with Logfire for tracing."
+    ],
+    "tags": [
+      "python",
+      "type-safe",
+      "framework"
+    ],
+    "alternativeTo": []
+  },
+  {
+    "slug": "agno",
+    "name": "Agno",
+    "repo": "agno-agi/agno",
+    "category": "agent-frameworks",
+    "tagline": "Framework and runtime for running your own agent platform",
+    "description": [
+      "Agno, formerly Phidata, provides an SDK for building agents, a runtime to serve them and a web UI to manage them.",
+      "It is designed for teams that want to keep control of their data, memory and access rules."
+    ],
+    "tags": [
+      "python",
+      "runtime",
+      "multi-agent"
+    ],
+    "alternativeTo": []
+  },
+  {
+    "slug": "openai-agents",
+    "name": "OpenAI Agents SDK",
+    "repo": "openai/openai-agents-python",
+    "category": "agent-frameworks",
+    "tagline": "Lightweight framework for multi-agent workflows",
+    "description": [
+      "The OpenAI Agents SDK keeps agents simple: instructions, tools, handoffs between agents and guardrails, with built-in tracing.",
+      "Despite the name, it works with other model providers as well as OpenAI's."
+    ],
+    "tags": [
+      "python",
+      "multi-agent",
+      "minimal"
+    ],
+    "alternativeTo": []
+  },
+  {
+    "slug": "browser-use",
+    "name": "Browser Use",
+    "repo": "browser-use/browser-use",
+    "category": "agent-frameworks",
+    "tagline": "Let AI agents operate a web browser",
+    "description": [
+      "Browser Use gives an agent control of a real browser to click, type and navigate websites to complete tasks.",
+      "It is a Python and TypeScript library built on Playwright and works with many models."
+    ],
+    "tags": [
+      "browser",
+      "automation",
+      "playwright"
+    ],
+    "alternativeTo": []
+  },
+  {
+    "slug": "whisperx",
+    "name": "WhisperX",
+    "repo": "m-bain/whisperX",
+    "category": "speech-to-text",
+    "tagline": "Whisper with word-level timestamps and speaker labels",
+    "description": [
+      "WhisperX adds accurate word-level timestamps and speaker diarization on top of Whisper, and batches audio for faster transcription.",
+      "It is a good fit for subtitles and meeting transcripts where you need to know who said what, and when."
+    ],
+    "tags": [
+      "python",
+      "diarization",
+      "timestamps"
+    ],
+    "alternativeTo": []
+  },
+  {
+    "slug": "forge",
+    "name": "Stable Diffusion WebUI Forge",
+    "repo": "lllyasviel/stable-diffusion-webui-forge",
+    "category": "image-generation",
+    "tagline": "Faster, lower-memory take on the Stable Diffusion web UI",
+    "description": [
+      "Forge keeps the familiar Stable Diffusion web UI while reworking memory management, so it runs larger models on smaller GPUs.",
+      "It supports newer model families and most existing extensions."
+    ],
+    "tags": [
+      "stable-diffusion",
+      "web-ui",
+      "low-vram"
+    ],
+    "alternativeTo": [
+      {
+        "slug": "midjourney",
+        "why": "Generate images on a modest GPU with a familiar interface, instead of paying for a hosted plan."
+      }
+    ]
   }
 ]

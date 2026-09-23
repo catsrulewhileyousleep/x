@@ -37,7 +37,7 @@ Paying for faster review, if it is ever offered, never skips these checks, never
    }
    ```
 
-   - `category` must match a slug in `data/categories.json`.
+   - `category` must match a slug in `data/categories.json`: `coding-agents`, `local-llm`, `chat-interfaces`, `ai-search`, `image-generation`, `agent-frameworks`, `speech-to-text`, `text-to-speech`.
    - `alternativeTo` slugs must exist in `data/alternatives.json`. Only add one when the tool genuinely replaces the product, and always write the `why`.
    - If GitHub cannot detect the license, add `"licenseOverride": { "spdx": "Apache-2.0", "note": "Why it was verified manually." }`.
 

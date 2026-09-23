@@ -1,10 +1,17 @@
 // Health Score v1. Pure and dependency-free so it can be tested with `node --test`.
 
-export const FORMULA_VERSION = "1";
+export const FORMULA_VERSION = "2";
 export const WEIGHTS = { popularity: 0.4, maintenance: 0.6 } as const;
 export const FRESH_DAYS = 30;
 export const STALE_DAYS = 365;
 export const MIN_REPO_AGE_DAYS = 90;
+/**
+ * v2: fixed log-scale anchors instead of normalizing from 0 stars against the dataset max.
+ * v1 put every listed repo between 66 and 100, so popularity barely separated tools. Fixed
+ * anchors also keep scores (and embedded badges) stable when a new tool joins the dataset.
+ */
+export const POPULARITY_FLOOR = 1_000;
+export const POPULARITY_CEILING = 200_000;
 
 const DAY = 86_400_000;
 
@@ -26,9 +33,11 @@ export type Health =
     }
   | { status: "insufficient"; reason: string };
 
-export function popularityScore(stars: number, maxStars: number): number {
-  if (maxStars <= 0) return 0;
-  return (100 * Math.log10(1 + stars)) / Math.log10(1 + maxStars);
+export function popularityScore(stars: number): number {
+  const lo = Math.log10(POPULARITY_FLOOR);
+  const hi = Math.log10(POPULARITY_CEILING);
+  const x = (Math.log10(Math.max(1, stars)) - lo) / (hi - lo);
+  return 100 * Math.min(1, Math.max(0, x));
 }
 
 export function maintenanceScore(daysSinceCommit: number): number {
@@ -38,7 +47,7 @@ export function maintenanceScore(daysSinceCommit: number): number {
 }
 
 /** Days are measured against the snapshot time, not "now", so a page never drifts from its data. */
-export function computeHealth(input: HealthInput, maxStars: number, snapshotAt: string): Health {
+export function computeHealth(input: HealthInput, snapshotAt: string): Health {
   if (input.isPrivate) return { status: "insufficient", reason: "The repo is no longer public." };
   if (input.archived) return { status: "insufficient", reason: "The repo is archived." };
   if (input.stars == null || !input.lastCommitAt || !input.createdAt) {
@@ -51,7 +60,7 @@ export function computeHealth(input: HealthInput, maxStars: number, snapshotAt: 
   }
 
   const daysSinceCommit = Math.max(0, Math.floor((now - Date.parse(input.lastCommitAt)) / DAY));
-  const popularity = popularityScore(input.stars, maxStars);
+  const popularity = popularityScore(input.stars);
   const maintenance = maintenanceScore(daysSinceCommit);
   return {
     status: "scored",

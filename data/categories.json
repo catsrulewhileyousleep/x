@@ -18,6 +18,12 @@
     "intro": "Self-hosted or desktop chat apps that work with local models or with model provider APIs."
   },
   {
+    "slug": "ai-search",
+    "name": "AI search",
+    "title": "Open-source AI search engines",
+    "intro": "Answer engines and research agents that search the web or your documents and cite their sources."
+  },
+  {
     "slug": "image-generation",
     "name": "Image generation",
     "title": "Open-source AI image generation tools",
@@ -34,5 +40,11 @@
     "name": "Speech to text",
     "title": "Open-source speech-to-text tools",
     "intro": "Speech recognition models and runtimes that run locally and support many languages."
+  },
+  {
+    "slug": "text-to-speech",
+    "name": "Text to speech",
+    "title": "Open-source text-to-speech tools",
+    "intro": "Speech synthesis and voice cloning models you can run locally, from tiny offline engines to expressive multi-speaker models."
   }
 ]

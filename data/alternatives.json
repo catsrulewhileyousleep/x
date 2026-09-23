@@ -40,5 +40,35 @@
     "name": "Midjourney",
     "category": "image-generation",
     "intro": "Midjourney only runs on its own servers, charges a monthly plan and limits how much you can steer the generation process. The tools below run open-weight models such as Stable Diffusion on your GPU."
+  },
+  {
+    "slug": "cursor",
+    "name": "Cursor",
+    "category": "coding-agents",
+    "intro": "Cursor is a closed-source fork of VS Code with its own subscription and usage limits. The tools below give you agent-style editing either as a native open-source editor or as an extension for the editor you already use, with the model of your choice.",
+    "freeTier": {
+      "answer": "Yes. Cursor has a free Hobby plan with limited agent requests and completions. See Cursor's pricing page for current limits.",
+      "sourceUrl": "https://cursor.com/pricing"
+    }
+  },
+  {
+    "slug": "perplexity",
+    "name": "Perplexity",
+    "category": "ai-search",
+    "intro": "Perplexity runs every search through its own servers and models, and its most capable features sit behind a subscription. The tools below answer questions with cited sources too, but you host them and choose the models, so your searches stay yours.",
+    "freeTier": {
+      "answer": "Yes. Perplexity has a free plan, with advanced searches and model choice limited to paid plans. See Perplexity's pricing for details.",
+      "sourceUrl": "https://www.perplexity.ai/pro"
+    }
+  },
+  {
+    "slug": "elevenlabs",
+    "name": "ElevenLabs",
+    "category": "text-to-speech",
+    "intro": "ElevenLabs charges by the character, processes your text and voice samples on its servers, and keeps its models closed. The models below generate speech and clone voices on your own hardware, with no usage fees.",
+    "freeTier": {
+      "answer": "Yes. ElevenLabs has a free plan with a monthly character limit and restrictions on commercial use. See ElevenLabs' pricing page for details.",
+      "sourceUrl": "https://elevenlabs.io/pricing"
+    }
   }
 ]

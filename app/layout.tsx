@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Inter_Tight } from "next/font/google";
 import { alternatives, commands, indexableCategories, snapshotAt } from "@/lib/data";
 import { CommandPalette } from "@/components/command-palette";
+import { NavLink } from "@/components/nav-link";
 import { ThemeToggle, themeScript } from "@/components/theme";
 import { InlineScript } from "@/components/inline-script";
 import { formatDate, repoUrl, siteName, siteUrl, submitUrl } from "@/lib/format";
@@ -18,6 +19,8 @@ export const metadata: Metadata = {
   title: { default: `Open-source AI tools | ${siteName}`, template: `%s | ${siteName}` },
   description:
     "A small, hand-picked directory of open-source AI tools, with a transparent Health Score built from GitHub data.",
+  openGraph: { type: "website", siteName },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -34,17 +37,22 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Skip to content
         </a>
 
-        <header className="mx-auto flex w-full max-w-5xl items-center justify-between px-5 py-5 sm:px-8">
-          <Link href="/" className="-mx-1 px-1 py-1 text-[15px] font-semibold tracking-tight">
+        <header className="mx-auto grid w-full max-w-5xl grid-cols-[1fr_auto] items-center gap-y-1 px-5 pt-4 pb-2 sm:flex sm:gap-6 sm:px-8 sm:py-5">
+          <Link href="/" className="-mx-1 px-1 py-2 text-[15px] font-semibold tracking-tight">
             {siteName}
           </Link>
-          <nav aria-label="Main" className="-mr-2 flex items-center gap-1">
-            <Link href="/health-score" className="rounded-lg px-2.5 py-2 text-fg-muted hover:bg-surface hover:text-fg max-sm:hidden">
-              How Health Score works
-            </Link>
+          <nav
+            aria-label="Main"
+            className="col-span-2 row-start-2 -ml-2.5 flex items-center gap-0.5 sm:row-auto sm:ml-0 sm:flex-1"
+          >
+            <NavLink href="/category">Categories</NavLink>
+            <NavLink href="/alternative-to">Alternatives</NavLink>
+            <NavLink href="/health-score">Health Score</NavLink>
+          </nav>
+          <div className="-mr-2 flex items-center gap-0.5">
             <CommandPalette commands={commands()} />
             <ThemeToggle />
-          </nav>
+          </div>
         </header>
 
         <main id="main" className="mx-auto w-full max-w-5xl flex-1 px-5 pt-8 pb-24 sm:px-8 sm:pt-14">

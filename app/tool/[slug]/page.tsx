@@ -1,15 +1,26 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowUpRight, ChevronDown } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronDown } from "lucide-react";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { CopyButton } from "@/components/copy-button";
 import { HealthValue } from "@/components/health";
 import { JsonLd } from "@/components/json-ld";
 import { ToolAvatar } from "@/components/tool-avatar";
-import { CopyBadge } from "@/components/copy-badge";
 import { ToolTable } from "@/components/tool-table";
-import { replacesFor, similarTools, snapshotAt, toRow, tools, getTool, type Tool } from "@/lib/data";
-import { FRESH_DAYS, STALE_DAYS, WEIGHTS } from "@/lib/health";
+import {
+  categoryNeighbours,
+  getTool,
+  replacesFor,
+  similarTools,
+  snapshotAt,
+  toRow,
+  tools,
+  type Tool,
+} from "@/lib/data";
+import { badgeValue, badgeWidth } from "@/lib/badge";
+import { FRESH_DAYS, POPULARITY_CEILING, POPULARITY_FLOOR, STALE_DAYS, WEIGHTS } from "@/lib/health";
 import { formatDate, formatNumber, formatStars, siteUrl } from "@/lib/format";
 
 export const dynamicParams = false;
@@ -28,35 +39,48 @@ export async function generateMetadata({ params }: PageProps<"/tool/[slug]">): P
   };
 }
 
+const h2 = "text-[15px] font-medium";
+const link = "underline decoration-fg-muted underline-offset-[0.2em] hover:decoration-fg";
+
 export default async function ToolPage({ params }: PageProps<"/tool/[slug]">) {
   const tool = getTool((await params).slug);
   if (!tool) notFound();
   const replaces = replacesFor(tool);
   const similar = similarTools(tool);
+  const neighbours = categoryNeighbours(tool);
+  const badgeMarkdown = `[![Health Score](${siteUrl}/badge/${tool.slug}.svg)](${siteUrl}/tool/${tool.slug})`;
 
   return (
     <article>
       <Breadcrumbs
         items={[
+          { name: "Categories", href: "/category" },
           { name: tool.categoryName, href: `/category/${tool.category}` },
           { name: tool.name, href: `/tool/${tool.slug}` },
         ]}
       />
 
       <header className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-        <div className="flex items-start gap-4">
-          <span className="mt-1.5">
-            <ToolAvatar src={tool.avatarUrl} size={40} />
+        <div className="flex min-w-0 items-start gap-4">
+          <span className="mt-1">
+            <ToolAvatar src={tool.avatarUrl} size={48} />
           </span>
-          <div>
-            <h1 className="text-[2.25rem] leading-[1.1] font-semibold tracking-[-0.03em]">{tool.name}</h1>
+          <div className="min-w-0">
+            <h1 className="text-[2.25rem] leading-[1.1] font-semibold tracking-[-0.03em] text-balance">
+              {tool.name}
+            </h1>
             <p className="mt-2 max-w-[55ch] text-[15px] text-pretty text-fg-muted">{tool.tagline}</p>
           </div>
         </div>
-        <div className="flex shrink-0 flex-wrap gap-2">
-          {tool.website && <ExternalButton href={tool.website} primary>Visit website</ExternalButton>}
-          <ExternalButton href={tool.githubUrl} primary={!tool.website}>GitHub</ExternalButton>
-          <CopyBadge markdown={`[![Health Score](${siteUrl}/badge/${tool.slug}.svg)](${siteUrl}/tool/${tool.slug})`} />
+        <div className="flex shrink-0 gap-2">
+          {tool.website && (
+            <ExternalButton href={tool.website} primary>
+              Visit website
+            </ExternalButton>
+          )}
+          <ExternalButton href={tool.githubUrl} primary={!tool.website}>
+            GitHub
+          </ExternalButton>
         </div>
       </header>
 
@@ -67,62 +91,112 @@ export default async function ToolPage({ params }: PageProps<"/tool/[slug]">) {
         <Meta label="Stars">
           <span className="tabular-nums">{formatStars(tool.stars)}</span>
         </Meta>
-        <Meta label="License">
-          {tool.license ?? "Unknown"}
-          {tool.licenseNote && <span className="mt-0.5 block text-[13px] text-fg-muted">{tool.licenseNote}</span>}
-        </Meta>
+        <Meta label="License">{tool.license ?? "Unknown"}</Meta>
         <Meta label="Last commit">
           <span className="tabular-nums">{formatDate(tool.lastCommitAt)}</span>
         </Meta>
       </dl>
 
-      <div className="mt-10 max-w-[65ch] space-y-4 text-[15px] leading-relaxed text-pretty">
-        {tool.description.map((p) => (
-          <p key={p}>{p}</p>
-        ))}
+      <div className="mt-12 grid gap-x-16 gap-y-14 lg:grid-cols-[minmax(0,1fr)_16rem]">
+        <div className="min-w-0 max-w-[65ch] space-y-14">
+          <div className="space-y-4 text-[15px] leading-relaxed text-pretty">
+            {tool.description.map((p) => (
+              <p key={p}>{p}</p>
+            ))}
+          </div>
+
+          {replaces.length > 0 && (
+            <section aria-labelledby="replaces">
+              <h2 id="replaces" className={h2}>
+                Alternative to
+              </h2>
+              <ul className="mt-3 space-y-3">
+                {replaces.map((r) => (
+                  <li key={r.slug}>
+                    <Link href={`/alternative-to/${r.slug}`} className={`font-medium ${link}`}>
+                      {r.name}
+                    </Link>
+                    <p className="mt-0.5 text-pretty text-fg-muted">{r.why}</p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          <HealthBreakdown tool={tool} />
+        </div>
+
+        <aside className="min-w-0 space-y-10 text-[13px] lg:sticky lg:top-8 lg:self-start">
+          <section aria-labelledby="details">
+            <h2 id="details" className={h2}>
+              Details
+            </h2>
+            <dl className="mt-3 grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-2">
+              <dt className="text-fg-muted">Category</dt>
+              <dd>
+                <Link href={`/category/${tool.category}`} className={link}>
+                  {tool.categoryName}
+                </Link>
+              </dd>
+              <dt className="text-fg-muted">Language</dt>
+              <dd>{tool.language ?? "—"}</dd>
+              <dt className="text-fg-muted">License</dt>
+              <dd>
+                {tool.license ?? "Unknown"}
+                {tool.licenseNote && <span className="mt-0.5 block text-pretty text-fg-muted">{tool.licenseNote}</span>}
+              </dd>
+              <dt className="text-fg-muted">Created</dt>
+              <dd className="tabular-nums">{formatDate(tool.createdAt)}</dd>
+              <dt className="text-fg-muted">Tags</dt>
+              <dd>{tool.tags.join(", ")}</dd>
+              <dt className="text-fg-muted">Repository</dt>
+              <dd className="truncate">
+                <a href={tool.githubUrl} rel="nofollow noopener" className={link} title={tool.githubUrl}>
+                  {tool.githubUrl.replace("https://github.com/", "")}
+                </a>
+              </dd>
+            </dl>
+            <p className="mt-3 text-fg-muted">Data from GitHub, {formatDate(snapshotAt)}.</p>
+          </section>
+
+          <section aria-labelledby="embed">
+            <h2 id="embed" className={h2}>
+              Embed the badge
+            </h2>
+            <p className="mt-1 text-pretty text-fg-muted">Show this score in your README. It updates with the data.</p>
+            <Image
+              src={`/badge/${tool.slug}.svg`}
+              alt={`Health ${badgeValue(tool.health)}`}
+              width={badgeWidth(tool.health)}
+              height={20}
+              unoptimized
+              className="mt-3"
+            />
+            <code className="mt-3 block overflow-x-auto rounded-lg border border-hairline bg-surface px-3 py-2 text-xs whitespace-nowrap text-fg-muted">
+              {badgeMarkdown}
+            </code>
+            <div className="mt-2">
+              <CopyButton text={badgeMarkdown} label="Copy Markdown" />
+            </div>
+          </section>
+        </aside>
       </div>
 
-      <HealthBreakdown tool={tool} />
-
-      {replaces.length > 0 && (
-        <section className="mt-14 max-w-[65ch]">
-          <h2 className="text-[15px] font-medium">Alternative to</h2>
-          <ul className="mt-3 space-y-3">
-            {replaces.map((r) => (
-              <li key={r.slug}>
-                <Link href={`/alternative-to/${r.slug}`} className="font-medium underline decoration-fg-muted hover:decoration-fg">
-                  {r.name}
-                </Link>
-                <p className="mt-0.5 text-fg-muted">{r.why}</p>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
       {similar.length > 0 && (
-        <section className="mt-14">
-          <h2 className="mb-3 text-[15px] font-medium">Similar tools</h2>
+        <section aria-labelledby="similar" className="mt-16">
+          <h2 id="similar" className={`mb-3 ${h2}`}>
+            Similar tools
+          </h2>
           <ToolTable rows={similar.map((t) => toRow(t))} sortable={false} label="Similar tools" />
         </section>
       )}
 
-      <footer className="mt-14 text-[13px] text-fg-muted">
-        <dl className="grid gap-x-6 gap-y-2 sm:grid-cols-[auto_1fr]">
-          <dt>Repo</dt>
-          <dd>
-            <a href={tool.githubUrl} rel="nofollow noopener" className="break-all text-fg hover:underline">
-              {tool.githubUrl.replace("https://", "")}
-            </a>
-          </dd>
-          <dt>Language</dt>
-          <dd className="text-fg">{tool.language ?? "—"}</dd>
-          <dt>Created</dt>
-          <dd className="text-fg tabular-nums">{formatDate(tool.createdAt)}</dd>
-          <dt>Data updated</dt>
-          <dd className="text-fg tabular-nums">{formatDate(snapshotAt)}</dd>
-        </dl>
-      </footer>
+      {neighbours && (
+        <nav aria-label={`More in ${tool.categoryName}`} className="mt-16 grid grid-cols-2 gap-4">
+          <Neighbour tool={neighbours.prev} dir="prev" category={tool.categoryName} />
+          <Neighbour tool={neighbours.next} dir="next" category={tool.categoryName} />
+        </nav>
+      )}
 
       <JsonLd
         data={{
@@ -138,6 +212,24 @@ export default async function ToolPage({ params }: PageProps<"/tool/[slug]">) {
         }}
       />
     </article>
+  );
+}
+
+function Neighbour({ tool, dir, category }: { tool: Tool; dir: "prev" | "next"; category: string }) {
+  const next = dir === "next";
+  const Icon = next ? ArrowRight : ArrowLeft;
+  return (
+    <Link
+      href={`/tool/${tool.slug}`}
+      className={`group flex flex-col gap-1 rounded-lg border border-hairline px-4 py-3 transition-[background-color] duration-100 ease-out hover:bg-surface ${next ? "items-end text-right" : ""}`}
+    >
+      <span className="inline-flex items-center gap-1 text-[13px] text-fg-muted">
+        {!next && <Icon aria-hidden="true" strokeWidth={1.75} className="size-3.5" />}
+        {next ? "Next" : "Previous"} in {category}
+        {next && <Icon aria-hidden="true" strokeWidth={1.75} className="size-3.5" />}
+      </span>
+      <span className="font-medium">{tool.name}</span>
+    </Link>
   );
 }
 
@@ -169,7 +261,7 @@ function ExternalButton({ href, primary, children }: { href: string; primary?: b
 function HealthBreakdown({ tool }: { tool: Tool }) {
   const h = tool.health;
   return (
-    <details className="group mt-14 max-w-[65ch] border-y border-hairline">
+    <details className="group border-y border-hairline">
       <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 py-2 font-medium [&::-webkit-details-marker]:hidden">
         How this Health Score is calculated
         <ChevronDown
@@ -214,7 +306,8 @@ function HealthBreakdown({ tool }: { tool: Tool }) {
           <p>Not enough data to score: {h.reason}</p>
         )}
         <p className="mt-4 text-[13px] text-pretty">
-          Popularity is stars on a log scale, relative to the most-starred repo in the dataset. Maintenance
+          Popularity is stars on a log scale, from 0 at {formatNumber(POPULARITY_FLOOR)} to 100 at{" "}
+          {formatNumber(POPULARITY_CEILING)}. Maintenance
           is 100 when the last commit is within {FRESH_DAYS} days and falls to 0 at {STALE_DAYS} days.
           Calculated on {formatDate(snapshotAt)}.{" "}
           <Link href="/health-score" className="text-fg underline decoration-fg-muted hover:decoration-fg">

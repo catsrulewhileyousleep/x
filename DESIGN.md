@@ -21,7 +21,7 @@
 
 - **Affordances and signifiers**: the whole row is a real link (an `<a>` stretched over the row) and highlights on hover; the sort arrow only appears on the sorted column; external links carry ↗.
 - **Feedback**: the result count lives in a `role="status"` region; filter pills show how many tools match the current search; "Copy badge" confirms with "Copied".
-- **Mapping**: clicking a column header sorts that column.
+- **Mapping**: clicking a column header sorts that column; breadcrumbs mirror the site hierarchy (Home / Categories / Category / Tool); "Previous / Next" on a tool page walks the category in the same order as its list.
 - **Constraints**: broken references (category, alternative, snapshot) fail the build instead of shipping dead links.
 - **Conceptual model**: Health Score has only two parts, easy to remember and explain.
 
@@ -31,14 +31,14 @@
 | --- | --- |
 | Visibility of system status | The data date appears on the home page, tool pages and footer. |
 | Match with the real world | Plain English, developer terms kept as they are (stars, license). |
-| User control and freedom | `Esc` clears search and closes the palette; "clear the filters" in the empty state; filters never change the URL. |
+| User control and freedom | `Esc` clears search and closes the palette; "clear the filters" in the empty state; Back returns to the same search, filter, sort and page. Filters never change the URL. |
 | Consistency and standards | One list component on the home, category, alternative-to and "Similar tools" views. `⌘K` and `/` follow common conventions. |
 | Error prevention | Search matches tags and licenses too; missing values always sort last. |
-| Recognition rather than recall | Column headers always visible; pills show counts; the palette lists every page before you type. |
+| Recognition rather than recall | Column headers always visible; pills show counts; the header marks the current section; the palette lists every page before you type. |
 | Flexibility and efficiency | `/` focuses search, `⌘K` / `Ctrl K` jumps to any page, full keyboard support. |
 | Aesthetic and minimalist design | Nothing in a row beyond name, tagline, score, stars and license. |
 | Help users recover from errors | The empty state names the query and the way out; an empty directory is treated as a data error with reload and report links. |
-| Help and documentation | `/health-score` explains the formula, its limits and its source. |
+| Help and documentation | `/health-score` explains the formula, its limits, its source and what changed between versions. |
 
 ## John Maeda: the laws of simplicity
 
@@ -47,7 +47,7 @@
 | Reduce | Contributor counts were dropped because GitHub does not return exact numbers for large repos. |
 | Organize | Categories are grouped by words, not colors. |
 | Time | No motion except a 100ms background change on hover and the chevron turn (respects `prefers-reduced-motion`). The palette opens instantly because it is used often. |
-| Learn | Read one row and you can read them all. |
+| Learn | Read one row and you can read them all. Hub pages reuse the same row pattern. |
 | Differences | Color is reserved for state: the accent for the selected pill and focus, three health colors for score bands. |
 | Context | Generous space around the H1, dense lists. |
 | Emotion | Large type with negative tracking gives character without decoration. |
@@ -69,4 +69,4 @@ Tokens come from the brief (§6). Light values are re-derived rather than invert
 
 White text on the accent only reaches 3.61:1 in dark mode, so the selected pill uses an accent border instead of an accent fill. Health dots are decorative (the number carries the meaning) and stay at 3:1 or more against both surfaces.
 
-The theme is set by one attribute, `data-theme` on `<html>`, written by an inline script before first paint. Transitions are disabled for the frame of a theme switch so the change snaps instead of smearing.
+The theme is set by one attribute, `data-theme` on `<html>`, written by an inline script before first paint. Transitions are disabled for the frame of a theme switch so the change snaps instead of smearing. Until someone picks a theme, the site follows the OS, including changes while the page is open; picking the OS's own theme returns to following it, so two states are enough. The browser `theme-color` follows the active theme.

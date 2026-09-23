@@ -22,8 +22,9 @@ export type Row = {
   why?: string;
 };
 
-type SortKey = "name" | "health" | "stars";
-type Sort = { key: SortKey; dir: "asc" | "desc" };
+export type SortKey = "name" | "health" | "stars";
+export type Sort = { key: SortKey; dir: "asc" | "desc" };
+export const DEFAULT_SORT: Sort = { key: "health", dir: "desc" };
 
 const score = (r: Row) => (r.health.status === "scored" ? r.health.score : null);
 
@@ -44,24 +45,38 @@ function compare(a: Row, b: Row, { key, dir }: Sort) {
 const grid =
   "grid grid-cols-[minmax(0,1fr)_3.5rem] sm:grid-cols-[minmax(0,1fr)_4.5rem_4.5rem_7rem] gap-x-4";
 
+export function sortRows<T extends Row>(rows: T[], sort: Sort): T[] {
+  return [...rows].sort((a, b) => compare(a, b, sort));
+}
+
+export function nextSort(current: Sort, key: SortKey): Sort {
+  return current.key === key
+    ? { key, dir: current.dir === "asc" ? "desc" : "asc" }
+    : { key, dir: key === "name" ? "asc" : "desc" };
+}
+
+/** Sorting is uncontrolled by default; pass `sort` + `onSortChange` when a parent paginates. */
 export function ToolTable({
   rows,
   sortable = true,
   label,
+  sort: controlledSort,
+  onSortChange,
 }: {
   rows: Row[];
   sortable?: boolean;
   label: string;
+  sort?: Sort;
+  onSortChange?: (sort: Sort) => void;
 }) {
-  const [sort, setSort] = useState<Sort>({ key: "health", dir: "desc" });
-  const sorted = sortable ? [...rows].sort((a, b) => compare(a, b, sort)) : rows;
+  const [ownSort, setOwnSort] = useState<Sort>(DEFAULT_SORT);
+  const sort = controlledSort ?? ownSort;
+  const sorted = sortable ? sortRows(rows, sort) : rows;
 
   function toggle(key: SortKey) {
-    setSort((s) =>
-      s.key === key
-        ? { key, dir: s.dir === "asc" ? "desc" : "asc" }
-        : { key, dir: key === "name" ? "asc" : "desc" },
-    );
+    const next = nextSort(sort, key);
+    if (onSortChange) onSortChange(next);
+    else setOwnSort(next);
   }
 
   const head = (key: SortKey, text: string, className = "", align: "start" | "end" = "start") =>
@@ -81,7 +96,7 @@ export function ToolTable({
         <div className="flex items-center gap-4">
           {head("name", "Tool")}
           {/* Stars column is hidden on mobile, so its sort control moves here. */}
-          <span className="sm:hidden">{head("stars", "Stars")}</span>
+          {sortable && <span className="sm:hidden">{head("stars", "Stars")}</span>}
         </div>
         {head("health", "Health", "justify-self-end", "end")}
         <span className="hidden justify-self-end sm:block">{head("stars", "Stars", "", "end")}</span>
@@ -105,7 +120,7 @@ export function ToolTable({
                 >
                   {r.name}
                 </Link>
-                <p className="mt-0.5 text-[13px] text-pretty text-fg-muted">
+                <p className="mt-0.5 text-[13px] text-fg-muted">
                   {r.tagline}
                   <span className="sm:hidden">
                     {" · "}

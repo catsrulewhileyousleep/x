@@ -18,7 +18,8 @@ export function HealthValue({ health }: { health: Health }) {
   return (
     <span className="inline-flex items-center gap-1.5 tabular-nums">
       <span aria-hidden="true" className={`size-1.5 shrink-0 rounded-full ${dot[level]}`} />
-      {health.score}
+      {/* Fixed three-digit width keeps dots in one vertical line down a column. */}
+      <span className="min-w-[3ch] text-right">{health.score}</span>
       <span className="sr-only"> out of 100, {word[level]}</span>
     </span>
   );

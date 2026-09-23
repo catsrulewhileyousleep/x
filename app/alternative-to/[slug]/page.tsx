@@ -32,7 +32,12 @@ export default async function AlternativePage({ params }: PageProps<"/alternativ
 
   return (
     <>
-      <Breadcrumbs items={[{ name: `${alt.name} alternatives`, href: `/alternative-to/${alt.slug}` }]} />
+      <Breadcrumbs
+        items={[
+          { name: "Alternatives", href: "/alternative-to" },
+          { name: alt.name, href: `/alternative-to/${alt.slug}` },
+        ]}
+      />
       <h1 className="mt-6 max-w-[22ch] text-[2.25rem] leading-[1.1] font-semibold tracking-[-0.03em] text-balance">
         {heading(alt.tools.length, alt.name)}
       </h1>

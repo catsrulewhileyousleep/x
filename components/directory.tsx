@@ -1,11 +1,32 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import Fuse from "fuse.js";
 import { Search } from "lucide-react";
-import { ToolTable, type Row } from "@/components/tool-table";
+import { Pagination } from "@/components/pagination";
+import { DEFAULT_SORT, ToolTable, sortRows, type Row, type Sort } from "@/components/tool-table";
+import { isClientNavigation, markHydrated } from "@/lib/client-nav";
 
 type Pill = { slug: string; name: string };
+type View = { query: string; category: string | null; sort: Sort; page: number };
+
+const PAGE_SIZE = 20;
+const INITIAL: View = { query: "", category: null, sort: DEFAULT_SORT, page: 1 };
+
+// View state is saved per history entry (bfcacheId), so Back restores search, filter, sort and
+// page, while a fresh visit to the home page starts clean. Nothing is written to the URL.
+const storageKey = (id: string) => `directory:${id}`;
+
+function readView(id: string): View {
+  if (!isClientNavigation()) return INITIAL;
+  try {
+    const saved = sessionStorage.getItem(storageKey(id));
+    return saved ? { ...INITIAL, ...JSON.parse(saved) } : INITIAL;
+  } catch {
+    return INITIAL;
+  }
+}
 
 export function Directory({
   rows,
@@ -16,9 +37,21 @@ export function Directory({
   categories: Pill[];
   contributeUrl: string;
 }) {
-  const [query, setQuery] = useState("");
-  const [category, setCategory] = useState<string | null>(null);
+  const { bfcacheId } = useRouter();
+  const [view, setView] = useState<View>(() => readView(bfcacheId));
+  const { query, category, sort } = view;
   const input = useRef<HTMLInputElement>(null);
+  const results = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    markHydrated();
+  }, []);
+
+  useEffect(() => {
+    try {
+      sessionStorage.setItem(storageKey(bfcacheId), JSON.stringify(view));
+    } catch {}
+  }, [bfcacheId, view]);
 
   const fuse = useMemo(
     () =>
@@ -40,9 +73,26 @@ export function Directory({
 
   const q = query.trim();
   const matched = useMemo(() => (q ? fuse.search(q).map((r) => r.item) : rows), [fuse, q, rows]);
-  const visible = category ? matched.filter((r) => r.category === category) : matched;
+  const filtered = category ? matched.filter((r) => r.category === category) : matched;
+  const sorted = useMemo(() => sortRows(filtered, sort), [filtered, sort]);
+  const pages = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE));
+  const page = Math.min(view.page, pages);
+  const start = (page - 1) * PAGE_SIZE;
+  const visible = sorted.slice(start, start + PAGE_SIZE);
   const countIn = (slug: string | null) =>
     slug ? matched.filter((r) => r.category === slug).length : matched.length;
+
+  // Any change to what is listed starts again from page 1.
+  const update = (patch: Partial<Omit<View, "page">>) => setView((v) => ({ ...v, ...patch, page: 1 }));
+
+  function goToPage(p: number) {
+    setView((v) => ({ ...v, page: p }));
+    const el = results.current;
+    if (!el) return;
+    if (el.getBoundingClientRect().top < 0) el.scrollIntoView({ block: "start" });
+    // Start keyboard users at the top of the new page instead of on a now-disabled button.
+    el.focus({ preventScroll: true });
+  }
 
   // "/" focuses search from anywhere on the page, as on GitHub and most docs sites.
   useEffect(() => {
@@ -58,8 +108,7 @@ export function Directory({
   }, []);
 
   function reset() {
-    setQuery("");
-    setCategory(null);
+    setView(INITIAL);
     input.current?.focus();
   }
 
@@ -84,6 +133,13 @@ export function Directory({
     );
   }
 
+  const filteredOut = sorted.length !== rows.length;
+  const range = `${start + 1}–${start + visible.length}`;
+  const summary =
+    pages > 1
+      ? `${range} of ${sorted.length}${filteredOut ? " matching" : ""} tools`
+      : `${sorted.length}${filteredOut ? ` of ${rows.length}` : ""} tools`;
+
   return (
     <div>
       <div className="flex flex-col gap-3">
@@ -98,8 +154,8 @@ export function Directory({
             ref={input}
             type="search"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            onKeyDown={(e) => e.key === "Escape" && setQuery("")}
+            onChange={(e) => update({ query: e.target.value })}
+            onKeyDown={(e) => e.key === "Escape" && update({ query: "" })}
             placeholder="Search name, tag or license"
             autoComplete="off"
             spellCheck={false}
@@ -123,7 +179,7 @@ export function Directory({
                   key={c.slug ?? "all"}
                   type="button"
                   aria-pressed={active}
-                  onClick={() => setCategory(c.slug)}
+                  onClick={() => update({ category: c.slug })}
                   className={`inline-flex min-h-8 items-center gap-1 rounded-full border px-3 text-[13px] whitespace-nowrap transition-[color,border-color] duration-100 ease-out ${
                     active
                       ? "border-accent bg-surface text-fg"
@@ -139,30 +195,39 @@ export function Directory({
         </div>
       </div>
 
-      <p role="status" className="mt-6 mb-2 text-[13px] text-fg-muted">
-        {visible.length === rows.length
-          ? `${rows.length} tools`
-          : `${visible.length} of ${rows.length} tools`}
-      </p>
+      <div ref={results} tabIndex={-1} className="mt-6 scroll-mt-6 outline-none">
+        <p role="status" className="mb-2 text-[13px] text-fg-muted tabular-nums">
+          {summary}
+        </p>
 
-      {visible.length > 0 ? (
-        <ToolTable rows={visible} label="Tools" />
-      ) : (
-        <div className="border-y border-hairline py-10">
-          <p className="font-medium">
-            No tools match {q && <>“{q}”</>}
-            {q && activeName && " "}
-            {activeName && <>in {activeName}</>}.
-          </p>
-          <p className="mt-1 text-fg-muted">
-            Try a shorter term or{" "}
-            <button type="button" onClick={reset} className="text-fg underline">
-              clear the filters
-            </button>
-            .
-          </p>
-        </div>
-      )}
+        {visible.length > 0 ? (
+          <ToolTable
+            rows={visible}
+            label="Tools"
+            sort={sort}
+            onSortChange={(s) => update({ sort: s })}
+          />
+        ) : (
+          <div className="border-y border-hairline py-10">
+            <p className="font-medium">
+              No tools match {q && <>“{q}”</>}
+              {q && activeName && " "}
+              {activeName && <>in {activeName}</>}.
+            </p>
+            <p className="mt-1 text-fg-muted">
+              Try a shorter term or{" "}
+              <button type="button" onClick={reset} className="text-fg underline">
+                clear the filters
+              </button>
+              .
+            </p>
+          </div>
+        )}
+      </div>
+
+      <div className="mt-4 flex justify-end">
+        <Pagination page={page} pages={pages} onChange={goToPage} />
+      </div>
     </div>
   );
 }
