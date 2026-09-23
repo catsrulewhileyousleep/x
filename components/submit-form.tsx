@@ -111,7 +111,12 @@ export function SubmitForm({
   const done = state.status === "ok";
 
   return (
-    <form action={formAction} className="max-w-[65ch] space-y-5">
+    <form
+      action={formAction}
+      // Keep the draft on action errors; successful submissions lock the submit button.
+      onReset={(event) => event.preventDefault()}
+      className="max-w-[65ch] space-y-5"
+    >
       {/* Honeypot: hidden from humans and assistive tech. */}
       <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
 
@@ -212,11 +217,13 @@ export function SubmitForm({
         ) : null}
       </div>
 
-      {state.status === "error" && (
-        <p role="alert" className="border-l-2 border-health-low pl-3 text-[13px] text-pretty">
-          {state.message}
-        </p>
-      )}
+      <p
+        role="alert"
+        aria-atomic="true"
+        className={state.status === "error" && !pending ? "border-l-2 border-health-low pl-3 text-[13px] text-pretty" : "sr-only"}
+      >
+        {state.status === "error" && !pending ? state.message : ""}
+      </p>
     </form>
   );
 }

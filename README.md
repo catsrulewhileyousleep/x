@@ -7,11 +7,24 @@ A small, hand-picked directory of open-source AI tools, with a transparent Healt
 ```bash
 pnpm install
 pnpm dev        # http://localhost:3000
-pnpm test       # Health Score
+pnpm test       # data and submission unit tests
 pnpm lint && pnpm build
 pnpm seo:audit  # against a running server; BASE defaults to http://127.0.0.1:3000
 pnpm seo:projects # per-project SEO checks on data/tools.json, no server needed
 ```
+
+Browser regression tests use a running app (prefer `pnpm build && pnpm start` in
+another terminal; `pnpm dev` also works):
+
+```bash
+pnpm exec playwright install chromium # once; add --with-deps on a fresh Linux host
+pnpm test:e2e                         # BASE defaults to http://127.0.0.1:3000
+```
+
+The browser suite covers keyboard dialogs, hover/touch highlights, reduced motion,
+sound preferences, narrow layouts and delayed repository checks. GitHub requests
+are stubbed; the submission test only exercises local validation and never creates
+a review-queue entry.
 
 SEO rules for agents and maintainers live in `.agents/skills/seo*` (entry point: `seo`), with a dated standards snapshot in `.agents/skills/seo/sources.md`.
 

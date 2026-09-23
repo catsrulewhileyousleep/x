@@ -33,7 +33,7 @@
 .glide-highlight {
   transition: transform 150ms var(--ease-out), opacity 150ms var(--ease-out);
 }
-.glide-highlight[data-instant="true"] { transition: opacity 100ms var(--ease-out); }
+.glide-highlight:where([data-instant="true"]) { transition: opacity 100ms var(--ease-out); }
 
 .guide-backdrop { transition: opacity 200ms var(--ease-out); }
 .guide-dialog { transition: transform 200ms var(--ease-out), opacity 200ms var(--ease-out); }

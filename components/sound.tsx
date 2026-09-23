@@ -48,7 +48,18 @@ function readPreference() {
 
 function subscribeToPreference(onChange: () => void) {
   preferenceSubscribers.add(onChange);
-  return () => preferenceSubscribers.delete(onChange);
+  function onStorage(event: StorageEvent) {
+    if (event.key !== null && event.key !== STORAGE_KEY) return;
+    if (event.storageArea !== window.localStorage) return;
+    sessionPreference = undefined;
+    cuelumeApi?.setEnabled(readPreference());
+    onChange();
+  }
+  window.addEventListener("storage", onStorage);
+  return () => {
+    preferenceSubscribers.delete(onChange);
+    window.removeEventListener("storage", onStorage);
+  };
 }
 
 function updatePreference(next: boolean) {

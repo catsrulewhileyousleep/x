@@ -55,6 +55,7 @@ export function Glide({ children, className = "" }: { children: React.ReactNode;
         else clear();
       }}
       onFocus={(event) => {
+        if (!event.target.matches(":focus-visible")) return;
         const item = (event.target as HTMLElement).closest<HTMLElement>("[data-glide-item]");
         if (item) show(item, true);
       }}

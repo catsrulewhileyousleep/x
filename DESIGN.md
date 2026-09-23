@@ -73,8 +73,8 @@ Base UI supplies behavior and accessibility: focus management, keyboard support,
 - **Hero and footer**: the list remains the product. Dither is decorative, static and absent from the accessibility tree. Footer cards group two contribution paths; project results stay a compact list.
 - **Guide**: an occasional Base UI dialog with an accordion for selection criteria, the score and sponsorship policy. Escape closes it and returns focus; nothing essential exists only in the dialog.
 - **Hover glide**: one highlight per navigation/list group. Pointer entry selects a target once, not on every pointer move. Keyboard focus updates immediately, touch has no simulated hover, and reduced motion removes travel.
-- **Loading**: route skeletons keep structure without fake delays; the submission form announces real checking/pending states, preserves its button label and cancels obsolete GitHub requests.
-- **Sound**: [Cuelume](https://cuelume.dev/) is lazy-loaded after opt-in under Preferences. Quiet confirmation for theme changes and successful copies, never navigation/hover noise or autoplay. Visual feedback works without it.
+- **Loading**: route skeletons keep structure without fake delays; the submission form announces real checking/pending states, preserves its button label and cancels obsolete GitHub requests. Rejected submissions keep the draft; retries clear the old alert so even an identical error produces a fresh update.
+- **Sound**: [Cuelume](https://cuelume.dev/) is lazy-loaded after opt-in under Preferences. Quiet confirmation for theme changes and successful copies, never navigation/hover noise or autoplay. Preferences synchronize across open tabs, including mute. Visual feedback works without it.
 
 The refresh follows the public [Rams examples](https://www.rams.ai/demo): one primary action, semantic tokens, visible focus, consistent type, honest progress and restrained, interruptible motion. This is not a claim of a paid Rams review or score.
 
