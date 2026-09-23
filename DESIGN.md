@@ -62,6 +62,7 @@ Consistency comes from having one definition per role, not from discipline:
 | Role | Source |
 | --- | --- |
 | Page opening (breadcrumbs, title, one sentence) | `components/page-header.tsx`, on every page. The home page uses the larger `hero` title. |
+| Home hero backdrop | `components/hero-backdrop.tsx`: a soft accent wash plus an ordered-dither dot field sharing one radial mask — the fade steps through dots instead of banding. Static, accent-only, dropped under reduced transparency. |
 | Titled block | `components/section.tsx`: same heading, same gap before it (`ui.sectionGap`), same space after. |
 | Inline link, navigation link, lede, prose, small label | `lib/ui.ts` |
 | List of tools | `components/tool-table.tsx`: name plus exactly one secondary line |
