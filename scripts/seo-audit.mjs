@@ -36,7 +36,7 @@ for (const p of paths) {
   descs.set(desc, [...(descs.get(desc) ?? []), p]);
 }
 for (const [t, ps] of titles) if (ps.length > 1) issues.push([ps.join(", "), `duplicate title "${t}"`]);
-for (const [d, ps] of descs) if (ps.length > 1) issues.push([ps.join(", "), `duplicate description`]);
+for (const [, ps] of descs) if (ps.length > 1) issues.push([ps.join(", "), `duplicate description`]);
 
 console.log(`${pages} pages audited, ${issues.length} issues`);
 for (const [p, m] of issues.slice(0, 40)) console.log(" ", p, "—", m);
