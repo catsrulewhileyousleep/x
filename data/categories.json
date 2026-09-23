@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "coding-agents",
+    "name": "Coding agents",
+    "title": "Open-source AI coding agents",
+    "intro": "Agents and assistants that read your codebase, edit files and run commands for you, in the IDE or the terminal."
+  },
+  {
+    "slug": "local-llm",
+    "name": "Local LLMs",
+    "title": "Tools for running LLMs locally",
+    "intro": "Runtimes and servers for running open-weight language models on your own hardware, from a laptop to a GPU cluster."
+  },
+  {
+    "slug": "chat-interfaces",
+    "name": "Chat interfaces",
+    "title": "Open-source AI chat interfaces",
+    "intro": "Self-hosted or desktop chat apps that work with local models or with model provider APIs."
+  },
+  {
+    "slug": "ai-search",
+    "name": "AI search",
+    "title": "Open-source AI search engines",
+    "intro": "Answer engines and research agents that search the web or your documents and cite their sources."
+  },
+  {
+    "slug": "image-generation",
+    "name": "Image generation",
+    "title": "Open-source AI image generation tools",
+    "intro": "Interfaces and engines for running open-weight image models such as Stable Diffusion on your GPU."
+  },
+  {
+    "slug": "agent-frameworks",
+    "name": "Agent frameworks",
+    "title": "Frameworks for building AI agents",
+    "intro": "Libraries and visual tools for designing, orchestrating and deploying agents and AI workflows."
+  },
+  {
+    "slug": "speech-to-text",
+    "name": "Speech to text",
+    "title": "Open-source speech-to-text tools",
+    "intro": "Speech recognition models and runtimes that run locally and support many languages."
+  },
+  {
+    "slug": "text-to-speech",
+    "name": "Text to speech",
+    "title": "Open-source text-to-speech tools",
+    "intro": "Speech synthesis and voice cloning models you can run locally, from tiny offline engines to expressive multi-speaker models."
+  }
+]
