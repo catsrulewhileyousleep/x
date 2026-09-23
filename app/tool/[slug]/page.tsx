@@ -41,6 +41,7 @@ export default async function ToolPage({ params }: PageProps<"/tool/[slug]">) {
     <article>
       <Breadcrumbs
         items={[
+          { name: "Categories", href: "/category" },
           { name: tool.categoryName, href: `/category/${tool.category}` },
           { name: tool.name, href: `/tool/${tool.slug}` },
         ]}

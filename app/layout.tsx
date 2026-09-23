@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Inter_Tight } from "next/font/google";
-import { commands, indexableCategories, snapshotAt } from "@/lib/data";
+import { commands, snapshotAt } from "@/lib/data";
 import { CommandPalette } from "@/components/command-palette";
 import { NavLink } from "@/components/nav-link";
 import { ThemeToggle, themeScript } from "@/components/theme";
@@ -45,6 +45,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             aria-label="Main"
             className="col-span-2 row-start-2 -ml-2.5 flex items-center gap-0.5 sm:row-auto sm:ml-0 sm:flex-1"
           >
+            <NavLink href="/category">Categories</NavLink>
             <NavLink href="/alternative-to">Alternatives</NavLink>
             <NavLink href="/health-score">Health Score</NavLink>
           </nav>
@@ -59,21 +60,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </main>
 
         <footer className="border-t border-hairline">
-          <div className="mx-auto flex w-full max-w-5xl flex-col gap-10 px-5 py-12 text-[13px] sm:flex-row sm:justify-between sm:px-8">
-            <nav aria-label="Categories">
-              <ul className="grid grid-cols-2 gap-x-10 gap-y-2">
-                {indexableCategories.map((c) => (
-                  <li key={c.slug}>
-                    <Link href={`/category/${c.slug}`} className="text-fg-muted hover:text-fg">
-                      {c.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-            <div className="space-y-2 text-fg-muted sm:text-right">
-              <p>GitHub data from {formatDate(snapshotAt)}</p>
-              <p>
+          <div className="mx-auto flex w-full max-w-5xl flex-col gap-2 px-5 py-10 text-[13px] text-fg-muted sm:flex-row sm:justify-between sm:px-8">
+            <p>GitHub data from {formatDate(snapshotAt)}</p>
+            <p>
                 <a href={submitUrl} className="text-fg hover:underline">
                   Submit a tool
                 </a>
@@ -81,8 +70,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                 <a href={repoUrl} className="text-fg hover:underline">
                   Source code
                 </a>
-              </p>
-            </div>
+            </p>
           </div>
         </footer>
       </body>

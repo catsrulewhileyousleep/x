@@ -202,6 +202,7 @@ export function commands() {
       hint: "Alternatives",
       keywords: [a.name],
     })),
+    { href: "/category", label: "Categories", hint: "Page", keywords: ["all categories"] },
     { href: "/alternative-to", label: "Alternatives", hint: "Page", keywords: ["all alternatives"] },
     { href: "/health-score", label: "Health Score", hint: "Page", keywords: ["method", "formula"] },
   ];

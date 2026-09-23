@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const paths = [
     "/",
     "/health-score",
+    "/category",
     "/alternative-to",
     ...indexableCategories.map((c) => `/category/${c.slug}`),
     ...alternatives.map((a) => `/alternative-to/${a.slug}`),
