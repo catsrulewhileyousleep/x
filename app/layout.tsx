@@ -47,7 +47,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </Link>
           <nav
             aria-label="Main"
-            className="col-span-2 row-start-2 -ml-2.5 flex items-center gap-0.5 sm:row-auto sm:ml-0 sm:flex-1"
+            className="col-span-2 row-start-2 -ml-2.5 flex items-center gap-1 sm:row-auto sm:ml-0 sm:flex-1"
           >
             <NavLink href="/category">Categories</NavLink>
             <NavLink href="/alternative-to">Alternatives</NavLink>

@@ -77,6 +77,7 @@ export function ToolTable({
   sortable = true,
   label,
   pinSponsored = false,
+  lead,
   sort: controlledSort,
   onSortChange,
 }: {
@@ -85,6 +86,8 @@ export function ToolTable({
   label: string;
   /** Keep sponsored rows on top whatever the sort. Category pages only. */
   pinSponsored?: boolean;
+  /** Optional pinned row between the header and the list, e.g. the sponsored slot. */
+  lead?: React.ReactNode;
   sort?: Sort;
   onSortChange?: (sort: Sort) => void;
 }) {
@@ -118,13 +121,17 @@ export function ToolTable({
       >
         <div className="flex items-center gap-4">
           {head("name", "Tool")}
-          {/* Stars column is hidden on mobile, so its sort control moves here. */}
-          {sortable && <span className="sm:hidden">{head("stars", "Stars")}</span>}
         </div>
         {head("health", "Health", "justify-self-end", "end")}
         <span className="hidden justify-self-end sm:block">{head("stars", "Stars", "", "end")}</span>
         <span className="hidden sm:block">License</span>
       </div>
+
+      {lead && (
+        <div className={`${grid} group relative items-center border-b border-hairline px-3 py-3 transition-[background-color] duration-100 ease-out hover:bg-surface`}>
+          {lead}
+        </div>
+      )}
 
       <ol aria-label={label}>
         {sorted.map((r) => (
@@ -200,8 +207,16 @@ function SortButton({
 } & Omit<React.ComponentPropsWithRef<"button">, "onClick" | "children" | "className">) {
   const active = sort.key === sortKey;
   const Icon = sort.dir === "asc" ? ArrowUp : ArrowDown;
+  // The arrow slot is always reserved so labels do not shift; inactive arrows fade in on
+  // hover so the header still looks clickable, not like plain text.
   const arrow = (
-    <Icon aria-hidden="true" strokeWidth={1.75} className={`size-3 ${active ? "" : "invisible"}`} />
+    <Icon
+      aria-hidden="true"
+      strokeWidth={1.75}
+      className={`size-3 transition-opacity duration-100 ease-out ${
+        active ? "opacity-100" : "opacity-0 group-hover:opacity-50 group-focus-visible:opacity-50"
+      }`}
+    />
   );
   return (
     // Props from a wrapping Tooltip trigger (ref, hover and focus handlers) land on the button.
@@ -209,7 +224,7 @@ function SortButton({
       type="button"
       {...props}
       onClick={onClick}
-      className={`-mx-1 inline-flex min-h-6 items-center gap-1 rounded px-1 hover:text-fg ${active ? "text-fg" : ""} ${className}`}
+      className={`group -mx-1 inline-flex min-h-6 items-center gap-1 rounded px-1 hover:text-fg ${active ? "text-fg" : ""} ${className}`}
     >
       {/* Arrow slot is always reserved so headers don't shift when sorting changes. On
           right-aligned numeric columns it leads, so the label's edge lines up with the digits. */}

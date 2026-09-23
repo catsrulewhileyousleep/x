@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Autocomplete } from "@base-ui/react/autocomplete";
 import { Dialog } from "@base-ui/react/dialog";
 import Fuse from "fuse.js";
-import { Search } from "lucide-react";
+import { Command as CommandIcon, Search } from "lucide-react";
 import { popupSurface } from "@/components/ui/popover";
 import type { Command, CommandGroup } from "@/lib/data";
 
@@ -73,7 +73,8 @@ export function CommandPalette({ groups }: { groups: CommandGroup[] }) {
       }}
     >
       <Dialog.Trigger className="inline-flex h-9 items-center gap-2 rounded-lg px-2.5 text-fg-muted transition-[color,background-color] duration-100 ease-out hover:bg-surface hover:text-fg data-popup-open:bg-surface">
-        <Search aria-hidden="true" strokeWidth={1.75} className="size-4" />
+        {/* ⌘ marks "jump to a page"; the page's own search box is for filtering the list. */}
+        <CommandIcon aria-hidden="true" strokeWidth={1.75} className="size-4" />
         <span className="max-sm:sr-only">Jump to</span>
         <kbd aria-hidden="true" className="hidden rounded border border-hairline px-1.5 text-xs leading-5 sm:inline">
           {mac ? "⌘K" : "Ctrl K"}

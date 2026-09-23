@@ -66,6 +66,7 @@ Consistency comes from having one definition per role, not from discipline:
 | Titled block | `components/section.tsx`: same heading, same gap before it (`ui.sectionGap`), same space after. |
 | Inline link, navigation link, lede, prose, small label | `lib/ui.ts` |
 | List of tools | `components/tool-table.tsx`: name plus exactly one secondary line |
+| Sponsored slot | `components/sponsored-slot.tsx`: the house ad that marks a category's pinned slot — links to `/sponsor`, never a tool row. |
 | List of categories or alternatives | `components/index-list.tsx`: same row pattern as the tool list |
 | Interactive primitives | `components/ui/`, built on [Base UI](https://base-ui.com) and styled with the same tokens: `tooltip`, `popover`, `checkbox`, `radio`, `avatar`. The ⌘K palette uses Base UI `Dialog` and `Autocomplete`. |
 
