@@ -9,6 +9,7 @@ import { formatNumber, formatStars } from "@/lib/format";
 import { HealthValue } from "@/components/health";
 import { Avatar } from "@/components/ui/avatar";
 import { Tooltip } from "@/components/ui/tooltip";
+import { Glide } from "@/components/ui/glide";
 
 export type Row = {
   slug: string;
@@ -127,11 +128,13 @@ export function ToolTable({
         <span className="hidden sm:block">License</span>
       </div>
 
+      <Glide>
       <ol aria-label={label}>
         {sorted.map((r) => (
           <li
             key={r.slug}
-            className={`${grid} group relative items-start border-b border-hairline px-3 py-3 transition-[background-color] duration-100 ease-out hover:bg-surface has-[a:focus-visible]:bg-surface has-[a:focus-visible]:outline-2 has-[a:focus-visible]:-outline-offset-2 has-[a:focus-visible]:outline-focus`}
+            data-glide-item
+            className={`${grid} group relative items-start border-b border-hairline px-3 py-3 has-[a:focus-visible]:outline-2 has-[a:focus-visible]:-outline-offset-2 has-[a:focus-visible]:outline-focus`}
           >
             <div className="flex min-w-0 gap-3">
               <span className="mt-px">
@@ -179,6 +182,7 @@ export function ToolTable({
           </li>
         ))}
       </ol>
+      </Glide>
     </div>
   );
 }

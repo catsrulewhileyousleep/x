@@ -14,7 +14,7 @@
 | Honest | Archived, new or incomplete repos show "Not enough data" rather than a guessed score. Licenses GitHub cannot detect say how they were verified. |
 | Long-lasting | Static pages (SSG), no "hacker terminal" trend styling. |
 | Thorough to the last detail | `tabular-nums`, numbers right-aligned under their headers, `text-wrap: balance/pretty`, sort arrows that never shift the header. |
-| Environmentally friendly | No component library; client JavaScript only for search, filtering, sorting, the palette and the theme. |
+| Environmentally friendly | Static pages and server-rendered dither; reuse Base UI for accessible interaction. No canvas render loop or autoplay audio. |
 | As little design as possible | One H1, one list and one primary action per page. |
 
 ## Don Norman: human-centered design
@@ -46,7 +46,7 @@
 | --- | --- |
 | Reduce | Contributor counts were dropped because GitHub does not return exact numbers for large repos. |
 | Organize | Categories are grouped by words, not colors. |
-| Time | No motion except a 100ms background change on hover and the chevron turn (respects `prefers-reduced-motion`). The palette opens instantly because it is used often. |
+| Time | One shared hover highlight glides between targets in 150ms. Occasional guide/accordion transitions use 200ms; reduced motion removes movement. The palette opens instantly. |
 | Learn | Read one row and you can read them all. The alternatives list reuses the same row pattern. |
 | Differences | Color is reserved for state: the accent for active filters, the current section and focus, three health colors for score bands. |
 | Context | Generous space around the H1, dense lists. |
@@ -61,7 +61,7 @@ Consistency comes from having one definition per role, not from discipline:
 
 | Role | Source |
 | --- | --- |
-| Page opening (breadcrumbs, title, one sentence) | `components/page-header.tsx`, on every page. The home page uses the larger `hero` title. |
+| Page opening (breadcrumbs, title, one sentence) | `components/page-header.tsx`; home uses `components/hero.tsx` with server-rendered ordered dither and one primary action. |
 | Titled block | `components/section.tsx`: same heading, same gap before it (`ui.sectionGap`), same space after. |
 | Inline link, navigation link, lede, prose, small label | `lib/ui.ts` |
 | List of tools | `components/tool-table.tsx`: name plus exactly one secondary line |
@@ -70,12 +70,20 @@ Consistency comes from having one definition per role, not from discipline:
 
 Base UI supplies behavior and accessibility: focus management, keyboard support, ARIA state and collision-aware positioning. The design stays in our tokens. Rules for the primitives:
 
+- **Hero and footer**: the list remains the product. Dither is decorative, static and absent from the accessibility tree. Footer cards group two contribution paths; project results stay a compact list.
+- **Guide**: an occasional Base UI dialog with an accordion for selection criteria, the score and sponsorship policy. Escape closes it and returns focus; nothing essential exists only in the dialog.
+- **Hover glide**: one highlight per navigation/list group. Pointer entry selects a target once, not on every pointer move. Keyboard focus updates immediately, touch has no simulated hover, and reduced motion removes travel.
+- **Loading**: route skeletons keep structure without fake delays; the submission form announces real checking/pending states, preserves its button label and cancels obsolete GitHub requests. Rejected submissions keep the draft; retries clear the old alert so even an identical error produces a fresh update.
+- **Sound**: [Cuelume](https://cuelume.dev/) is lazy-loaded after opt-in under Preferences. Quiet confirmation for theme changes and successful copies, never navigation/hover noise or autoplay. Preferences synchronize across open tabs, including mute. Visual feedback works without it.
+
+The refresh follows the public [Rams examples](https://www.rams.ai/demo): one primary action, semantic tokens, visible focus, consistent type, honest progress and restrained, interruptible motion. This is not a claim of a paid Rams review or score.
+
 - **Tooltips** are supplementary only. Base UI disables them on touch, so they refine what is already visible: the exact star count behind "69.1k", what the Health column measures, what "Copy badge" copies, and the name of the icon-only theme toggle. Nothing a reader needs lives only in a tooltip.
 - **Filters** are popovers of real checkboxes (Category, License: several can be chosen) and radios (Health: a threshold). Each trigger summarizes its choice ("Category: 2", "Health: 70+"). Options show faceted counts and are disabled when they would empty the list.
 - **Popups** share one surface (`popupSurface`), scale from their trigger (`--transform-origin`) and skip the scale under reduced motion.
 - **Avatars** fall back to the project's initial after a short delay, so a fast logo never flashes a letter.
 
-A search for `<h1`, `<h2` or an inline `underline` class outside these files should come back empty.
+Page titles live in `PageHeader` or `Hero`; repeated section titles and text-link styles use the shared definitions above.
 
 ## Say it once
 

@@ -99,7 +99,7 @@ export function Directory({
   const fuse = useMemo(
     () =>
       new Fuse(rows, {
-        // License and tags are searchable too; matching only names feels broken.
+        // Include discovery terms, not just project names.
         keys: [
           { name: "name", weight: 3 },
           { name: "tagline", weight: 1 },
@@ -204,7 +204,7 @@ export function Directory({
             value={query}
             onChange={(e) => update({ query: e.target.value })}
             onKeyDown={(e) => e.key === "Escape" && update({ query: "" })}
-            placeholder="Search name, tag or license"
+            placeholder="Search tools or a product to replace"
             autoComplete="off"
             spellCheck={false}
             enterKeyHint="search"

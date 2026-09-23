@@ -72,19 +72,19 @@ export function CommandPalette({ groups }: { groups: CommandGroup[] }) {
         if (next) setQuery("");
       }}
     >
-      <Dialog.Trigger className="inline-flex h-9 items-center gap-2 rounded-lg px-2.5 text-fg-muted transition-[color,background-color] duration-100 ease-out hover:bg-surface hover:text-fg data-popup-open:bg-surface">
+      <Dialog.Trigger className="inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-lg px-2.5 text-fg-muted transition-[color,background-color] duration-100 ease-out hover:bg-surface hover:text-fg data-popup-open:bg-surface">
         <Search aria-hidden="true" strokeWidth={1.75} className="size-4" />
-        <span className="max-sm:sr-only">Jump to</span>
-        <kbd aria-hidden="true" className="hidden rounded border border-hairline px-1.5 text-xs leading-5 sm:inline">
+        <span className="max-lg:sr-only">Jump to</span>
+        <kbd aria-hidden="true" className="hidden rounded border border-hairline px-1.5 text-xs leading-5 lg:inline">
           {mac ? "⌘K" : "Ctrl K"}
         </kbd>
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Backdrop className="fixed inset-0 bg-black/50 transition-opacity duration-150 ease-out data-ending-style:opacity-0 data-starting-style:opacity-0 supports-[-webkit-touch-callout:none]:absolute" />
-        <Dialog.Viewport className="fixed inset-0 flex items-start justify-center px-4 pt-[12vh]">
+        <Dialog.Backdrop className="fixed inset-0 z-40 bg-black/50 supports-[-webkit-touch-callout:none]:absolute" />
+        <Dialog.Viewport className="fixed inset-0 z-50 flex items-start justify-center px-4 pt-[12vh]">
           <Dialog.Popup
             aria-label="Jump to a page"
-            className={`${popupSurface} flex max-h-[min(34rem,calc(100dvh-8rem))] w-full max-w-xl flex-col overflow-hidden transition-[opacity,scale] duration-150 ease-out data-ending-style:opacity-0 data-starting-style:opacity-0 motion-safe:data-ending-style:scale-[0.98] motion-safe:data-starting-style:scale-[0.98]`}
+            className={`${popupSurface} flex max-h-[min(34rem,calc(100dvh-8rem))] w-full max-w-xl flex-col overflow-hidden`}
           >
             <Autocomplete.Root
               open
