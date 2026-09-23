@@ -4,11 +4,18 @@
     "name": "Cline",
     "repo": "cline/cline",
     "category": "coding-agents",
-    "tagline": "Coding agent for VS Code that asks before every action",
+    "tagline": "VS Code coding agent that asks before acting",
     "description": [
       "Cline reads your codebase, creates and edits files, runs terminal commands and uses a browser to check its work. Every action waits for your approval, so you always know what the agent is doing.",
       "Bring your own API key for any model provider, or point it at a local model. Beyond the VS Code extension, Cline also ships as a CLI and an SDK."
     ],
+    "fit": "You work in VS Code and want an agent that shows every edit and command for approval before it runs.",
+    "elsewhere": {
+      "text": "You prefer the terminal. Aider works directly on your git repo.",
+      "links": [
+        "aider"
+      ]
+    },
     "tags": [
       "vs-code",
       "agent",
@@ -30,11 +37,18 @@
     "name": "Continue",
     "repo": "continuedev/continue",
     "category": "coding-agents",
-    "tagline": "Open-source coding assistant with the model of your choice",
+    "tagline": "Open-source coding assistant, any model",
     "description": [
       "Continue brings chat, autocomplete and natural-language edits into your editor. Configuration lives in a single file that is easy to share with a team.",
       "Connect it to many model providers, or to a local model so your code never leaves your machine."
     ],
+    "fit": "Your team wants one shared config for chat, autocomplete and edits across VS Code and JetBrains.",
+    "elsewhere": {
+      "text": "You want an agent that plans and runs multi-step tasks itself. Cline goes further in that direction.",
+      "links": [
+        "cline"
+      ]
+    },
     "tags": [
       "vs-code",
       "jetbrains",
@@ -61,6 +75,13 @@
       "Aider works directly on your git repo: describe a change, and Aider edits the files and commits with a clear message, so every change is easy to review or undo.",
       "It builds a map of the repo to keep context on large projects, and works with many models, over an API or locally."
     ],
+    "fit": "You live in the terminal and want every AI change as a reviewable git commit.",
+    "elsewhere": {
+      "text": "You want the agent inside your editor. Cline runs in VS Code.",
+      "links": [
+        "cline"
+      ]
+    },
     "tags": [
       "terminal",
       "git",
@@ -78,11 +99,18 @@
     "name": "OpenHands",
     "repo": "OpenHands/OpenHands",
     "category": "coding-agents",
-    "tagline": "Software development agent platform that runs in a sandbox",
+    "tagline": "Software agents that work in a sandbox",
     "description": [
       "OpenHands, formerly OpenDevin, runs agents that edit code, run commands and browse the web inside an isolated environment.",
       "Run it locally with Docker, use the CLI, or wire it into CI to hand tasks to an agent."
     ],
+    "fit": "You want to hand whole tasks to an agent that works in an isolated sandbox, locally or in CI.",
+    "elsewhere": {
+      "text": "You want to pair with an agent interactively in your terminal. OpenCode is lighter to set up.",
+      "links": [
+        "opencode"
+      ]
+    },
     "tags": [
       "agent",
       "sandbox",
@@ -100,6 +128,13 @@
       "OpenCode is a coding agent with a terminal UI. It reads your repo, proposes and applies changes, and runs commands to check them.",
       "It is not tied to any model provider, so you can switch models without switching tools."
     ],
+    "fit": "You want a terminal agent that is not tied to one model provider.",
+    "elsewhere": {
+      "text": "You want every change committed to git automatically. Aider does that by default.",
+      "links": [
+        "aider"
+      ]
+    },
     "tags": [
       "terminal",
       "tui",
@@ -117,11 +152,18 @@
     "name": "Codex CLI",
     "repo": "openai/codex",
     "category": "coding-agents",
-    "tagline": "OpenAI's lightweight coding agent for the terminal",
+    "tagline": "OpenAI's lightweight terminal coding agent",
     "description": [
       "Codex CLI reads your repo, edits files and runs commands right in the terminal. It is written in Rust and installs quickly.",
       "Commands run in a sandbox at the permission level you choose, from read-only to fully automatic."
     ],
+    "fit": "You want a fast terminal agent with a sandbox whose permissions you set, from read-only to fully automatic.",
+    "elsewhere": {
+      "text": "You want to switch freely between model providers. OpenCode is built around that.",
+      "links": [
+        "opencode"
+      ]
+    },
     "tags": [
       "terminal",
       "cli",
@@ -144,6 +186,13 @@
       "Gemini CLI brings Gemini models into the terminal to answer questions about your codebase, edit files, run commands and automate tasks.",
       "It supports MCP for connecting external tools, and works in scripts and CI."
     ],
+    "fit": "You use Gemini models and want a terminal agent you can also run in scripts and CI.",
+    "elsewhere": {
+      "text": "You want AI changes committed to git step by step. Aider does that by default.",
+      "links": [
+        "aider"
+      ]
+    },
     "tags": [
       "terminal",
       "cli",
@@ -166,6 +215,13 @@
       "Tabby is a coding assistant server you deploy yourself. It serves autocomplete and chat to popular IDEs, and your code never leaves your infrastructure.",
       "It runs on consumer GPUs and includes an admin dashboard for teams."
     ],
+    "fit": "Your organization needs code completion and chat without code leaving its own servers.",
+    "elsewhere": {
+      "text": "You are one developer on one machine. Continue with a local model is simpler to set up.",
+      "links": [
+        "continue"
+      ]
+    },
     "tags": [
       "self-hosted",
       "autocomplete",
@@ -192,6 +248,14 @@
       "Ollama downloads and runs open-weight models with a single command, managing model files and hardware configuration for you.",
       "It exposes a local REST API, so many chat apps and coding tools use Ollama as their backend."
     ],
+    "fit": "You want to run open models on your own machine with one command and use them from other apps through a local API.",
+    "elsewhere": {
+      "text": "You are serving many users at once on GPUs. vLLM and SGLang are built for throughput.",
+      "links": [
+        "vllm",
+        "sglang"
+      ]
+    },
     "tags": [
       "cli",
       "api",
@@ -214,6 +278,13 @@
       "llama.cpp is the foundational inference engine behind the GGUF format and the quantization techniques many other tools rely on.",
       "The bundled llama-server provides an OpenAI-compatible API, enough to self-host an endpoint with nothing else."
     ],
+    "fit": "You want full control over quantization and hardware, or to embed inference in your own software.",
+    "elsewhere": {
+      "text": "You just want models running without tuning flags. Ollama handles downloads and setup for you.",
+      "links": [
+        "ollama"
+      ]
+    },
     "tags": [
       "c++",
       "gguf",
@@ -236,6 +307,13 @@
       "vLLM focuses on serving models at scale: PagedAttention manages KV cache memory efficiently so it can handle many concurrent requests.",
       "It ships an OpenAI-compatible server, a good fit for self-hosting models in production on GPUs."
     ],
+    "fit": "You are serving models to many concurrent users on GPUs and care about throughput.",
+    "elsewhere": {
+      "text": "You are running models for yourself on a laptop. Ollama is far simpler.",
+      "links": [
+        "ollama"
+      ]
+    },
     "tags": [
       "serving",
       "gpu",
@@ -253,6 +331,13 @@
       "LocalAI is a drop-in replacement for the OpenAI API that runs on your hardware, covering text, images, speech and embeddings.",
       "It runs on consumer hardware without a GPU, and many apps written for OpenAI only need a new base URL."
     ],
+    "fit": "You have apps written for the OpenAI API and want to point them at local models, including images and speech.",
+    "elsewhere": {
+      "text": "You only need text models on one machine. Ollama is simpler to run.",
+      "links": [
+        "ollama"
+      ]
+    },
     "tags": [
       "openai-api",
       "self-hosted",
@@ -275,6 +360,13 @@
       "llamafile bundles a model and its runtime into one executable that runs on most operating systems with no installation.",
       "This makes it easy to share a model with non-technical people, or to archive one for the long term."
     ],
+    "fit": "You want to share or archive a model as a single file that runs without installation.",
+    "elsewhere": {
+      "text": "You switch between many models often. Ollama manages downloads and versions for you.",
+      "links": [
+        "ollama"
+      ]
+    },
     "tags": [
       "portable",
       "gguf",
@@ -301,6 +393,13 @@
       "Jan is a desktop app for downloading models and chatting with them locally, even without a network connection.",
       "When you need it, Jan also connects to cloud provider APIs and offers a local OpenAI-compatible server."
     ],
+    "fit": "You want a ChatGPT-like desktop app that works offline with local models.",
+    "elsewhere": {
+      "text": "Several people need to share one deployment. LibreChat supports multiple users.",
+      "links": [
+        "librechat"
+      ]
+    },
     "tags": [
       "desktop",
       "offline",
@@ -326,11 +425,18 @@
     "name": "LibreChat",
     "repo": "danny-avila/LibreChat",
     "category": "chat-interfaces",
-    "tagline": "Self-hosted chat interface for many model providers",
+    "tagline": "Self-hosted chat for many model providers",
     "description": [
       "LibreChat looks much like ChatGPT but lets you switch between model providers within the same conversation.",
       "It supports multiple users with sign-in, agents, MCP and file uploads, a good fit for internal team deployments."
     ],
+    "fit": "You are setting up one chat interface for a team, with sign-in, several model providers and agents.",
+    "elsewhere": {
+      "text": "It is just for you on one computer. Jan needs no server.",
+      "links": [
+        "jan"
+      ]
+    },
     "tags": [
       "self-hosted",
       "multi-user",
@@ -348,11 +454,18 @@
     "name": "NextChat",
     "repo": "ChatGPTNextWeb/NextChat",
     "category": "chat-interfaces",
-    "tagline": "Lightweight AI chat interface you can deploy in minutes",
+    "tagline": "Lightweight AI chat you deploy in minutes",
     "description": [
       "NextChat is a lightweight chat interface that runs on the web or as a desktop app, and deploys quickly to popular hosting platforms.",
       "Use your own API key and keep conversation history in the browser."
     ],
+    "fit": "You want a lightweight chat interface deployed in minutes with your own API key.",
+    "elsewhere": {
+      "text": "You need accounts and shared history for a team. LibreChat is built for that.",
+      "links": [
+        "librechat"
+      ]
+    },
     "tags": [
       "web",
       "desktop",
@@ -370,11 +483,18 @@
     "name": "AnythingLLM",
     "repo": "Mintplex-Labs/anything-llm",
     "category": "chat-interfaces",
-    "tagline": "Chat with your own documents, locally or on a server",
+    "tagline": "Chat with your own documents, locally",
     "description": [
       "AnythingLLM combines RAG, agents and chat in one app: load documents into a workspace, then ask questions grounded in them.",
       "It comes as a desktop app and a Docker image, and works with local models or over an API."
     ],
+    "fit": "You want to chat with your own documents without building a RAG pipeline yourself.",
+    "elsewhere": {
+      "text": "You mainly want answers from the web with sources. Vane is built for that.",
+      "links": [
+        "vane"
+      ]
+    },
     "tags": [
       "rag",
       "desktop",
@@ -392,11 +512,18 @@
     "name": "Stable Diffusion web UI",
     "repo": "AUTOMATIC1111/stable-diffusion-webui",
     "category": "image-generation",
-    "tagline": "The classic web interface for Stable Diffusion, with many extensions",
+    "tagline": "The classic UI, rich in extensions",
     "description": [
       "A browser interface for text-to-image, image-to-image, inpainting and upscaling, with a very large library of community extensions.",
       "Many guides and extensions target this interface, so help is easy to find."
     ],
+    "fit": "You want the interface most Stable Diffusion guides and extensions were written for.",
+    "elsewhere": {
+      "text": "Your GPU has limited memory or you use newer model families. Stable Diffusion WebUI Forge keeps the same interface with better memory handling.",
+      "links": [
+        "forge"
+      ]
+    },
     "tags": [
       "stable-diffusion",
       "web-ui",
@@ -419,6 +546,13 @@
       "ComfyUI represents image generation as a graph of nodes, so you can control and reuse every step.",
       "Workflows save as files you can share, and ComfyUI also runs as a backend with an API."
     ],
+    "fit": "You want precise control over every step, and reusable workflows you can share or run through an API.",
+    "elsewhere": {
+      "text": "You just want good images from a prompt without wiring nodes. Fooocus is built for that.",
+      "links": [
+        "fooocus"
+      ]
+    },
     "tags": [
       "node-graph",
       "workflow",
@@ -441,6 +575,13 @@
       "Fooocus hides technical parameters behind good defaults, so you can focus on the prompt.",
       "The project is in limited long-term support, mostly receiving bug fixes."
     ],
+    "fit": "You want good images from a prompt with sensible defaults and few settings.",
+    "elsewhere": {
+      "text": "You need newer model families. Fooocus is in limited long-term support, and ComfyUI adds them quickly.",
+      "links": [
+        "comfyui"
+      ]
+    },
     "tags": [
       "sdxl",
       "simple",
@@ -463,6 +604,13 @@
       "InvokeAI offers a canvas for painting over, outpainting and editing images in layers, along with model and workflow management.",
       "The interface is aimed at creative professionals who need a stable workflow."
     ],
+    "fit": "You work in layers on a canvas and want a stable, professional workflow for editing images.",
+    "elsewhere": {
+      "text": "You want to build custom node pipelines. ComfyUI has a larger node ecosystem.",
+      "links": [
+        "comfyui"
+      ]
+    },
     "tags": [
       "canvas",
       "stable-diffusion",
@@ -485,6 +633,14 @@
       "Langflow lets you connect models, tools and data sources visually, then go deeper in Python when needed.",
       "Each flow can be deployed as an API or an MCP server."
     ],
+    "fit": "You want to prototype agents and RAG flows visually, then expose them as an API or MCP server.",
+    "elsewhere": {
+      "text": "You prefer defining agents in code. CrewAI and Pydantic AI are code-first.",
+      "links": [
+        "crewai",
+        "pydantic-ai"
+      ]
+    },
     "tags": [
       "low-code",
       "python",
@@ -497,11 +653,18 @@
     "name": "CrewAI",
     "repo": "crewAIInc/crewAI",
     "category": "agent-frameworks",
-    "tagline": "Python framework for orchestrating role-based agents",
+    "tagline": "Python framework for role-based agent teams",
     "description": [
       "CrewAI organizes agents into a crew, each with its own role, goal and tools, working together to complete a task.",
       "The framework is standalone and does not depend on LangChain."
     ],
+    "fit": "Your task splits naturally into roles, and you want several agents collaborating in Python.",
+    "elsewhere": {
+      "text": "You need explicit control over state and every step of the flow. LangGraph is built for that.",
+      "links": [
+        "langgraph"
+      ]
+    },
     "tags": [
       "python",
       "multi-agent",
@@ -519,6 +682,13 @@
       "LangGraph is a low-level framework for orchestrating long-running, stateful agents, with persistence and human-in-the-loop checkpoints.",
       "It fits when you need precise control over the flow instead of a prebuilt agent."
     ],
+    "fit": "You need long-running, stateful agents with checkpoints and human approval steps.",
+    "elsewhere": {
+      "text": "You want a higher-level starting point. CrewAI gets a multi-agent setup running faster.",
+      "links": [
+        "crewai"
+      ]
+    },
     "tags": [
       "python",
       "stateful",
@@ -536,6 +706,13 @@
       "Hugging Face's smolagents keeps its core small and readable. Agents write their actions as Python code rather than JSON.",
       "It works with many models, including those on the Hugging Face Hub."
     ],
+    "fit": "You want a small, readable library where agents act by writing Python code.",
+    "elsewhere": {
+      "text": "You want typed, validated outputs throughout. Pydantic AI is built around that.",
+      "links": [
+        "pydantic-ai"
+      ]
+    },
     "tags": [
       "python",
       "minimal",
@@ -553,6 +730,13 @@
       "Whisper transcribes speech in many languages and can translate it into English.",
       "This is the original Python implementation, the basis for many faster variants."
     ],
+    "fit": "You want the reference Python implementation of Whisper, for research or as a baseline.",
+    "elsewhere": {
+      "text": "You need faster transcription on the same hardware. faster-whisper is built for that.",
+      "links": [
+        "faster-whisper"
+      ]
+    },
     "tags": [
       "python",
       "transcription",
@@ -565,11 +749,18 @@
     "name": "whisper.cpp",
     "repo": "ggml-org/whisper.cpp",
     "category": "speech-to-text",
-    "tagline": "Whisper rewritten in C/C++, light enough for a CPU",
+    "tagline": "Whisper in C/C++, light enough for a CPU",
     "description": [
       "whisper.cpp runs Whisper models without Python, optimized for CPUs and Apple Silicon.",
       "It is well suited to embedding in desktop apps, mobile apps or small devices."
     ],
+    "fit": "You need transcription without Python, on CPUs, Apple Silicon or embedded in an app.",
+    "elsewhere": {
+      "text": "You need speaker labels and word timestamps. WhisperX adds both.",
+      "links": [
+        "whisperx"
+      ]
+    },
     "tags": [
       "c++",
       "transcription",
@@ -582,11 +773,18 @@
     "name": "faster-whisper",
     "repo": "SYSTRAN/faster-whisper",
     "category": "speech-to-text",
-    "tagline": "Faster Whisper with less memory, powered by CTranslate2",
+    "tagline": "Whisper, faster and lighter on CTranslate2",
     "description": [
       "faster-whisper reimplements Whisper on CTranslate2, running faster than the original at the same accuracy while using less memory.",
       "It supports 8-bit quantization on both CPU and GPU."
     ],
+    "fit": "You want Whisper's accuracy with faster transcription and less memory, from Python.",
+    "elsewhere": {
+      "text": "You are embedding transcription in a native app. whisper.cpp needs no Python.",
+      "links": [
+        "whisper-cpp"
+      ]
+    },
     "tags": [
       "python",
       "transcription",
@@ -604,6 +802,14 @@
       "Zed is a native code editor written in Rust, built for speed and real-time collaboration. Its agent panel can edit across files, run commands and follow your instructions.",
       "You choose the model: hosted providers with your own key, or local models through Ollama and similar runtimes."
     ],
+    "fit": "You want a fast native editor with the AI agent built in rather than added as an extension.",
+    "elsewhere": {
+      "text": "You would rather keep VS Code and add an agent. Cline and Kilo Code work as extensions.",
+      "links": [
+        "cline",
+        "kilo-code"
+      ]
+    },
     "tags": [
       "editor",
       "rust",
@@ -625,11 +831,18 @@
     "name": "Kilo Code",
     "repo": "Kilo-Org/kilocode",
     "category": "coding-agents",
-    "tagline": "Open-source coding agent for VS Code, JetBrains and the CLI",
+    "tagline": "Coding agent for VS Code, JetBrains and the CLI",
     "description": [
       "Kilo Code plans, edits files and runs commands across VS Code, JetBrains IDEs and the terminal, with separate modes for planning, coding and debugging.",
       "It works with hundreds of models, through its own gateway or your own API keys."
     ],
+    "fit": "You want planning, coding and debugging modes in VS Code, JetBrains and the CLI with one tool.",
+    "elsewhere": {
+      "text": "You want a full editor with AI built in. Zed is native and open source.",
+      "links": [
+        "zed"
+      ]
+    },
     "tags": [
       "vs-code",
       "jetbrains",
@@ -651,11 +864,18 @@
     "name": "Vane",
     "repo": "ItzCrazyKns/Vane",
     "category": "ai-search",
-    "tagline": "Self-hosted AI answer engine with cited sources (formerly Perplexica)",
+    "tagline": "Self-hosted answer engine, formerly Perplexica",
     "description": [
       "Vane, previously called Perplexica, searches the web through SearxNG and answers questions with the sources it used.",
       "It runs on your own hardware and works with local models through Ollama or with cloud providers."
     ],
+    "fit": "You want a private, self-hosted answer engine that searches the web and cites its sources.",
+    "elsewhere": {
+      "text": "You need long, multi-step research reports rather than quick answers. GPT Researcher is built for that.",
+      "links": [
+        "gpt-researcher"
+      ]
+    },
     "tags": [
       "self-hosted",
       "searxng",
@@ -678,6 +898,13 @@
       "Morphic answers questions by searching the web and presents results with interactive, generated interface components.",
       "It is a Next.js app you can deploy yourself and connect to the model and search providers you prefer."
     ],
+    "fit": "You want a Perplexity-style search app you can deploy and customize as a Next.js project.",
+    "elsewhere": {
+      "text": "You want to pair web search with local models through Ollama. Vane supports that.",
+      "links": [
+        "vane"
+      ]
+    },
     "tags": [
       "nextjs",
       "search",
@@ -695,11 +922,18 @@
     "name": "Khoj",
     "repo": "khoj-ai/khoj",
     "category": "ai-search",
-    "tagline": "Self-hostable AI assistant for the web and your own documents",
+    "tagline": "AI assistant for the web and your own notes",
     "description": [
       "Khoj answers questions from the web or from your notes and documents, and can run deep research and scheduled automations.",
       "It works with local or online models and connects to Obsidian, Emacs, the browser and your phone."
     ],
+    "fit": "You want one assistant that answers from both the web and your own notes, with Obsidian and Emacs integration.",
+    "elsewhere": {
+      "text": "You only need web answers with citations. Vane is more focused.",
+      "links": [
+        "vane"
+      ]
+    },
     "tags": [
       "self-hosted",
       "rag",
@@ -726,6 +960,13 @@
       "Scira, formerly MiniPerplx, plans a search, retrieves results and answers with citations in a clean, minimal interface.",
       "It is built on the Vercel AI SDK and can be self-hosted with your own provider keys."
     ],
+    "fit": "You want a minimal, fast search interface with citations that you can host yourself.",
+    "elsewhere": {
+      "text": "You also need answers from your own documents. Khoj covers both.",
+      "links": [
+        "khoj"
+      ]
+    },
     "tags": [
       "search",
       "vercel-ai-sdk",
@@ -743,11 +984,18 @@
     "name": "GPT Researcher",
     "repo": "assafelovic/gpt-researcher",
     "category": "ai-search",
-    "tagline": "Autonomous agent that writes research reports with citations",
+    "tagline": "Agent that writes cited research reports",
     "description": [
       "GPT Researcher breaks a question into sub-queries, searches the web or your documents, and writes a detailed report with sources.",
       "It works with many model providers and can be used as a Python library, an API or a web app."
     ],
+    "fit": "You need detailed, sourced research reports and can wait minutes rather than seconds.",
+    "elsewhere": {
+      "text": "You want quick answers to everyday questions. Vane is faster to use.",
+      "links": [
+        "vane"
+      ]
+    },
     "tags": [
       "research",
       "agent",
@@ -770,6 +1018,13 @@
       "STORM, from Stanford, researches a topic from several perspectives and writes a long, cited article in the style of Wikipedia.",
       "It is a research system and Python library rather than a chat app, useful for drafting well-sourced overviews."
     ],
+    "fit": "You want a long, structured, Wikipedia-style overview of a topic with citations.",
+    "elsewhere": {
+      "text": "You want a report that answers one specific question. GPT Researcher is built for that.",
+      "links": [
+        "gpt-researcher"
+      ]
+    },
     "tags": [
       "research",
       "python",
@@ -782,11 +1037,18 @@
     "name": "Chatterbox",
     "repo": "resemble-ai/chatterbox",
     "category": "text-to-speech",
-    "tagline": "Open-source text-to-speech with voice cloning and emotion control",
+    "tagline": "Text-to-speech with voice cloning and emotion",
     "description": [
       "Chatterbox from Resemble AI generates natural speech and clones a voice from a short reference clip.",
       "You can dial expressiveness up or down, and outputs carry an inaudible watermark to help detect generated audio."
     ],
+    "fit": "You want expressive speech and voice cloning, with a watermark on generated audio.",
+    "elsewhere": {
+      "text": "You need something small enough for a laptop CPU. Kokoro is far lighter.",
+      "links": [
+        "kokoro"
+      ]
+    },
     "tags": [
       "voice-cloning",
       "python",
@@ -809,6 +1071,13 @@
       "GPT-SoVITS clones a voice from a few seconds of audio and can be fine-tuned with about a minute of recordings.",
       "It supports several languages, including English, Chinese, Japanese, Korean and Cantonese, and ships a web UI for data preparation and training."
     ],
+    "fit": "You want to train a convincing custom voice from about a minute of recordings, with a web UI.",
+    "elsewhere": {
+      "text": "You want cloning without any training step. F5-TTS works from a short clip.",
+      "links": [
+        "f5-tts"
+      ]
+    },
     "tags": [
       "voice-cloning",
       "few-shot",
@@ -826,11 +1095,18 @@
     "name": "F5-TTS",
     "repo": "SWivid/F5-TTS",
     "category": "text-to-speech",
-    "tagline": "Zero-shot text-to-speech from a short reference clip",
+    "tagline": "Zero-shot text-to-speech from a short clip",
     "description": [
       "F5-TTS is a research model and toolkit that speaks in a new voice from a short reference recording, without fine-tuning.",
       "It includes inference scripts, a Gradio app and training code."
     ],
+    "fit": "You want zero-shot voice cloning from a short clip and do not mind research-grade tooling.",
+    "elsewhere": {
+      "text": "You want a polished web UI for training a voice. GPT-SoVITS provides one.",
+      "links": [
+        "gpt-sovits"
+      ]
+    },
     "tags": [
       "zero-shot",
       "research",
@@ -853,6 +1129,14 @@
       "Kokoro is an 82-million-parameter model that produces high-quality speech while staying fast and cheap to run.",
       "Both the code and the weights are Apache-licensed, so you can use it anywhere, from production to personal projects."
     ],
+    "fit": "You need fast, high-quality narration from a small model with Apache-licensed weights.",
+    "elsewhere": {
+      "text": "You need to clone a specific voice. Chatterbox and OpenVoice do that.",
+      "links": [
+        "chatterbox",
+        "openvoice"
+      ]
+    },
     "tags": [
       "lightweight",
       "python",
@@ -870,11 +1154,18 @@
     "name": "Piper",
     "repo": "OHF-Voice/piper1-gpl",
     "category": "text-to-speech",
-    "tagline": "Fast, local text-to-speech that runs on small devices",
+    "tagline": "Fast, local text-to-speech for small devices",
     "description": [
       "Piper is a lightweight neural text-to-speech engine that runs in real time on hardware as small as a Raspberry Pi.",
       "It is used by Home Assistant and many offline voice projects. This repo continues the original rhasspy/piper, now archived."
     ],
+    "fit": "You need offline speech on small devices such as a Raspberry Pi, for example in Home Assistant.",
+    "elsewhere": {
+      "text": "You want more natural, expressive voices and have a GPU. Chatterbox is built for that.",
+      "links": [
+        "chatterbox"
+      ]
+    },
     "tags": [
       "offline",
       "embedded",
@@ -887,11 +1178,18 @@
     "name": "Coqui TTS",
     "repo": "idiap/coqui-ai-TTS",
     "category": "text-to-speech",
-    "tagline": "Deep learning toolkit for text-to-speech, maintained fork",
+    "tagline": "Text-to-speech toolkit, maintained fork",
     "description": [
       "Coqui TTS bundles many speech models, including XTTS for multilingual voice cloning, with tools to train and fine-tune them.",
       "After Coqui shut down, Idiap Research Institute took over maintenance in this fork."
     ],
+    "fit": "You want a toolkit to train and fine-tune your own speech models, including multilingual XTTS.",
+    "elsewhere": {
+      "text": "You just want to generate speech without training. Kokoro is simpler.",
+      "links": [
+        "kokoro"
+      ]
+    },
     "tags": [
       "toolkit",
       "xtts",
@@ -909,11 +1207,18 @@
     "name": "Dia",
     "repo": "nari-labs/dia",
     "category": "text-to-speech",
-    "tagline": "Generate realistic dialogue from a transcript in one pass",
+    "tagline": "Realistic dialogue from a transcript in one pass",
     "description": [
       "Dia is a 1.6B-parameter model that turns a script with several speakers into natural dialogue, including laughter and other non-verbal sounds.",
       "You can condition it on reference audio to control voice, emotion and tone."
     ],
+    "fit": "You are generating dialogue between several speakers, including laughter and other non-verbal sounds.",
+    "elsewhere": {
+      "text": "You need a single narrator voice. Kokoro is smaller and faster.",
+      "links": [
+        "kokoro"
+      ]
+    },
     "tags": [
       "dialogue",
       "open-weights",
@@ -936,6 +1241,13 @@
       "OpenVoice, from MIT and MyShell, clones the tone of a reference voice and can speak in languages the reference was not recorded in.",
       "It gives fine-grained control over style, such as emotion, accent and rhythm."
     ],
+    "fit": "You want to clone a voice and have it speak languages the reference was not recorded in.",
+    "elsewhere": {
+      "text": "You want more expressive, emotional delivery. Chatterbox is built for that.",
+      "links": [
+        "chatterbox"
+      ]
+    },
     "tags": [
       "voice-cloning",
       "multilingual",
@@ -953,11 +1265,18 @@
     "name": "exo",
     "repo": "exo-explore/exo",
     "category": "local-llm",
-    "tagline": "Run large models across all your devices as one cluster",
+    "tagline": "Run large models across your devices as one",
     "description": [
       "exo connects your computers, and even phones, into a single AI cluster, so you can run models larger than any one device could hold.",
       "Devices discover each other automatically, and it exposes an API compatible with common model clients."
     ],
+    "fit": "You have several devices and want to pool their memory to run a model none of them could hold alone.",
+    "elsewhere": {
+      "text": "One machine is enough for the models you use. Ollama needs no cluster setup.",
+      "links": [
+        "ollama"
+      ]
+    },
     "tags": [
       "distributed",
       "cluster",
@@ -970,11 +1289,18 @@
     "name": "SGLang",
     "repo": "sgl-project/sglang",
     "category": "local-llm",
-    "tagline": "High-performance serving framework for LLMs and multimodal models",
+    "tagline": "Fast serving for LLMs and multimodal models",
     "description": [
       "SGLang serves language and vision models with a fast runtime, using techniques such as RadixAttention to reuse cached prompt prefixes.",
       "It provides an OpenAI-compatible server and scales from one GPU to large clusters."
     ],
+    "fit": "You are serving language or vision models at scale and reuse long prompt prefixes across requests.",
+    "elsewhere": {
+      "text": "You are running models for yourself on one machine. Ollama is far simpler.",
+      "links": [
+        "ollama"
+      ]
+    },
     "tags": [
       "serving",
       "gpu",
@@ -992,6 +1318,14 @@
       "MLC LLM uses machine learning compilation to run models efficiently on GPUs, laptops, phones and in the browser through WebGPU.",
       "The same engine powers native apps on iOS and Android and an OpenAI-compatible server."
     ],
+    "fit": "You need models running natively on phones, in the browser through WebGPU, or on unusual hardware.",
+    "elsewhere": {
+      "text": "You only target desktops and servers. llama.cpp and Ollama are easier to start with.",
+      "links": [
+        "llama-cpp",
+        "ollama"
+      ]
+    },
     "tags": [
       "compiler",
       "mobile",
@@ -1004,11 +1338,18 @@
     "name": "TextGen",
     "repo": "oobabooga/textgen",
     "category": "local-llm",
-    "tagline": "Desktop app for local LLMs (formerly text-generation-webui)",
+    "tagline": "Local LLM app, formerly text-generation-webui",
     "description": [
       "TextGen, long known as text-generation-webui, is a private desktop app for chatting with local models, with vision, tool calling and web search.",
       "It supports several backends, including llama.cpp and Transformers, and offers an OpenAI- and Anthropic-compatible API."
     ],
+    "fit": "You want a private desktop app with several backends, extensions and fine-grained generation settings.",
+    "elsewhere": {
+      "text": "You want a simpler chat app with fewer settings. Jan is more streamlined.",
+      "links": [
+        "jan"
+      ]
+    },
     "tags": [
       "desktop",
       "gguf",
@@ -1026,11 +1367,18 @@
     "name": "Pydantic AI",
     "repo": "pydantic/pydantic-ai",
     "category": "agent-frameworks",
-    "tagline": "Type-safe Python agent framework from the Pydantic team",
+    "tagline": "Type-safe Python agents from the Pydantic team",
     "description": [
       "Pydantic AI brings Pydantic's validation to agents: structured outputs, typed dependencies and tools checked by your type checker.",
       "It works with most model providers and integrates with Logfire for tracing."
     ],
+    "fit": "You want agents with type-checked tools and validated, structured outputs in Python.",
+    "elsewhere": {
+      "text": "You want a visual builder rather than code. Langflow is built for that.",
+      "links": [
+        "langflow"
+      ]
+    },
     "tags": [
       "python",
       "type-safe",
@@ -1043,11 +1391,18 @@
     "name": "Agno",
     "repo": "agno-agi/agno",
     "category": "agent-frameworks",
-    "tagline": "Framework and runtime for running your own agent platform",
+    "tagline": "Framework and runtime for your agent platform",
     "description": [
       "Agno, formerly Phidata, provides an SDK for building agents, a runtime to serve them and a web UI to manage them.",
       "It is designed for teams that want to keep control of their data, memory and access rules."
     ],
+    "fit": "You want a framework plus a runtime and web UI to operate your own agent platform.",
+    "elsewhere": {
+      "text": "You only need a lightweight library inside an existing app. OpenAI Agents SDK is smaller.",
+      "links": [
+        "openai-agents"
+      ]
+    },
     "tags": [
       "python",
       "runtime",
@@ -1060,11 +1415,18 @@
     "name": "OpenAI Agents SDK",
     "repo": "openai/openai-agents-python",
     "category": "agent-frameworks",
-    "tagline": "Lightweight framework for multi-agent workflows",
+    "tagline": "Minimal framework for multi-agent apps",
     "description": [
       "The OpenAI Agents SDK keeps agents simple: instructions, tools, handoffs between agents and guardrails, with built-in tracing.",
       "Despite the name, it works with other model providers as well as OpenAI's."
     ],
+    "fit": "You want a minimal set of primitives, namely agents, tools, handoffs and guardrails, with tracing built in.",
+    "elsewhere": {
+      "text": "You need durable, stateful workflows with checkpoints. LangGraph is built for that.",
+      "links": [
+        "langgraph"
+      ]
+    },
     "tags": [
       "python",
       "multi-agent",
@@ -1082,6 +1444,14 @@
       "Browser Use gives an agent control of a real browser to click, type and navigate websites to complete tasks.",
       "It is a Python and TypeScript library built on Playwright and works with many models."
     ],
+    "fit": "Your agent has to operate real websites: clicking, typing and navigating like a person.",
+    "elsewhere": {
+      "text": "You need a general agent framework rather than browser control. Pydantic AI and LangGraph are general-purpose.",
+      "links": [
+        "pydantic-ai",
+        "langgraph"
+      ]
+    },
     "tags": [
       "browser",
       "automation",
@@ -1094,11 +1464,18 @@
     "name": "WhisperX",
     "repo": "m-bain/whisperX",
     "category": "speech-to-text",
-    "tagline": "Whisper with word-level timestamps and speaker labels",
+    "tagline": "Whisper with word timestamps and speakers",
     "description": [
       "WhisperX adds accurate word-level timestamps and speaker diarization on top of Whisper, and batches audio for faster transcription.",
       "It is a good fit for subtitles and meeting transcripts where you need to know who said what, and when."
     ],
+    "fit": "You need subtitles or meeting transcripts with accurate word timestamps and who said what.",
+    "elsewhere": {
+      "text": "You only need plain text quickly. faster-whisper is simpler.",
+      "links": [
+        "faster-whisper"
+      ]
+    },
     "tags": [
       "python",
       "diarization",
@@ -1111,11 +1488,18 @@
     "name": "Stable Diffusion WebUI Forge",
     "repo": "lllyasviel/stable-diffusion-webui-forge",
     "category": "image-generation",
-    "tagline": "Faster, lower-memory take on the Stable Diffusion web UI",
+    "tagline": "Classic UI, less GPU memory",
     "description": [
       "Forge keeps the familiar Stable Diffusion web UI while reworking memory management, so it runs larger models on smaller GPUs.",
       "It supports newer model families and most existing extensions."
     ],
+    "fit": "You like the classic Stable Diffusion web UI but need it to run larger models on a smaller GPU.",
+    "elsewhere": {
+      "text": "You want node-based control over the pipeline. ComfyUI is built for that.",
+      "links": [
+        "comfyui"
+      ]
+    },
     "tags": [
       "stable-diffusion",
       "web-ui",

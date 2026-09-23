@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Breadcrumbs } from "@/components/breadcrumbs";
+import { PageHeader } from "@/components/page-header";
+import { ui } from "@/lib/ui";
 import { IndexList } from "@/components/index-list";
 import { JsonLd } from "@/components/json-ld";
 import { categories, toolsInCategory } from "@/lib/data";
@@ -18,13 +19,13 @@ export default function CategoriesPage() {
 
   return (
     <>
-      <Breadcrumbs items={[{ name: "Categories", href: "/category" }]} />
-      <h1 className="mt-6 text-[2.25rem] leading-[1.1] font-semibold tracking-[-0.03em]">Categories</h1>
-      <p className="mt-4 max-w-[60ch] text-[15px] text-pretty text-fg-muted">
-        Open-source AI tools, grouped by what they do.
-      </p>
+      <PageHeader
+        crumbs={[{ name: "Categories", href: "/category" }]}
+        title="Categories"
+        lede="Open-source AI tools, grouped by what they do."
+      />
 
-      <div className="mt-12">
+      <div className={ui.headerGap}>
         <IndexList
           label="Categories"
           columns={{ name: "Category", detail: "Top by Health", count: "Tools" }}

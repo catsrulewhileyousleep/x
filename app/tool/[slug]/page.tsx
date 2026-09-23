@@ -2,14 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
-import { Breadcrumbs } from "@/components/breadcrumbs";
 import { CopyButton } from "@/components/copy-button";
 import { HealthValue } from "@/components/health";
 import { JsonLd } from "@/components/json-ld";
+import { LinkedText } from "@/components/linked-text";
+import { PageHeader } from "@/components/page-header";
+import { Section } from "@/components/section";
 import { ToolAvatar } from "@/components/tool-avatar";
 import { ToolTable } from "@/components/tool-table";
-import { getTool, replacesFor, similarTools, toRow, tools } from "@/lib/data";
-import { formatDate, formatNumber, siteUrl } from "@/lib/format";
+import { getTool, replacesFor, similarTools, snapshotAt, toRow, tools, type Tool } from "@/lib/data";
+import { clip, formatDate, formatNumber, siteName, siteUrl } from "@/lib/format";
+import { ui } from "@/lib/ui";
 
 export const dynamicParams = false;
 
@@ -17,155 +20,184 @@ export function generateStaticParams() {
   return tools.map((t) => ({ slug: t.slug }));
 }
 
+/** Search results show about 60 characters; drop the site suffix before cutting the tagline. */
+function pageTitle(tool: Tool): Metadata["title"] {
+  const base = `${tool.name} — ${tool.tagline}`;
+  return base.length + ` | ${siteName}`.length <= 60 ? base : { absolute: base };
+}
+
 export async function generateMetadata({ params }: PageProps<"/tool/[slug]">): Promise<Metadata> {
   const tool = getTool((await params).slug);
   if (!tool) return {};
   return {
-    title: `${tool.name} — ${tool.tagline}`,
-    description: tool.description[0],
+    title: pageTitle(tool),
+    description: clip(tool.description[0], 155),
     alternates: { canonical: `/tool/${tool.slug}` },
   };
 }
 
-const h2 = "text-[15px] font-medium";
-const link = "underline decoration-fg-muted underline-offset-[0.2em] hover:decoration-fg";
+// schema.org application categories that Google recognizes, by directory category.
+const APP_CATEGORY: Record<string, string> = {
+  "coding-agents": "DeveloperApplication",
+  "local-llm": "DeveloperApplication",
+  "agent-frameworks": "DeveloperApplication",
+  "chat-interfaces": "UtilitiesApplication",
+  "ai-search": "ReferenceApplication",
+  "image-generation": "MultimediaApplication",
+  "speech-to-text": "MultimediaApplication",
+  "text-to-speech": "MultimediaApplication",
+};
 
 export default async function ToolPage({ params }: PageProps<"/tool/[slug]">) {
   const tool = getTool((await params).slug);
   if (!tool) notFound();
-  const replaces = replacesFor(tool);
-  const similar = similarTools(tool);
   const h = tool.health;
+  const replaces = replacesFor(tool);
+  const elsewhere = tool.elsewhere.links.map((slug) => getTool(slug)!);
+  // Tools already recommended in "Who it's for" are not listed a second time.
+  const similar = similarTools(tool, 4, new Set(tool.elsewhere.links));
+  const url = `${siteUrl}/tool/${tool.slug}`;
 
   return (
     <article>
-      <Breadcrumbs
-        items={[
+      <PageHeader
+        crumbs={[
           { name: "Categories", href: "/category" },
           { name: tool.categoryName, href: `/category/${tool.category}` },
           { name: tool.name, href: `/tool/${tool.slug}` },
         ]}
+        media={<ToolAvatar src={tool.avatarUrl} size={48} />}
+        title={tool.name}
+        lede={tool.tagline}
+        actions={
+          <>
+            {tool.website && (
+              <ExternalButton href={tool.website} primary>
+                Visit website
+              </ExternalButton>
+            )}
+            <ExternalButton href={tool.githubUrl} primary={!tool.website}>
+              GitHub
+            </ExternalButton>
+            <CopyButton text={`[![Health Score](${siteUrl}/badge/${tool.slug}.svg)](${url})`} label="Copy badge" />
+          </>
+        }
       />
 
-      <header className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-        <div className="flex min-w-0 items-start gap-4">
-          <span className="mt-1">
-            <ToolAvatar src={tool.avatarUrl} size={48} />
+      <dl className={`${ui.headerGap} grid grid-cols-2 gap-x-6 gap-y-5 border-y border-hairline py-5 sm:grid-cols-3 lg:grid-cols-6`}>
+        <Fact label="Health" wide>
+          <span className="flex flex-wrap items-baseline gap-x-3">
+            <HealthValue health={h} />
+            <span className={ui.label}>
+              {h.status === "scored" ? `Popularity ${h.popularity} · Maintenance ${h.maintenance}` : h.reason}
+            </span>
           </span>
-          <div className="min-w-0">
-            <h1 className="text-[2.25rem] leading-[1.1] font-semibold tracking-[-0.03em] text-balance">
-              {tool.name}
-            </h1>
-            <p className="mt-2 max-w-[55ch] text-[15px] text-pretty text-fg-muted">{tool.tagline}</p>
-          </div>
-        </div>
-        <div className="flex shrink-0 flex-wrap gap-2">
-          {tool.website && (
-            <ExternalButton href={tool.website} primary>
-              Visit website
-            </ExternalButton>
-          )}
-          <ExternalButton href={tool.githubUrl} primary={!tool.website}>
-            GitHub
-          </ExternalButton>
-          <CopyButton
-            text={`[![Health Score](${siteUrl}/badge/${tool.slug}.svg)](${siteUrl}/tool/${tool.slug})`}
-            label="Copy badge"
-          />
-        </div>
-      </header>
-
-      <dl className="mt-10 grid grid-cols-2 gap-x-6 gap-y-5 border-y border-hairline py-5 sm:grid-cols-3 lg:grid-cols-6">
-        <Meta label="Health Score">
-          <HealthValue health={h} />
-          <Note>
-            {h.status === "scored" ? (
-              <>
-                <span className="block">Popularity {h.popularity}</span>
-                <span className="block">Maintenance {h.maintenance}</span>
-              </>
-            ) : (
-              h.reason
-            )}
-          </Note>
-        </Meta>
-        <Meta label="Stars">
-          <span className="tabular-nums">{formatNumber(tool.stars ?? 0)}</span>
-        </Meta>
-        <Meta label="License">
+        </Fact>
+        <Fact label="Stars">
+          <span className="tabular-nums">{tool.stars == null ? "—" : formatNumber(tool.stars)}</span>
+        </Fact>
+        <Fact label="License">
           {tool.license ?? "Unknown"}
-          {tool.licenseNote && <Note>{tool.licenseNote}</Note>}
-        </Meta>
-        <Meta label="Last commit">
-          <span className="tabular-nums">{formatDate(tool.lastCommitAt)}</span>
-        </Meta>
-        <Meta label="Language">{tool.language ?? "—"}</Meta>
-        <Meta label="Created">
-          <span className="tabular-nums">{formatDate(tool.createdAt)}</span>
-        </Meta>
+          {tool.licenseNote && <span className={`mt-1 block text-pretty ${ui.label}`}>{tool.licenseNote}</span>}
+        </Fact>
+        <Fact label="Language">{tool.language ?? "—"}</Fact>
+        <Fact label="Last commit">
+          <time dateTime={tool.lastCommitAt ?? undefined} className="tabular-nums">
+            {formatDate(tool.lastCommitAt)}
+          </time>
+        </Fact>
       </dl>
 
-      <div className="mt-12 max-w-[65ch] space-y-4 text-[15px] leading-relaxed text-pretty">
-        {tool.description.map((p) => (
-          <p key={p}>{p}</p>
-        ))}
-      </div>
+      <Section title={`About ${tool.name}`} narrow>
+        <div className={ui.prose}>
+          {tool.description.map((p) => (
+            <p key={p}>{p}</p>
+          ))}
+        </div>
+      </Section>
+
+      <Section title="Who it’s for" narrow>
+        <dl className="space-y-4 text-[15px] leading-relaxed text-pretty">
+          <div>
+            <dt className={ui.label}>Good fit</dt>
+            <dd className="mt-0.5">{tool.fit}</dd>
+          </div>
+          <div>
+            <dt className={ui.label}>Look elsewhere</dt>
+            <dd className="mt-0.5">
+              <LinkedText
+                text={tool.elsewhere.text}
+                links={elsewhere.map((t) => ({ name: t.name, href: `/tool/${t.slug}` }))}
+              />
+            </dd>
+          </div>
+        </dl>
+      </Section>
 
       {replaces.length > 0 && (
-        <section aria-labelledby="replaces" className="mt-14 max-w-[65ch]">
-          <h2 id="replaces" className={h2}>
-            Replaces
-          </h2>
-          <ul className="mt-3 space-y-3">
+        <Section title="Replaces" narrow>
+          <ul className="space-y-3 text-[15px] leading-relaxed">
             {replaces.map((r) => (
               <li key={r.slug}>
-                <Link href={`/alternative-to/${r.slug}`} className={`font-medium ${link}`}>
+                <Link href={`/alternative-to/${r.slug}`} className={`font-medium ${ui.link}`}>
                   {r.name}
                 </Link>
                 <p className="mt-0.5 text-pretty text-fg-muted">{r.why}</p>
               </li>
             ))}
           </ul>
-        </section>
+        </Section>
       )}
 
       {similar.length > 0 && (
-        <section aria-labelledby="similar" className="mt-14">
-          <h2 id="similar" className={`mb-3 ${h2}`}>
-            Similar tools
-          </h2>
+        <Section title="Similar tools">
           <ToolTable rows={similar.map((t) => toRow(t))} sortable={false} label="Similar tools" />
-        </section>
+        </Section>
       )}
 
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
-          name: tool.name,
-          description: tool.description.join(" "),
-          url: `${siteUrl}/tool/${tool.slug}`,
-          applicationCategory: "DeveloperApplication",
-          ...(tool.license ? { license: `https://spdx.org/licenses/${tool.license}.html` } : {}),
-          sameAs: [tool.githubUrl, ...(tool.website ? [tool.website] : [])],
-          offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+          "@graph": [
+            {
+              "@type": "WebPage",
+              "@id": url,
+              url,
+              name: `${tool.name} — ${tool.tagline}`,
+              description: clip(tool.description[0], 155),
+              dateModified: snapshotAt,
+              isPartOf: { "@type": "WebSite", name: siteName, url: `${siteUrl}/` },
+              primaryImageOfPage: `${url}/opengraph-image`,
+              mainEntity: { "@id": `${url}#software` },
+            },
+            {
+              "@type": "SoftwareApplication",
+              "@id": `${url}#software`,
+              name: tool.name,
+              description: tool.description.join(" "),
+              applicationCategory: APP_CATEGORY[tool.category] ?? "DeveloperApplication",
+              applicationSubCategory: tool.categoryName,
+              ...(tool.license ? { license: `https://spdx.org/licenses/${tool.license}.html` } : {}),
+              ...(tool.avatarUrl ? { image: tool.avatarUrl } : {}),
+              url: tool.website ?? tool.githubUrl,
+              sameAs: [tool.githubUrl, ...(tool.website ? [tool.website] : [])],
+              isAccessibleForFree: true,
+              offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+            },
+          ],
         }}
       />
     </article>
   );
 }
 
-function Meta({ label, children }: { label: string; children: React.ReactNode }) {
+function Fact({ label, wide = false, children }: { label: string; wide?: boolean; children: React.ReactNode }) {
   return (
-    <div className="min-w-0">
-      <dt className="text-[13px] text-fg-muted">{label}</dt>
+    <div className={`min-w-0 ${wide ? "col-span-2" : ""}`}>
+      <dt className={ui.label}>{label}</dt>
       <dd className="mt-1">{children}</dd>
     </div>
   );
-}
-
-function Note({ children }: { children: React.ReactNode }) {
-  return <span className="mt-1 block text-[13px] text-pretty text-fg-muted">{children}</span>;
 }
 
 function ExternalButton({ href, primary, children }: { href: string; primary?: boolean; children: string }) {

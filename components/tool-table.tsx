@@ -120,15 +120,14 @@ export function ToolTable({
                 >
                   {r.name}
                 </Link>
-                <p className="mt-0.5 text-[13px] text-fg-muted">
-                  {r.tagline}
+                <p className="mt-0.5 text-[13px] text-pretty text-fg-muted">
+                  {r.why ?? r.tagline}
                   <span className="sm:hidden">
                     {" · "}
                     <span className="tabular-nums">{formatStars(r.stars)}</span> stars
                     {r.license && ` · ${r.license}`}
                   </span>
                 </p>
-                {r.why && <p className="mt-1.5 max-w-[65ch] text-[13px] text-pretty text-fg">{r.why}</p>}
               </div>
             </div>
             <div className="justify-self-end pt-px">

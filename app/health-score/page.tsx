@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Breadcrumbs } from "@/components/breadcrumbs";
+import { PageHeader } from "@/components/page-header";
+import { Section as SharedSection } from "@/components/section";
 import { formatNumber } from "@/lib/format";
 import {
   FORMULA_VERSION,
@@ -19,15 +20,12 @@ export const metadata: Metadata = {
 
 export default function HealthScorePage() {
   return (
-    <article className="max-w-[65ch]">
-      <Breadcrumbs items={[{ name: "Health Score", href: "/health-score" }]} />
-      <h1 className="mt-6 text-[2.25rem] leading-[1.1] font-semibold tracking-[-0.03em]">
-        How Health Score works
-      </h1>
-      <p className="mt-4 text-[15px] leading-relaxed text-pretty text-fg-muted">
-        Health Score is a quick signal of how active a repo is, not a verdict on its quality. Version{" "}
-        {FORMULA_VERSION} uses only two pieces of GitHub data that can be collected reliably.
-      </p>
+    <article>
+      <PageHeader
+        crumbs={[{ name: "Health Score", href: "/health-score" }]}
+        title="How Health Score works"
+        lede={`Health Score is a quick signal of how active a repo is, not a verdict on its quality. Version ${FORMULA_VERSION} uses only two pieces of GitHub data that can be collected reliably.`}
+      />
 
       <Section title="Formula">
         <table className="w-full text-left tabular-nums">
@@ -114,10 +112,9 @@ export default function HealthScorePage() {
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="mt-12 text-[15px] leading-relaxed text-pretty">
-      <h2 className="mb-3 font-medium">{title}</h2>
-      {children}
-    </section>
+    <SharedSection title={title} narrow>
+      <div className="text-[15px] leading-relaxed text-pretty">{children}</div>
+    </SharedSection>
   );
 }
 

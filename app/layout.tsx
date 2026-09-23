@@ -4,6 +4,7 @@ import { Inter_Tight } from "next/font/google";
 import { commands, snapshotAt } from "@/lib/data";
 import { CommandPalette } from "@/components/command-palette";
 import { NavLink } from "@/components/nav-link";
+import { ui } from "@/lib/ui";
 import { ThemeToggle, themeScript } from "@/components/theme";
 import { InlineScript } from "@/components/inline-script";
 import { formatDate, repoUrl, siteName, siteUrl, submitUrl } from "@/lib/format";
@@ -63,11 +64,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <div className="mx-auto flex w-full max-w-5xl flex-col gap-2 px-5 py-10 text-[13px] text-fg-muted sm:flex-row sm:justify-between sm:px-8">
             <p>GitHub data from {formatDate(snapshotAt)}</p>
             <p>
-                <a href={submitUrl} className="text-fg hover:underline">
+                <a href={submitUrl} className={ui.navLink}>
                   Submit a tool
                 </a>
                 <span aria-hidden="true"> · </span>
-                <a href={repoUrl} className="text-fg hover:underline">
+                <a href={repoUrl} className={ui.navLink}>
                   Source code
                 </a>
             </p>

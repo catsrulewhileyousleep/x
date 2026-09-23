@@ -1,19 +1,23 @@
+import type { Metadata } from "next";
 import { Directory } from "@/components/directory";
 import { categories, toRow, tools, toolsInCategory } from "@/lib/data";
 import { repoUrl, siteName, siteUrl } from "@/lib/format";
 import { JsonLd } from "@/components/json-ld";
+import { PageHeader } from "@/components/page-header";
+import { ui } from "@/lib/ui";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 export default function Home() {
   return (
     <>
-      <h1 className="max-w-[16ch] text-[2.5rem] leading-[1.05] font-semibold tracking-[-0.035em] text-balance sm:text-[3.5rem]">
-        Open-source AI tools, carefully picked.
-      </h1>
-      <p className="mt-5 max-w-[60ch] text-[15px] text-pretty text-fg-muted">
-        {tools.length} projects, each reviewed by hand and scored on stars and commit activity.
-      </p>
+      <PageHeader
+        hero
+        title="Open-source AI tools, carefully picked."
+        lede={`${tools.length} projects, each reviewed by hand and scored on stars and commit activity.`}
+      />
 
-      <div className="mt-12">
+      <div className={ui.headerGap}>
         <Directory
           rows={tools.map((t) => toRow(t))}
           categories={categories

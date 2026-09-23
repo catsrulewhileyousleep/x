@@ -55,9 +55,52 @@
 | Failure | Some things are left out on purpose: compare pages (need real search demand first) and a hosted submission queue. |
 | The one | Subtract the obvious, add the meaningful. |
 
+## One component per role
+
+Consistency comes from having one definition per role, not from discipline:
+
+| Role | Source |
+| --- | --- |
+| Page opening (breadcrumbs, title, one sentence) | `components/page-header.tsx`, on every page. The home page uses the larger `hero` title. |
+| Titled block | `components/section.tsx`: same heading, same gap before it (`ui.sectionGap`), same space after. |
+| Inline link, navigation link, lede, prose, small label | `lib/ui.ts` |
+| List of tools | `components/tool-table.tsx`: name plus exactly one secondary line |
+| List of categories or alternatives | `components/index-list.tsx`: same row pattern as the tool list |
+
+A search for `<h1`, `<h2` or an inline `underline` class outside these files should come back empty.
+
 ## Say it once
 
-Every fact has one home on a page. The data date lives in the footer. Health Score's breakdown sits inside the Health cell rather than in a second table. The license note sits under the license. Lists drop a column whose value every row shares, for example the category inside a category page. The selected filter option omits its count because the result line already states it. The palette and breadcrumbs are navigation, not content, and may name a page that is also linked elsewhere.
+Every fact has one home on a page.
+
+- The data date lives in the footer.
+- Health Score's breakdown sits inside the Health cell, and the license note under the license.
+- On an alternative page, a row's secondary line is the editor's "why it replaces" sentence instead of the tagline, because that is what the page is for.
+- A tool already recommended under "Who it's for" is not listed again under "Similar tools".
+- Free-tier answers state the fact and link the source once.
+- Lists drop a column whose value every row shares, and the selected filter option omits its count because the result line states it.
+
+The palette and breadcrumbs are navigation, not content, and may name a page that is also linked elsewhere.
+
+## Project pages and search
+
+Google's June 2026 guidance for AI Overviews and AI Mode is that optimizing for them is still SEO. Pages need to be indexable, eligible for snippets and genuinely useful. No special files or markup are required. So project pages follow the same structure a person needs to decide:
+
+1. **What it is**: name as the H1, tagline as the lede, links to the site and repo.
+2. **Facts**: Health, Stars, License, Language, Last commit, as a `<dl>` with a machine-readable `<time>`.
+3. **About {tool}**: what it does, written by an editor rather than copied from the README.
+4. **Who it's for**: "Good fit" and "Look elsewhere", with a link to the tool that fits better. This is the page's own point of view, the part other directories do not have.
+5. **Replaces**: the alternative-to pages it appears on, each with the reason.
+6. **Similar tools**: the rest of the category by Health.
+
+On-page rules, enforced by `pnpm seo:audit`:
+
+- Titles are 60 characters or fewer, and the site name is dropped before the tagline is cut.
+- Meta descriptions are 155 characters or fewer, cut at a word boundary.
+- Every page has one H1, headings never skip a level, and the canonical URL points to the page itself.
+- JSON-LD parses, and every internal link points to a page in the sitemap.
+
+JSON-LD is a `WebPage` (with `dateModified` set to the data snapshot) whose `mainEntity` is a `SoftwareApplication`. There are no ratings, so there is no rich result. Ratings will not be invented to get one, and there is no llms.txt, since Google says neither helps.
 
 ## Color
 

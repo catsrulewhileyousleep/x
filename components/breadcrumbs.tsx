@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { siteUrl } from "@/lib/format";
 import { JsonLd } from "@/components/json-ld";
+import { ui } from "@/lib/ui";
 
-type Crumb = { name: string; href: string };
+export type Crumb = { name: string; href: string };
 
 /** Visible trail plus matching BreadcrumbList schema. The last crumb is the current page. */
 export function Breadcrumbs({ items }: { items: Crumb[] }) {
@@ -20,7 +21,7 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
                 </span>
               ) : (
                 <>
-                  <Link href={c.href} className="hover:text-fg">
+                  <Link href={c.href} className={ui.navLink}>
                     {c.name}
                   </Link>
                   <span aria-hidden="true">/</span>

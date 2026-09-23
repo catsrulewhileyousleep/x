@@ -11,6 +11,13 @@ export function formatNumber(n: number) {
   return full.format(n);
 }
 
+/** Shortens text to `max` characters at a word boundary, for meta descriptions. */
+export function clip(text: string, max: number) {
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max - 1);
+  return `${cut.slice(0, cut.lastIndexOf(" ")).replace(/[,;:.\s]+$/, "")}…`;
+}
+
 export function formatDate(iso: string | null) {
   return iso ? date.format(new Date(iso)) : "—";
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { AlternativeList } from "@/components/alternative-list";
-import { Breadcrumbs } from "@/components/breadcrumbs";
+import { PageHeader } from "@/components/page-header";
+import { ui } from "@/lib/ui";
 import { alternatives } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -12,14 +13,12 @@ export const metadata: Metadata = {
 export default function AlternativesPage() {
   return (
     <>
-      <Breadcrumbs items={[{ name: "Alternatives", href: "/alternative-to" }]} />
-      <h1 className="mt-6 text-[2.25rem] leading-[1.1] font-semibold tracking-[-0.03em]">
-        Open-source alternatives
-      </h1>
-      <p className="mt-4 max-w-[60ch] text-[15px] text-pretty text-fg-muted">
-        Closed AI products, and the open-source tools that can replace them.
-      </p>
-      <div className="mt-12">
+      <PageHeader
+        crumbs={[{ name: "Alternatives", href: "/alternative-to" }]}
+        title="Open-source alternatives"
+        lede="Closed AI products, and the open-source tools that can replace them."
+      />
+      <div className={ui.headerGap}>
         <AlternativeList
           items={[...alternatives].sort((a, b) => a.name.localeCompare(b.name))}
           label="Alternatives"

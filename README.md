@@ -9,6 +9,7 @@ pnpm install
 pnpm dev        # http://localhost:3000
 pnpm test       # Health Score
 pnpm lint && pnpm build
+pnpm seo:audit  # against a running server; BASE defaults to http://127.0.0.1:3000
 ```
 
 ## Data

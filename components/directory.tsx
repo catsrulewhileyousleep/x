@@ -7,6 +7,7 @@ import { ChevronDown, Search } from "lucide-react";
 import { Pagination } from "@/components/pagination";
 import { DEFAULT_SORT, ToolTable, sortRows, type Row, type Sort } from "@/components/tool-table";
 import { isClientNavigation, markHydrated } from "@/lib/client-nav";
+import { ui } from "@/lib/ui";
 
 type Category = { slug: string; name: string };
 type License = "any" | "permissive" | "copyleft";
@@ -28,9 +29,9 @@ const LICENSES: { value: License; label: string }[] = [
   { value: "copyleft", label: "Copyleft" },
 ];
 const HEALTH: { value: number; label: string }[] = [
-  { value: 0, label: "Any score" },
-  { value: 70, label: "70 and above" },
-  { value: 40, label: "40 and above" },
+  { value: 0, label: "Any health" },
+  { value: 70, label: "Health 70+" },
+  { value: 40, label: "Health 40+" },
 ];
 
 function licenseGroup(spdx: string | null): License | null {
@@ -158,11 +159,11 @@ export function Directory({
         <p className="font-medium">The tool list could not be loaded.</p>
         <p className="mt-1 text-fg-muted">
           The directory has no data, so this is not a filter result.{" "}
-          <a href="" className="text-fg underline">
+          <a href="" className={ui.link}>
             Reload the page
           </a>{" "}
           or{" "}
-          <a href={contributeUrl} className="text-fg underline">
+          <a href={contributeUrl} className={ui.link}>
             report it on GitHub
           </a>
           .
@@ -228,7 +229,7 @@ export function Directory({
             options={LICENSES.map((l) => ({ ...l, count: countWith({ license: l.value }) }))}
           />
           <FilterSelect
-            label="Health Score"
+            label="Health"
             value={String(minHealth)}
             active={minHealth > 0}
             onChange={(v) => update({ minHealth: Number(v) })}
@@ -266,7 +267,7 @@ export function Directory({
             </p>
             <p className="mt-1 text-fg-muted">
               Try a shorter term or{" "}
-              <button type="button" onClick={reset} className="text-fg underline">
+              <button type="button" onClick={reset} className={ui.link}>
                 clear search and filters
               </button>
               .

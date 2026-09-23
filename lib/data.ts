@@ -21,6 +21,10 @@ type ToolEntry = {
   category: string;
   tagline: string;
   description: string[];
+  /** Who the tool suits, as a sentence starting with "You". */
+  fit: string;
+  /** When to pick something else; `links` are slugs whose names appear in `text`. */
+  elsewhere: { text: string; links: string[] };
   tags: string[];
   licenseOverride?: { spdx: string; note: string };
   alternativeTo: { slug: string; why: string }[];
@@ -77,6 +81,14 @@ for (const e of entries) {
   }
   if (!(e.repo in snapshot.repos)) throw new Error(`${e.slug}: run scripts/snapshot.mjs`);
 }
+const toolNames = new Map(entries.map((e) => [e.slug, e.name]));
+for (const e of entries) {
+  for (const slug of e.elsewhere.links) {
+    const name = toolNames.get(slug);
+    if (!name) throw new Error(`${e.slug}: elsewhere links to unknown tool ${slug}`);
+    if (!e.elsewhere.text.includes(name)) throw new Error(`${e.slug}: elsewhere text does not mention ${name}`);
+  }
+}
 for (const t of alternativeTargets) {
   if (!categoryBySlug.has(t.category)) throw new Error(`alternative ${t.slug}: unknown category ${t.category}`);
 }
@@ -121,9 +133,9 @@ export function toolsInCategory(slug: string) {
   return tools.filter((t) => t.category === slug).sort(byHealth);
 }
 
-export function similarTools(tool: Tool, limit = 4) {
+export function similarTools(tool: Tool, limit = 4, exclude: Set<string> = new Set()) {
   return toolsInCategory(tool.category)
-    .filter((t) => t.slug !== tool.slug)
+    .filter((t) => t.slug !== tool.slug && !exclude.has(t.slug))
     .slice(0, limit);
 }
 

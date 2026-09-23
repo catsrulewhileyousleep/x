@@ -5,7 +5,7 @@
     "category": "coding-agents",
     "intro": "GitHub Copilot sends your code to GitHub's servers, limits you to the models it offers and charges monthly once you outgrow the free plan. The tools below let you pick your own model, host the server yourself or run a model locally.",
     "freeTier": {
-      "answer": "Yes. GitHub Copilot has a Free plan with a monthly usage limit. See GitHub's official pricing page for details.",
+      "answer": "Yes. GitHub Copilot has a Free plan with a monthly usage limit.",
       "sourceUrl": "https://github.com/features/copilot/plans"
     }
   },
@@ -25,7 +25,7 @@
     "category": "chat-interfaces",
     "intro": "ChatGPT stores conversations on OpenAI's servers and only uses OpenAI's models. The apps below run on your computer or server and connect to local models or many other providers.",
     "freeTier": {
-      "answer": "Yes. ChatGPT has a free plan with limits on models and usage. See OpenAI's pricing page for details.",
+      "answer": "Yes. ChatGPT has a free plan with limits on models and usage.",
       "sourceUrl": "https://openai.com/chatgpt/pricing/"
     }
   },
@@ -35,7 +35,7 @@
     "category": "local-llm",
     "intro": "LM Studio is free but not open source: you cannot inspect how it handles data, modify it or repackage it. The tools below also run models locally, with public source code.",
     "freeTier": {
-      "answer": "Yes. LM Studio is free for personal and work use, but the app's source code is not public. See the official site for terms.",
+      "answer": "Yes. LM Studio is free for personal and work use, but the app's source code is not public.",
       "sourceUrl": "https://lmstudio.ai/"
     }
   },
@@ -55,7 +55,7 @@
     "category": "coding-agents",
     "intro": "Cursor is a closed-source fork of VS Code with its own subscription and usage limits. The tools below give you agent-style editing either as a native open-source editor or as an extension for the editor you already use, with the model of your choice.",
     "freeTier": {
-      "answer": "Yes. Cursor has a free Hobby plan with limited agent requests and completions. See Cursor's pricing page for current limits.",
+      "answer": "Yes. Cursor has a free Hobby plan with limited agent requests and completions.",
       "sourceUrl": "https://cursor.com/pricing"
     }
   },
@@ -65,7 +65,7 @@
     "category": "ai-search",
     "intro": "Perplexity runs every search through its own servers and models, and its most capable features sit behind a subscription. The tools below answer questions with cited sources too, but you host them and choose the models, so your searches stay yours.",
     "freeTier": {
-      "answer": "Yes. Perplexity has a free plan, with advanced searches and model choice limited to paid plans. See Perplexity's pricing for details.",
+      "answer": "Yes. Perplexity has a free plan, with advanced searches and model choice limited to paid plans.",
       "sourceUrl": "https://www.perplexity.ai/pro"
     }
   },
@@ -75,7 +75,7 @@
     "category": "text-to-speech",
     "intro": "ElevenLabs charges by the character, processes your text and voice samples on its servers, and keeps its models closed. The models below generate speech and clone voices on your own hardware, with no usage fees.",
     "freeTier": {
-      "answer": "Yes. ElevenLabs has a free plan with a monthly character limit and restrictions on commercial use. See ElevenLabs' pricing page for details.",
+      "answer": "Yes. ElevenLabs has a free plan with a monthly character limit and restrictions on commercial use.",
       "sourceUrl": "https://elevenlabs.io/pricing"
     }
   }

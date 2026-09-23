@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { AlternativeList } from "@/components/alternative-list";
-import { Breadcrumbs } from "@/components/breadcrumbs";
+import { PageHeader } from "@/components/page-header";
+import { Section } from "@/components/section";
+import { ui } from "@/lib/ui";
 import { ItemListSchema } from "@/components/item-list-schema";
 import { ToolTable } from "@/components/tool-table";
 import { alternativesInCategory, categories, getCategory, MIN_INDEXABLE, toRow, toolsInCategory } from "@/lib/data";
@@ -32,28 +34,23 @@ export default async function CategoryPage({ params }: PageProps<"/category/[slu
 
   return (
     <>
-      <Breadcrumbs
-        items={[
+      <PageHeader
+        crumbs={[
           { name: "Categories", href: "/category" },
           { name: category.name, href: `/category/${category.slug}` },
         ]}
+        title={category.title}
+        lede={category.intro}
       />
-      <h1 className="mt-6 text-[2.25rem] leading-[1.1] font-semibold tracking-[-0.03em] text-balance">
-        {category.title}
-      </h1>
-      <p className="mt-4 max-w-[60ch] text-[15px] text-pretty text-fg-muted">{category.intro}</p>
 
-      <div className="mt-12">
+      <div className={ui.headerGap}>
         <ToolTable rows={list.map((t) => toRow(t))} label={category.title} />
       </div>
 
       {related.length > 0 && (
-        <section aria-labelledby="related" className="mt-16">
-          <h2 id="related" className="mb-3 text-[15px] font-medium">
-            Related alternatives
-          </h2>
+        <Section title="Related alternatives">
           <AlternativeList items={related} label="Related alternatives" />
-        </section>
+        </Section>
       )}
 
       <ItemListSchema name={category.title} tools={list} />
