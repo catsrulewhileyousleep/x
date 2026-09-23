@@ -13,7 +13,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/alternative-to",
     ...indexableCategories.map((c) => `/category/${c.slug}`),
     ...alternatives.map((a) => `/alternative-to/${a.slug}`),
-    ...tools.map((t) => `/tool/${t.slug}`),
   ];
-  return paths.map((p) => ({ url: `${siteUrl}${p}`, lastModified }));
+  return [
+    ...paths.map((p) => ({ url: `${siteUrl}${p}`, lastModified })),
+    ...tools.map((t) => ({
+      url: `${siteUrl}/tool/${t.slug}`,
+      lastModified,
+      images: [`${siteUrl}/tool/${t.slug}/opengraph-image`],
+    })),
+  ];
 }

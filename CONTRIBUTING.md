@@ -5,7 +5,7 @@ The directory is small on purpose. A tool is listed only after someone has check
 ## Suggest a tool
 
 Use the submit form on the site (`/submit`). It checks the basics against GitHub as you type —
-public repository, not archived, README present, a detectable open-source license, at least
+not already listed, public repository, not archived, README present, a detectable open-source license, at least
 90 days old — and puts the result in a review queue. No GitHub account needed.
 
 ### Criteria
@@ -35,3 +35,5 @@ A page `/alternative-to/<slug>` is published only when at least three tools list
 ## Writing style
 
 English, plain and short. Say what the tool does, not how great it is. No exclamation marks, no "revolutionary", no "blazing fast".
+
+Before opening a PR that adds or edits a tool, run `pnpm seo:projects`. It checks the title and meta description built from your entry, and flags thin or duplicate copy. The rules are in `.agents/skills/seo-content/SKILL.md`.

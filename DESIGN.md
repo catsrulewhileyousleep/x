@@ -33,7 +33,7 @@
 | Match with the real world | Plain English, developer terms kept as they are (stars, license). |
 | User control and freedom | `Esc` clears search and closes the palette; "clear the filters" in the empty state; Back returns to the same search, filter, sort and page. Filters never change the URL. |
 | Consistency and standards | One list component on the home, category, alternative-to and "Similar tools" views. `⌘K` and `/` follow common conventions. |
-| Error prevention | Search matches tags and licenses too; filter options that would return nothing are disabled; missing values always sort last. |
+| Error prevention | Search matches tags, licenses and the products a tool replaces ("cursor"); filter options that would return nothing are disabled; missing values always sort last. |
 | Recognition rather than recall | Column headers always visible; filter triggers summarize their choice and options show counts; the header marks the current section; the palette lists every page, grouped, before you type. |
 | Flexibility and efficiency | `/` focuses search, `⌘K` / `Ctrl K` jumps to any page, full keyboard support. |
 | Aesthetic and minimalist design | Nothing in a row beyond name, tagline, score, stars and license. |

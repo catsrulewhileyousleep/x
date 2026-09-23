@@ -21,6 +21,7 @@ for (const p of paths) {
   const internal = [...html.matchAll(/href="(\/(?:tool|category|alternative-to)[^"#?]*)"/g)].map((m) => m[1]);
   const imgs = [...html.matchAll(/<img\b[^>]*>/g)].filter((m) => !/\balt=/.test(m[0]));
   const noindex = /<meta name="robots" content="[^"]*noindex/.test(html);
+  const ogUrl = html.match(/<meta property="og:url" content="([^"]*)"/)?.[1];
   if (!title) issues.push([p, "missing <title>"]);
   if (title.length > 60) issues.push([p, `title ${title.length} chars: ${title}`]);
   if (!desc) issues.push([p, "missing meta description"]);
@@ -32,6 +33,12 @@ for (const p of paths) {
   for (const href of internal) if (!known.has(href)) issues.push([p, `link to non-sitemap page ${href}`]);
   if (imgs.length) issues.push([p, `${imgs.length} <img> without alt`]);
   if (noindex) issues.push([p, "noindex page listed in sitemap"]);
+  if (ogUrl && ogUrl !== canonical) issues.push([p, `og:url ${ogUrl} differs from canonical`]);
+  if (p.startsWith("/tool/")) {
+    if (!ogUrl) issues.push([p, "missing og:url"]);
+    if (desc.endsWith("…")) issues.push([p, "description cut mid-sentence"]);
+    if (!lds.some((m) => m[1].includes('"SoftwareApplication"'))) issues.push([p, "missing SoftwareApplication JSON-LD"]);
+  }
   titles.set(title, [...(titles.get(title) ?? []), p]);
   descs.set(desc, [...(descs.get(desc) ?? []), p]);
 }

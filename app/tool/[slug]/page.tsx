@@ -12,7 +12,8 @@ import { Section } from "@/components/section";
 import { Avatar } from "@/components/ui/avatar";
 import { ToolTable } from "@/components/tool-table";
 import { getTool, replacesFor, similarTools, snapshotAt, toRow, tools, type Tool } from "@/lib/data";
-import { clip, formatDate, formatNumber, siteName, siteUrl } from "@/lib/format";
+import { formatDate, formatNumber, siteName, siteUrl } from "@/lib/format";
+import { licenseSuffix, metaDescription } from "@/lib/seo";
 import { ui } from "@/lib/ui";
 
 export const dynamicParams = false;
@@ -27,13 +28,20 @@ function pageTitle(tool: Tool): Metadata["title"] {
   return base.length + ` | ${siteName}`.length <= 60 ? base : { absolute: base };
 }
 
+function pageDescription(tool: Tool) {
+  return metaDescription(tool.description.join(" "), licenseSuffix(tool.license));
+}
+
 export async function generateMetadata({ params }: PageProps<"/tool/[slug]">): Promise<Metadata> {
   const tool = getTool((await params).slug);
   if (!tool) return {};
+  const path = `/tool/${tool.slug}`;
   return {
     title: pageTitle(tool),
-    description: clip(tool.description[0], 155),
-    alternates: { canonical: `/tool/${tool.slug}` },
+    description: pageDescription(tool),
+    alternates: { canonical: path },
+    // Replaces the layout's openGraph (metadata merges shallowly), so repeat type and siteName.
+    openGraph: { type: "website", siteName, url: path },
   };
 }
 
@@ -58,6 +66,8 @@ export default async function ToolPage({ params }: PageProps<"/tool/[slug]">) {
   // Tools already recommended in "Who it's for" are not listed a second time.
   const similar = similarTools(tool, 4, new Set(tool.elsewhere.links));
   const url = `${siteUrl}/tool/${tool.slug}`;
+  // Google requires paid links to be qualified as sponsored.
+  const rel = tool.sponsored ? "sponsored nofollow noopener" : "nofollow noopener";
 
   return (
     <article>
@@ -73,11 +83,11 @@ export default async function ToolPage({ params }: PageProps<"/tool/[slug]">) {
         actions={
           <>
             {tool.website && (
-              <ExternalButton href={tool.website} primary>
+              <ExternalButton href={tool.website} rel={rel} primary>
                 Visit website
               </ExternalButton>
             )}
-            <ExternalButton href={tool.githubUrl} primary={!tool.website}>
+            <ExternalButton href={tool.githubUrl} rel={rel} primary={!tool.website}>
               GitHub
             </ExternalButton>
             {/* Inline copy of /badge/[slug].svg so maintainers see what they are embedding. */}
@@ -182,22 +192,29 @@ export default async function ToolPage({ params }: PageProps<"/tool/[slug]">) {
               "@id": url,
               url,
               name: `${tool.name} — ${tool.tagline}`,
-              description: clip(tool.description[0], 155),
+              description: pageDescription(tool),
+              inLanguage: "en",
               dateModified: snapshotAt,
-              isPartOf: { "@type": "WebSite", name: siteName, url: `${siteUrl}/` },
-              primaryImageOfPage: `${url}/opengraph-image`,
+              isPartOf: { "@type": "WebSite", "@id": `${siteUrl}/#website`, name: siteName, url: `${siteUrl}/` },
+              primaryImageOfPage: { "@type": "ImageObject", url: `${url}/opengraph-image`, width: 1200, height: 630 },
               mainEntity: { "@id": `${url}#software` },
             },
             {
-              "@type": "SoftwareApplication",
+              // Both types: an installable app whose source is public, which is what gets a tool listed.
+              "@type": ["SoftwareApplication", "SoftwareSourceCode"],
               "@id": `${url}#software`,
               name: tool.name,
               description: tool.description.join(" "),
               applicationCategory: APP_CATEGORY[tool.category] ?? "DeveloperApplication",
               applicationSubCategory: tool.categoryName,
+              keywords: tool.tags.join(", "),
               ...(tool.license ? { license: `https://spdx.org/licenses/${tool.license}.html` } : {}),
               ...(tool.avatarUrl ? { image: tool.avatarUrl } : {}),
               url: tool.website ?? tool.githubUrl,
+              codeRepository: tool.githubUrl,
+              ...(tool.language ? { programmingLanguage: tool.language } : {}),
+              ...(tool.createdAt ? { dateCreated: tool.createdAt } : {}),
+              ...(tool.lastCommitAt ? { dateModified: tool.lastCommitAt } : {}),
               sameAs: [tool.githubUrl, ...(tool.website ? [tool.website] : [])],
               isAccessibleForFree: true,
               offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
@@ -218,11 +235,21 @@ function Fact({ label, wide = false, children }: { label: string; wide?: boolean
   );
 }
 
-function ExternalButton({ href, primary, children }: { href: string; primary?: boolean; children: string }) {
+function ExternalButton({
+  href,
+  rel,
+  primary,
+  children,
+}: {
+  href: string;
+  rel: string;
+  primary?: boolean;
+  children: string;
+}) {
   return (
     <a
       href={href}
-      rel="nofollow noopener"
+      rel={rel}
       className={`inline-flex h-9 items-center gap-1.5 rounded-lg px-3.5 text-[13px] font-medium transition-[background-color,scale] duration-100 ease-out active:scale-[0.96] ${
         primary ? "bg-fg text-canvas hover:bg-fg/90" : "border border-hairline text-fg hover:bg-surface"
       }`}

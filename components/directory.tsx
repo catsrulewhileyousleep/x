@@ -104,6 +104,7 @@ export function Directory({
           { name: "name", weight: 3 },
           { name: "tagline", weight: 1 },
           { name: "tags", weight: 1.5 },
+          { name: "replaces", weight: 1.5 },
           { name: "license", weight: 1.5 },
           { name: "categoryName", weight: 1 },
         ],

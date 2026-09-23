@@ -23,6 +23,9 @@ export const metadata: Metadata = {
     "A small, hand-picked directory of open-source AI tools, with a transparent Health Score built from GitHub data.",
   openGraph: { type: "website", siteName },
   twitter: { card: "summary_large_image" },
+  // Allow full-size image previews and uncapped snippets (Discover, AI Overviews). Pages that set
+  // their own `robots` (noindex) replace this.
+  robots: { index: true, follow: true, googleBot: { "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
