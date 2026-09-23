@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Inter_Tight } from "next/font/google";
-import { commands, snapshotAt } from "@/lib/data";
+import { commandGroups, snapshotAt } from "@/lib/data";
 import { CommandPalette } from "@/components/command-palette";
 import { NavLink } from "@/components/nav-link";
+import { Providers } from "@/components/providers";
 import { ui } from "@/lib/ui";
 import { ThemeToggle, themeScript } from "@/components/theme";
 import { InlineScript } from "@/components/inline-script";
@@ -30,7 +31,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <InlineScript html={themeScript} />
       </head>
-      <body className="flex min-h-dvh flex-col font-sans">
+      <body className="relative font-sans">
+        <Providers>
+        <div className="isolate flex min-h-dvh flex-col">
         <a
           href="#main"
           className="absolute top-3 -left-[999px] z-10 rounded-md bg-fg px-3 py-2 text-[13px] font-medium text-canvas focus:left-3"
@@ -51,7 +54,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <NavLink href="/health-score">Health Score</NavLink>
           </nav>
           <div className="-mr-2 flex items-center gap-0.5">
-            <CommandPalette commands={commands()} />
+            <CommandPalette groups={commandGroups()} />
             <ThemeToggle />
           </div>
         </header>
@@ -74,6 +77,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             </p>
           </div>
         </footer>
+        </div>
+        </Providers>
       </body>
     </html>
   );

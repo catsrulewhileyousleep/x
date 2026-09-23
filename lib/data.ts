@@ -198,25 +198,37 @@ export function toRow(t: Tool, why?: string) {
   };
 }
 
-/** Every navigable page, for the ⌘K palette. */
-export function commands() {
+export type Command = { href: string; label: string; hint?: string; keywords: string[] };
+export type CommandGroup = { value: string; items: Command[] };
+
+/** Every navigable page for the ⌘K palette, grouped. Group labels replace per-item type hints. */
+export function commandGroups(): CommandGroup[] {
   return [
-    ...[...tools].sort(byHealth).map((t) => ({
-      href: `/tool/${t.slug}`,
-      label: t.name,
-      hint: t.categoryName,
-      keywords: [...t.tags, t.tagline],
-    })),
-    ...categories.map((c) => ({ href: `/category/${c.slug}`, label: c.name, hint: "Category", keywords: [c.title] })),
-    ...alternatives.map((a) => ({
-      href: `/alternative-to/${a.slug}`,
-      label: `${a.name} alternatives`,
-      hint: "Alternatives",
-      keywords: [a.name],
-    })),
-    { href: "/category", label: "Categories", hint: "Page", keywords: ["all categories"] },
-    { href: "/alternative-to", label: "Alternatives", hint: "Page", keywords: ["all alternatives"] },
-    { href: "/health-score", label: "Health Score", hint: "Page", keywords: ["method", "formula"] },
+    {
+      value: "Tools",
+      items: [...tools].sort(byHealth).map((t) => ({
+        href: `/tool/${t.slug}`,
+        label: t.name,
+        hint: t.categoryName,
+        keywords: [...t.tags, t.tagline],
+      })),
+    },
+    {
+      value: "Categories",
+      items: categories.map((c) => ({ href: `/category/${c.slug}`, label: c.name, keywords: [c.title] })),
+    },
+    {
+      value: "Alternatives",
+      items: alternatives.map((a) => ({ href: `/alternative-to/${a.slug}`, label: a.name, keywords: ["alternatives"] })),
+    },
+    {
+      value: "Pages",
+      items: [
+        { href: "/category", label: "All categories", keywords: [] },
+        { href: "/alternative-to", label: "All alternatives", keywords: [] },
+        { href: "/health-score", label: "How Health Score works", keywords: ["method", "formula"] },
+      ],
+    },
   ];
 }
 

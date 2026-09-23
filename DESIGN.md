@@ -34,7 +34,7 @@
 | User control and freedom | `Esc` clears search and closes the palette; "clear the filters" in the empty state; Back returns to the same search, filter, sort and page. Filters never change the URL. |
 | Consistency and standards | One list component on the home, category, alternative-to and "Similar tools" views. `⌘K` and `/` follow common conventions. |
 | Error prevention | Search matches tags and licenses too; filter options that would return nothing are disabled; missing values always sort last. |
-| Recognition rather than recall | Column headers always visible; filter options show counts; the header marks the current section; the palette lists every page before you type. |
+| Recognition rather than recall | Column headers always visible; filter triggers summarize their choice and options show counts; the header marks the current section; the palette lists every page, grouped, before you type. |
 | Flexibility and efficiency | `/` focuses search, `⌘K` / `Ctrl K` jumps to any page, full keyboard support. |
 | Aesthetic and minimalist design | Nothing in a row beyond name, tagline, score, stars and license. |
 | Help users recover from errors | The empty state names the query and the way out; an empty directory is treated as a data error with reload and report links. |
@@ -66,6 +66,14 @@ Consistency comes from having one definition per role, not from discipline:
 | Inline link, navigation link, lede, prose, small label | `lib/ui.ts` |
 | List of tools | `components/tool-table.tsx`: name plus exactly one secondary line |
 | List of categories or alternatives | `components/index-list.tsx`: same row pattern as the tool list |
+| Interactive primitives | `components/ui/`, built on [Base UI](https://base-ui.com) and styled with the same tokens: `tooltip`, `popover`, `checkbox`, `radio`, `avatar`. The ⌘K palette uses Base UI `Dialog` and `Autocomplete`. |
+
+Base UI supplies behavior and accessibility: focus management, keyboard support, ARIA state and collision-aware positioning. The design stays in our tokens. Rules for the primitives:
+
+- **Tooltips** are supplementary only. Base UI disables them on touch, so they refine what is already visible: the exact star count behind "69.1k", what the Health column measures, what "Copy badge" copies, and the name of the icon-only theme toggle. Nothing a reader needs lives only in a tooltip.
+- **Filters** are popovers of real checkboxes (Category, License: several can be chosen) and radios (Health: a threshold). Each trigger summarizes its choice ("Category: 2", "Health: 70+"). Options show faceted counts and are disabled when they would empty the list.
+- **Popups** share one surface (`popupSurface`), scale from their trigger (`--transform-origin`) and skip the scale under reduced motion.
+- **Avatars** fall back to the project's initial after a short delay, so a fast logo never flashes a letter.
 
 A search for `<h1`, `<h2` or an inline `underline` class outside these files should come back empty.
 

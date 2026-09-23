@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { ArrowDown, ArrowUp } from "lucide-react";
 import type { Health } from "@/lib/health";
-import { formatStars } from "@/lib/format";
+import { formatNumber, formatStars } from "@/lib/format";
 import { HealthValue } from "@/components/health";
-import { ToolAvatar } from "@/components/tool-avatar";
+import { Avatar } from "@/components/ui/avatar";
+import { Tooltip } from "@/components/ui/tooltip";
 
 export type Row = {
   slug: string;
@@ -23,6 +25,11 @@ export type Row = {
 };
 
 export type SortKey = "name" | "health" | "stars";
+
+// Column meanings for sighted mouse and keyboard users; /health-score explains the full method.
+const HINTS: Partial<Record<SortKey, string>> = {
+  health: "0–100 from GitHub stars and commit activity",
+};
 export type Sort = { key: SortKey; dir: "asc" | "desc" };
 export const DEFAULT_SORT: Sort = { key: "health", dir: "desc" };
 
@@ -69,6 +76,7 @@ export function ToolTable({
   sort?: Sort;
   onSortChange?: (sort: Sort) => void;
 }) {
+  const router = useRouter();
   const [ownSort, setOwnSort] = useState<Sort>(DEFAULT_SORT);
   const sort = controlledSort ?? ownSort;
   const sorted = sortable ? sortRows(rows, sort) : rows;
@@ -79,14 +87,17 @@ export function ToolTable({
     else setOwnSort(next);
   }
 
-  const head = (key: SortKey, text: string, className = "", align: "start" | "end" = "start") =>
-    sortable ? (
+  const head = (key: SortKey, text: string, className = "", align: "start" | "end" = "start") => {
+    const el = sortable ? (
       <SortButton sort={sort} sortKey={key} onClick={() => toggle(key)} align={align} className={className}>
         {text}
       </SortButton>
     ) : (
       <span className={className}>{text}</span>
     );
+    const hint = HINTS[key];
+    return hint ? <Tooltip content={hint}>{el}</Tooltip> : el;
+  };
 
   return (
     <div>
@@ -111,7 +122,7 @@ export function ToolTable({
           >
             <div className="flex min-w-0 gap-3">
               <span className="mt-px">
-                <ToolAvatar src={r.avatarUrl} />
+                <Avatar src={r.avatarUrl} name={r.name} />
               </span>
               <div className="min-w-0">
                 <Link
@@ -134,11 +145,18 @@ export function ToolTable({
               <HealthValue health={r.health} />
             </div>
             <div className="hidden justify-self-end pt-px tabular-nums sm:block">
-              {formatStars(r.stars)}
+              {r.stars == null ? (
+                "—"
+              ) : (
+                <Tooltip content={`${formatNumber(r.stars)} stars`}>
+                  {/* Sits above the row's stretched link so it can be hovered; a click still opens the tool. */}
+                  <span className="relative z-[1] cursor-pointer" onClick={() => router.push(`/tool/${r.slug}`)}>
+                    {formatStars(r.stars)}
+                  </span>
+                </Tooltip>
+              )}
             </div>
-            <div className="hidden truncate pt-px text-fg-muted sm:block" title={r.license ?? undefined}>
-              {r.license ?? "—"}
-            </div>
+            <div className="hidden truncate pt-px text-fg-muted sm:block">{r.license ?? "—"}</div>
           </li>
         ))}
       </ol>
@@ -153,6 +171,7 @@ function SortButton({
   align = "start",
   className = "",
   children,
+  ...props
 }: {
   sort: Sort;
   sortKey: SortKey;
@@ -160,15 +179,17 @@ function SortButton({
   align?: "start" | "end";
   className?: string;
   children: string;
-}) {
+} & Omit<React.ComponentPropsWithRef<"button">, "onClick" | "children" | "className">) {
   const active = sort.key === sortKey;
   const Icon = sort.dir === "asc" ? ArrowUp : ArrowDown;
   const arrow = (
     <Icon aria-hidden="true" strokeWidth={1.75} className={`size-3 ${active ? "" : "invisible"}`} />
   );
   return (
+    // Props from a wrapping Tooltip trigger (ref, hover and focus handlers) land on the button.
     <button
       type="button"
+      {...props}
       onClick={onClick}
       className={`-mx-1 inline-flex min-h-6 items-center gap-1 rounded px-1 hover:text-fg ${active ? "text-fg" : ""} ${className}`}
     >

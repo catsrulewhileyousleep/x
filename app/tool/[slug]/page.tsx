@@ -8,7 +8,7 @@ import { JsonLd } from "@/components/json-ld";
 import { LinkedText } from "@/components/linked-text";
 import { PageHeader } from "@/components/page-header";
 import { Section } from "@/components/section";
-import { ToolAvatar } from "@/components/tool-avatar";
+import { Avatar } from "@/components/ui/avatar";
 import { ToolTable } from "@/components/tool-table";
 import { getTool, replacesFor, similarTools, snapshotAt, toRow, tools, type Tool } from "@/lib/data";
 import { clip, formatDate, formatNumber, siteName, siteUrl } from "@/lib/format";
@@ -66,7 +66,7 @@ export default async function ToolPage({ params }: PageProps<"/tool/[slug]">) {
           { name: tool.categoryName, href: `/category/${tool.category}` },
           { name: tool.name, href: `/tool/${tool.slug}` },
         ]}
-        media={<ToolAvatar src={tool.avatarUrl} size={48} />}
+        media={<Avatar src={tool.avatarUrl} name={tool.name} size={48} />}
         title={tool.name}
         lede={tool.tagline}
         actions={
@@ -79,7 +79,11 @@ export default async function ToolPage({ params }: PageProps<"/tool/[slug]">) {
             <ExternalButton href={tool.githubUrl} primary={!tool.website}>
               GitHub
             </ExternalButton>
-            <CopyButton text={`[![Health Score](${siteUrl}/badge/${tool.slug}.svg)](${url})`} label="Copy badge" />
+            <CopyButton
+              text={`[![Health Score](${siteUrl}/badge/${tool.slug}.svg)](${url})`}
+              label="Copy badge"
+              hint="Markdown for a Health Score badge in your README"
+            />
           </>
         }
       />
