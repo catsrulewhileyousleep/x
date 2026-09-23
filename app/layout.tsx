@@ -8,7 +8,7 @@ import { Providers } from "@/components/providers";
 import { ui } from "@/lib/ui";
 import { ThemeToggle, themeScript } from "@/components/theme";
 import { InlineScript } from "@/components/inline-script";
-import { formatDate, repoUrl, siteName, siteUrl, submitUrl } from "@/lib/format";
+import { formatDate, repoUrl, siteName, siteUrl } from "@/lib/format";
 import "./globals.css";
 
 const interTight = Inter_Tight({
@@ -67,9 +67,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <div className="mx-auto flex w-full max-w-5xl flex-col gap-2 px-5 py-10 text-[13px] text-fg-muted sm:flex-row sm:justify-between sm:px-8">
             <p>GitHub data from {formatDate(snapshotAt)}</p>
             <p>
-                <a href={submitUrl} className={ui.navLink}>
+                <Link href="/submit" className={ui.navLink}>
                   Submit a tool
-                </a>
+                </Link>
+                <span aria-hidden="true"> · </span>
+                <Link href="/sponsor" className={ui.navLink}>
+                  Sponsor
+                </Link>
                 <span aria-hidden="true"> · </span>
                 <a href={repoUrl} className={ui.navLink}>
                   Source code

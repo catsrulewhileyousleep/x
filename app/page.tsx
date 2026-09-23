@@ -23,7 +23,7 @@ export default function Home() {
           categories={categories
             .filter((c) => toolsInCategory(c.slug).length > 0)
             .map(({ slug, name }) => ({ slug, name }))}
-          contributeUrl={`${repoUrl}/issues`}
+          reportUrl={`${repoUrl}/issues`}
         />
       </div>
       <JsonLd data={{ "@context": "https://schema.org", "@type": "WebSite", name: siteName, url: `${siteUrl}/` }} />

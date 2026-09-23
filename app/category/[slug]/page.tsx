@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AlternativeList } from "@/components/alternative-list";
 import { PageHeader } from "@/components/page-header";
@@ -44,7 +45,15 @@ export default async function CategoryPage({ params }: PageProps<"/category/[slu
       />
 
       <div className={ui.headerGap}>
-        <ToolTable rows={list.map((t) => toRow(t))} label={category.title} />
+        <ToolTable rows={list.map((t) => toRow(t))} label={category.title} pinSponsored />
+        {list.some((t) => t.sponsored) && (
+          <p className="mt-3 text-[13px] text-fg-muted">
+            Sponsored listings are pinned and labeled. They never affect a Health Score.{" "}
+            <Link href="/sponsor" className={ui.link}>
+              How sponsoring works
+            </Link>
+          </p>
+        )}
       </div>
 
       {related.length > 0 && (

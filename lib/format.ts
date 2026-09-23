@@ -24,5 +24,5 @@ export function formatDate(iso: string | null) {
 
 export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
 export const siteName = "AI Directory";
-export const repoUrl = "https://github.com/catsrulewhileyousleep/x";
-export const submitUrl = `${repoUrl}/issues/new?template=submit-tool.yml`;
+export const repoSlug = "catsrulewhileyousleep/x";
+export const repoUrl = `https://github.com/${repoSlug}`;

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
+import { badgeSvg } from "@/lib/badge";
 import { CopyButton } from "@/components/copy-button";
 import { HealthValue } from "@/components/health";
 import { JsonLd } from "@/components/json-ld";
@@ -79,6 +80,12 @@ export default async function ToolPage({ params }: PageProps<"/tool/[slug]">) {
             <ExternalButton href={tool.githubUrl} primary={!tool.website}>
               GitHub
             </ExternalButton>
+            {/* Inline copy of /badge/[slug].svg so maintainers see what they are embedding. */}
+            <span
+              aria-hidden="true"
+              className="hidden h-5 items-center sm:inline-flex"
+              dangerouslySetInnerHTML={{ __html: badgeSvg(tool.health) }}
+            />
             <CopyButton
               text={`[![Health Score](${siteUrl}/badge/${tool.slug}.svg)](${url})`}
               label="Copy badge"
@@ -110,6 +117,13 @@ export default async function ToolPage({ params }: PageProps<"/tool/[slug]">) {
             {formatDate(tool.lastCommitAt)}
           </time>
         </Fact>
+        {tool.sponsored && (
+          <Fact label="Listing">
+            <Link href="/sponsor" className={ui.link}>
+              Sponsored
+            </Link>
+          </Fact>
+        )}
       </dl>
 
       <Section title={`About ${tool.name}`} narrow>
