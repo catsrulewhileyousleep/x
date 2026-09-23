@@ -1,0 +1,62 @@
+name: Submit a tool
+description: Suggest an open-source AI tool for the directory.
+title: "Submit: "
+labels: ["submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Every submission is reviewed by hand. Read the [criteria](https://github.com/catsrulewhileyousleep/x/blob/HEAD/CONTRIBUTING.md#criteria) first.
+  - type: input
+    id: name
+    attributes:
+      label: Tool name
+    validations:
+      required: true
+  - type: input
+    id: repo
+    attributes:
+      label: GitHub repository
+      placeholder: https://github.com/owner/repo
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Coding agents
+        - Local LLMs
+        - Chat interfaces
+        - Image generation
+        - Agent frameworks
+        - Speech to text
+        - Other (explain below)
+    validations:
+      required: true
+  - type: input
+    id: tagline
+    attributes:
+      label: One-line description
+      description: What it does, in under 80 characters.
+    validations:
+      required: true
+  - type: input
+    id: license
+    attributes:
+      label: License
+      placeholder: MIT
+    validations:
+      required: true
+  - type: textarea
+    id: alternative
+    attributes:
+      label: Closed-source product it replaces (optional)
+      description: Name the product and, in one sentence, why this tool can replace it.
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmation
+      options:
+        - label: The repository is public, not archived, and has a README.
+          required: true

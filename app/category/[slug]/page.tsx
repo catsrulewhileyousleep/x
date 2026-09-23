@@ -39,18 +39,18 @@ export default async function CategoryPage({ params }: PageProps<"/category/[slu
       <p className="mt-4 max-w-[60ch] text-[15px] text-pretty text-fg-muted">{category.intro}</p>
 
       <div className="mt-12">
-        <p className="mb-2 text-[13px] text-fg-muted">{list.length} tool</p>
+        <p className="mb-2 text-[13px] text-fg-muted">{list.length} tools</p>
         <ToolTable rows={list.map((t) => toRow(t))} label={category.title} />
       </div>
 
       {related.length > 0 && (
         <section className="mt-16">
-          <h2 className="text-[15px] font-medium">Lựa chọn thay thế trong danh mục này</h2>
+          <h2 className="text-[15px] font-medium">Alternatives in this category</h2>
           <ul className="mt-3 space-y-2">
             {related.map((a) => (
               <li key={a.slug}>
                 <Link href={`/alternative-to/${a.slug}`} className="text-fg-muted hover:text-fg">
-                  Thay thế mã nguồn mở cho {a.name} ({a.tools.length})
+                  Open-source alternatives to {a.name} ({a.tools.length})
                 </Link>
               </li>
             ))}

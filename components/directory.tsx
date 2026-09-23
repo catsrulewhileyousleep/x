@@ -68,15 +68,15 @@ export function Directory({
   if (rows.length === 0) {
     return (
       <div role="alert" className="border-y border-hairline py-10">
-        <p className="font-medium">Chưa tải được danh sách tool.</p>
+        <p className="font-medium">The tool list could not be loaded.</p>
         <p className="mt-1 text-fg-muted">
-          Dữ liệu danh mục đang trống, đây không phải kết quả lọc.{" "}
+          The directory has no data, so this is not a filter result.{" "}
           <a href="" className="text-fg underline">
-            Tải lại trang
+            Reload the page
           </a>{" "}
-          hoặc{" "}
+          or{" "}
           <a href={contributeUrl} className="text-fg underline">
-            báo lỗi trên GitHub
+            report it on GitHub
           </a>
           .
         </p>
@@ -88,7 +88,7 @@ export function Directory({
     <div>
       <div className="flex flex-col gap-3">
         <label className="group relative block">
-          <span className="sr-only">Tìm tool</span>
+          <span className="sr-only">Search tools</span>
           <Search
             aria-hidden="true"
             strokeWidth={1.75}
@@ -100,7 +100,7 @@ export function Directory({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={(e) => e.key === "Escape" && setQuery("")}
-            placeholder="Tìm tên, tag, license"
+            placeholder="Search name, tag or license"
             autoComplete="off"
             spellCheck={false}
             enterKeyHint="search"
@@ -114,8 +114,8 @@ export function Directory({
           </kbd>
         </label>
 
-        <div role="group" aria-label="Lọc theo danh mục" className="flex flex-wrap gap-2">
-          {[{ slug: null, name: "Tất cả" } as { slug: string | null; name: string }, ...categories].map(
+        <div role="group" aria-label="Filter by category" className="flex flex-wrap gap-2">
+          {[{ slug: null, name: "All" } as { slug: string | null; name: string }, ...categories].map(
             (c) => {
               const active = category === c.slug;
               return (
@@ -141,23 +141,23 @@ export function Directory({
 
       <p role="status" className="mt-6 mb-2 text-[13px] text-fg-muted">
         {visible.length === rows.length
-          ? `${rows.length} tool`
-          : `${visible.length} trên ${rows.length} tool`}
+          ? `${rows.length} tools`
+          : `${visible.length} of ${rows.length} tools`}
       </p>
 
       {visible.length > 0 ? (
-        <ToolTable rows={visible} label="Danh sách tool" />
+        <ToolTable rows={visible} label="Tools" />
       ) : (
         <div className="border-y border-hairline py-10">
           <p className="font-medium">
-            Không có tool nào khớp {q && <>“{q}”</>}
+            No tools match {q && <>“{q}”</>}
             {q && activeName && " "}
-            {activeName && <>trong {activeName}</>}.
+            {activeName && <>in {activeName}</>}.
           </p>
           <p className="mt-1 text-fg-muted">
-            Thử từ khóa ngắn hơn hoặc{" "}
+            Try a shorter term or{" "}
             <button type="button" onClick={reset} className="text-fg underline">
-              xóa bộ lọc
+              clear the filters
             </button>
             .
           </p>

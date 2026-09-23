@@ -6,6 +6,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { HealthValue } from "@/components/health";
 import { JsonLd } from "@/components/json-ld";
 import { ToolAvatar } from "@/components/tool-avatar";
+import { CopyBadge } from "@/components/copy-badge";
 import { ToolTable } from "@/components/tool-table";
 import { replacesFor, similarTools, snapshotAt, toRow, tools, getTool, type Tool } from "@/lib/data";
 import { FRESH_DAYS, STALE_DAYS, WEIGHTS } from "@/lib/health";
@@ -52,9 +53,10 @@ export default async function ToolPage({ params }: PageProps<"/tool/[slug]">) {
             <p className="mt-2 max-w-[55ch] text-[15px] text-pretty text-fg-muted">{tool.tagline}</p>
           </div>
         </div>
-        <div className="flex shrink-0 gap-2">
-          {tool.website && <ExternalButton href={tool.website} primary>Truy cập website</ExternalButton>}
+        <div className="flex shrink-0 flex-wrap gap-2">
+          {tool.website && <ExternalButton href={tool.website} primary>Visit website</ExternalButton>}
           <ExternalButton href={tool.githubUrl} primary={!tool.website}>GitHub</ExternalButton>
+          <CopyBadge markdown={`[![Health Score](${siteUrl}/badge/${tool.slug}.svg)](${siteUrl}/tool/${tool.slug})`} />
         </div>
       </header>
 
@@ -66,10 +68,10 @@ export default async function ToolPage({ params }: PageProps<"/tool/[slug]">) {
           <span className="tabular-nums">{formatStars(tool.stars)}</span>
         </Meta>
         <Meta label="License">
-          {tool.license ?? "Chưa rõ"}
+          {tool.license ?? "Unknown"}
           {tool.licenseNote && <span className="mt-0.5 block text-[13px] text-fg-muted">{tool.licenseNote}</span>}
         </Meta>
-        <Meta label="Commit gần nhất">
+        <Meta label="Last commit">
           <span className="tabular-nums">{formatDate(tool.lastCommitAt)}</span>
         </Meta>
       </dl>
@@ -84,7 +86,7 @@ export default async function ToolPage({ params }: PageProps<"/tool/[slug]">) {
 
       {replaces.length > 0 && (
         <section className="mt-14 max-w-[65ch]">
-          <h2 className="text-[15px] font-medium">Thay thế cho</h2>
+          <h2 className="text-[15px] font-medium">Alternative to</h2>
           <ul className="mt-3 space-y-3">
             {replaces.map((r) => (
               <li key={r.slug}>
@@ -100,8 +102,8 @@ export default async function ToolPage({ params }: PageProps<"/tool/[slug]">) {
 
       {similar.length > 0 && (
         <section className="mt-14">
-          <h2 className="mb-3 text-[15px] font-medium">Tool tương tự</h2>
-          <ToolTable rows={similar.map((t) => toRow(t))} sortable={false} label="Tool tương tự" />
+          <h2 className="mb-3 text-[15px] font-medium">Similar tools</h2>
+          <ToolTable rows={similar.map((t) => toRow(t))} sortable={false} label="Similar tools" />
         </section>
       )}
 
@@ -113,11 +115,11 @@ export default async function ToolPage({ params }: PageProps<"/tool/[slug]">) {
               {tool.githubUrl.replace("https://", "")}
             </a>
           </dd>
-          <dt>Ngôn ngữ chính</dt>
+          <dt>Language</dt>
           <dd className="text-fg">{tool.language ?? "—"}</dd>
-          <dt>Ngày tạo repo</dt>
+          <dt>Created</dt>
           <dd className="text-fg tabular-nums">{formatDate(tool.createdAt)}</dd>
-          <dt>Dữ liệu cập nhật</dt>
+          <dt>Data updated</dt>
           <dd className="text-fg tabular-nums">{formatDate(snapshotAt)}</dd>
         </dl>
       </footer>
@@ -159,7 +161,7 @@ function ExternalButton({ href, primary, children }: { href: string; primary?: b
     >
       {children}
       <ArrowUpRight aria-hidden="true" strokeWidth={2} className="size-3.5" />
-      <span className="sr-only">(mở trang ngoài)</span>
+      <span className="sr-only">(opens external site)</span>
     </a>
   );
 }
@@ -169,7 +171,7 @@ function HealthBreakdown({ tool }: { tool: Tool }) {
   return (
     <details className="group mt-14 max-w-[65ch] border-y border-hairline">
       <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 py-2 font-medium [&::-webkit-details-marker]:hidden">
-        Health Score được tính thế nào
+        How this Health Score is calculated
         <ChevronDown
           aria-hidden="true"
           strokeWidth={1.75}
@@ -181,10 +183,10 @@ function HealthBreakdown({ tool }: { tool: Tool }) {
           <table className="w-full text-left tabular-nums">
             <thead className="text-[13px]">
               <tr className="border-b border-hairline">
-                <th className="py-2 font-normal">Tiêu chí</th>
-                <th className="py-2 font-normal">Dữ liệu</th>
-                <th className="py-2 text-right font-normal">Trọng số</th>
-                <th className="py-2 text-right font-normal">Điểm</th>
+                <th className="py-2 font-normal">Criterion</th>
+                <th className="py-2 font-normal">Input</th>
+                <th className="py-2 text-right font-normal">Weight</th>
+                <th className="py-2 text-right font-normal">Score</th>
               </tr>
             </thead>
             <tbody>
@@ -196,27 +198,27 @@ function HealthBreakdown({ tool }: { tool: Tool }) {
               </tr>
               <tr className="border-b border-hairline">
                 <td className="py-2 text-fg">Maintenance</td>
-                <td className="py-2">{h.daysSinceCommit} ngày từ commit gần nhất</td>
+                <td className="py-2">{h.daysSinceCommit} {h.daysSinceCommit === 1 ? "day" : "days"} since last commit</td>
                 <td className="py-2 text-right">{WEIGHTS.maintenance * 100}%</td>
                 <td className="py-2 text-right text-fg">{h.maintenance}</td>
               </tr>
               <tr>
                 <td className="pt-2 font-medium text-fg" colSpan={3}>
-                  Tổng
+                  Total
                 </td>
                 <td className="pt-2 text-right font-medium text-fg">{h.score}</td>
               </tr>
             </tbody>
           </table>
         ) : (
-          <p>Chưa đủ dữ liệu để chấm điểm: {h.reason}</p>
+          <p>Not enough data to score: {h.reason}</p>
         )}
         <p className="mt-4 text-[13px] text-pretty">
-          Popularity là stars theo thang log so với repo nhiều stars nhất trong tập dữ liệu. Maintenance đạt 100
-          nếu commit gần nhất trong {FRESH_DAYS} ngày, giảm dần về 0 ở mốc {STALE_DAYS} ngày. Tính tại thời
-          điểm {formatDate(snapshotAt)}.{" "}
+          Popularity is stars on a log scale, relative to the most-starred repo in the dataset. Maintenance
+          is 100 when the last commit is within {FRESH_DAYS} days and falls to 0 at {STALE_DAYS} days.
+          Calculated on {formatDate(snapshotAt)}.{" "}
           <Link href="/health-score" className="text-fg underline decoration-fg-muted hover:decoration-fg">
-            Chi tiết phương pháp
+            Full method
           </Link>
         </p>
       </div>

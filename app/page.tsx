@@ -7,13 +7,13 @@ export default function Home() {
   return (
     <>
       <h1 className="max-w-[16ch] text-[2.5rem] leading-[1.05] font-semibold tracking-[-0.035em] text-balance sm:text-[3.5rem]">
-        Công cụ AI mã nguồn mở, chọn lọc kỹ.
+        Open-source AI tools, carefully picked.
       </h1>
       <p className="mt-5 max-w-[60ch] text-[15px] text-pretty text-fg-muted">
-        {tools.length} dự án được kiểm tra thủ công. Health Score tính từ stars và commit gần nhất,
-        dữ liệu ngày {formatDate(snapshotAt)}.{" "}
+        {tools.length} projects, each reviewed by hand. Health Score is based on stars and the latest
+        commit, with data from {formatDate(snapshotAt)}.{" "}
         <Link href="/health-score" className="text-fg underline decoration-fg-muted hover:decoration-fg">
-          Xem cách tính
+          How it works
         </Link>
       </p>
 

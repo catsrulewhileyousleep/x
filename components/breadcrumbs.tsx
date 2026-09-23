@@ -6,7 +6,7 @@ type Crumb = { name: string; href: string };
 
 /** Visible trail plus matching BreadcrumbList schema. The last crumb is the current page. */
 export function Breadcrumbs({ items }: { items: Crumb[] }) {
-  const trail = [{ name: "Trang chủ", href: "/" }, ...items];
+  const trail = [{ name: "Home", href: "/" }, ...items];
   return (
     <nav aria-label="Breadcrumb" className="text-[13px] text-fg-muted">
       <ol className="flex flex-wrap items-center gap-x-1.5">

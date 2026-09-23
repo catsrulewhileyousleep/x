@@ -1,41 +1,49 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Inter_Tight } from "next/font/google";
-import { alternatives, indexableCategories, snapshotAt } from "@/lib/data";
-import { formatDate, repoUrl, siteName, siteUrl } from "@/lib/format";
+import { alternatives, commands, indexableCategories, snapshotAt } from "@/lib/data";
+import { CommandPalette } from "@/components/command-palette";
+import { ThemeToggle, themeScript } from "@/components/theme";
+import { InlineScript } from "@/components/inline-script";
+import { formatDate, repoUrl, siteName, siteUrl, submitUrl } from "@/lib/format";
 import "./globals.css";
 
 const interTight = Inter_Tight({
   variable: "--font-inter-tight",
-  subsets: ["latin", "vietnamese"],
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: { default: `Công cụ AI mã nguồn mở | ${siteName}`, template: `%s | ${siteName}` },
+  title: { default: `Open-source AI tools | ${siteName}`, template: `%s | ${siteName}` },
   description:
-    "Danh mục nhỏ, được tuyển chọn thủ công các công cụ AI mã nguồn mở, kèm Health Score minh bạch từ dữ liệu GitHub.",
+    "A small, hand-picked directory of open-source AI tools, with a transparent Health Score built from GitHub data.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="vi" className={interTight.variable}>
+    <html lang="en" className={interTight.variable} suppressHydrationWarning>
+      <head>
+        <InlineScript html={themeScript} />
+      </head>
       <body className="flex min-h-dvh flex-col font-sans">
         <a
           href="#main"
           className="absolute top-3 -left-[999px] z-10 rounded-md bg-fg px-3 py-2 text-[13px] font-medium text-canvas focus:left-3"
         >
-          Bỏ qua đến nội dung
+          Skip to content
         </a>
 
         <header className="mx-auto flex w-full max-w-5xl items-center justify-between px-5 py-5 sm:px-8">
           <Link href="/" className="-mx-1 px-1 py-1 text-[15px] font-semibold tracking-tight">
             {siteName}
           </Link>
-          <nav aria-label="Chính">
-            <Link href="/health-score" className="-mx-1 px-1 py-1 text-fg-muted hover:text-fg">
-              Cách tính Health Score
+          <nav aria-label="Main" className="-mr-2 flex items-center gap-1">
+            <Link href="/health-score" className="rounded-lg px-2.5 py-2 text-fg-muted hover:bg-surface hover:text-fg max-sm:hidden">
+              How Health Score works
             </Link>
+            <CommandPalette commands={commands()} />
+            <ThemeToggle />
           </nav>
         </header>
 
@@ -46,23 +54,35 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <footer className="border-t border-hairline">
           <div className="mx-auto grid w-full max-w-5xl gap-10 px-5 py-12 text-[13px] sm:grid-cols-3 sm:px-8">
             <FooterLinks
-              title="Danh mục"
+              title="Categories"
               links={indexableCategories.map((c) => ({ href: `/category/${c.slug}`, name: c.name }))}
             />
             <FooterLinks
-              title="Lựa chọn thay thế"
+              title="Alternatives"
               links={alternatives.map((a) => ({ href: `/alternative-to/${a.slug}`, name: a.name }))}
             />
             <div className="text-fg-muted">
               <p>
-                Dữ liệu GitHub cập nhật ngày {formatDate(snapshotAt)}. Mọi tool được kiểm tra thủ công
-                trước khi đăng.
+                GitHub data updated {formatDate(snapshotAt)}. Every tool is reviewed by hand before it is
+                listed.
               </p>
-              <p className="mt-3">
-                <a href={repoUrl} className="text-fg hover:underline">
-                  Mã nguồn và đóng góp
-                </a>
-              </p>
+              <ul className="mt-3 space-y-2">
+                <li>
+                  <a href={submitUrl} className="text-fg hover:underline">
+                    Submit a tool
+                  </a>
+                </li>
+                <li>
+                  <Link href="/health-score" className="text-fg hover:underline">
+                    How Health Score works
+                  </Link>
+                </li>
+                <li>
+                  <a href={repoUrl} className="text-fg hover:underline">
+                    Source code
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
         </footer>

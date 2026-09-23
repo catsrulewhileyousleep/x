@@ -3,9 +3,9 @@
     "slug": "github-copilot",
     "name": "GitHub Copilot",
     "category": "coding-agents",
-    "intro": "GitHub Copilot gửi code tới máy chủ của GitHub, chỉ cho chọn trong danh sách mô hình họ cung cấp và tính phí theo tháng khi vượt gói miễn phí. Các công cụ dưới đây cho phép bạn tự chọn mô hình, tự host máy chủ hoặc dùng mô hình chạy cục bộ.",
+    "intro": "GitHub Copilot sends your code to GitHub's servers, limits you to the models it offers and charges monthly once you outgrow the free plan. The tools below let you pick your own model, host the server yourself or run a model locally.",
     "freeTier": {
-      "answer": "Có. GitHub Copilot có gói Free giới hạn số lượt dùng mỗi tháng. Xem chi tiết trên trang giá chính thức của GitHub.",
+      "answer": "Yes. GitHub Copilot has a Free plan with a monthly usage limit. See GitHub's official pricing page for details.",
       "sourceUrl": "https://github.com/features/copilot/plans"
     }
   },
@@ -13,15 +13,15 @@
     "slug": "claude-code",
     "name": "Claude Code",
     "category": "coding-agents",
-    "intro": "Claude Code chỉ chạy với mô hình của Anthropic và không phát hành mã nguồn theo giấy phép mở. Các agent terminal dưới đây có mã nguồn công khai, và phần lớn cho phép bạn đổi nhà cung cấp mô hình."
+    "intro": "Claude Code only runs on Anthropic's models and is not released under an open-source license. The terminal agents below have public source code, and most let you switch model providers."
   },
   {
     "slug": "chatgpt",
     "name": "ChatGPT",
     "category": "chat-interfaces",
-    "intro": "ChatGPT lưu cuộc trò chuyện trên máy chủ của OpenAI và chỉ dùng mô hình của OpenAI. Các ứng dụng dưới đây chạy trên máy hoặc server của bạn, và kết nối được với mô hình cục bộ hay nhiều nhà cung cấp khác.",
+    "intro": "ChatGPT stores conversations on OpenAI's servers and only uses OpenAI's models. The apps below run on your computer or server and connect to local models or many other providers.",
     "freeTier": {
-      "answer": "Có. ChatGPT có gói miễn phí với giới hạn về mô hình và số lượt dùng. Xem chi tiết trên trang giá của OpenAI.",
+      "answer": "Yes. ChatGPT has a free plan with limits on models and usage. See OpenAI's pricing page for details.",
       "sourceUrl": "https://openai.com/chatgpt/pricing/"
     }
   },
@@ -29,9 +29,9 @@
     "slug": "lm-studio",
     "name": "LM Studio",
     "category": "local-llm",
-    "intro": "LM Studio miễn phí nhưng không mở mã nguồn: bạn không thể kiểm tra cách ứng dụng xử lý dữ liệu, tự sửa hay đóng gói lại. Các công cụ dưới đây cũng chạy mô hình cục bộ, với mã nguồn công khai.",
+    "intro": "LM Studio is free but not open source: you cannot inspect how it handles data, modify it or repackage it. The tools below also run models locally, with public source code.",
     "freeTier": {
-      "answer": "Có. LM Studio miễn phí cho cả mục đích cá nhân và công việc, nhưng mã nguồn ứng dụng không công khai. Xem điều khoản trên trang chính thức.",
+      "answer": "Yes. LM Studio is free for personal and work use, but the app's source code is not public. See the official site for terms.",
       "sourceUrl": "https://lmstudio.ai/"
     }
   },
@@ -39,6 +39,6 @@
     "slug": "midjourney",
     "name": "Midjourney",
     "category": "image-generation",
-    "intro": "Midjourney chỉ chạy trên máy chủ của họ, tính phí theo gói tháng và giới hạn mức can thiệp vào quy trình tạo ảnh. Các công cụ dưới đây chạy mô hình trọng số mở như Stable Diffusion trên GPU của bạn."
+    "intro": "Midjourney only runs on its own servers, charges a monthly plan and limits how much you can steer the generation process. The tools below run open-weight models such as Stable Diffusion on your GPU."
   }
 ]

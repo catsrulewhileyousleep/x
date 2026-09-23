@@ -39,15 +39,15 @@ export function maintenanceScore(daysSinceCommit: number): number {
 
 /** Days are measured against the snapshot time, not "now", so a page never drifts from its data. */
 export function computeHealth(input: HealthInput, maxStars: number, snapshotAt: string): Health {
-  if (input.isPrivate) return { status: "insufficient", reason: "Repo không còn công khai." };
-  if (input.archived) return { status: "insufficient", reason: "Repo đã được lưu trữ (archived)." };
+  if (input.isPrivate) return { status: "insufficient", reason: "The repo is no longer public." };
+  if (input.archived) return { status: "insufficient", reason: "The repo is archived." };
   if (input.stars == null || !input.lastCommitAt || !input.createdAt) {
-    return { status: "insufficient", reason: "Thiếu dữ liệu GitHub." };
+    return { status: "insufficient", reason: "GitHub data is missing." };
   }
 
   const now = Date.parse(snapshotAt);
   if ((now - Date.parse(input.createdAt)) / DAY < MIN_REPO_AGE_DAYS) {
-    return { status: "insufficient", reason: `Repo mới hơn ${MIN_REPO_AGE_DAYS} ngày.` };
+    return { status: "insufficient", reason: `The repo is less than ${MIN_REPO_AGE_DAYS} days old.` };
   }
 
   const daysSinceCommit = Math.max(0, Math.floor((now - Date.parse(input.lastCommitAt)) / DAY));

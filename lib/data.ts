@@ -96,7 +96,7 @@ export const tools: Tool[] = entries.map(({ licenseOverride, ...e }) => {
     language: repo?.language ?? null,
     health: repo
       ? computeHealth(repo, maxStars, snapshot.fetchedAt)
-      : { status: "insufficient", reason: "Chưa lấy được dữ liệu GitHub." },
+      : { status: "insufficient", reason: "GitHub data could not be fetched." },
   };
 });
 
@@ -180,4 +180,24 @@ export function toRow(t: Tool, why?: string) {
     avatarUrl: t.avatarUrl,
     ...(why ? { why } : {}),
   };
+}
+
+/** Every navigable page, for the ⌘K palette. */
+export function commands() {
+  return [
+    ...[...tools].sort(byHealth).map((t) => ({
+      href: `/tool/${t.slug}`,
+      label: t.name,
+      hint: t.categoryName,
+      keywords: [...t.tags, t.tagline],
+    })),
+    ...categories.map((c) => ({ href: `/category/${c.slug}`, label: c.name, hint: "Category", keywords: [c.title] })),
+    ...alternatives.map((a) => ({
+      href: `/alternative-to/${a.slug}`,
+      label: `${a.name} alternatives`,
+      hint: "Alternatives",
+      keywords: [a.name],
+    })),
+    { href: "/health-score", label: "How Health Score works", hint: "Page", keywords: ["method", "formula"] },
+  ];
 }

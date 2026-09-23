@@ -1,70 +1,72 @@
-# Nguyên tắc thiết kế
+# Design principles
 
-"Less, but better." Mỗi quyết định dưới đây gắn với một chỗ cụ thể trong code; nếu một thứ không phục vụ việc tìm và đánh giá tool, nó không có mặt.
+"Less, but better." Every decision below maps to a specific place in the code. If something does not help people find and judge a tool, it is not there.
 
-## Dieter Rams — 10 nguyên tắc
+## Dieter Rams: ten principles for good design
 
-| Nguyên tắc | Áp dụng |
+| Principle | Applied |
 | --- | --- |
-| Đổi mới | Health Score công khai công thức ngay trên từng trang tool, không phải điểm hộp đen. |
-| Hữu ích | List view thay cho grid card: quét được tên, điểm, stars, license theo cột dọc. |
-| Thẩm mỹ | Một font (Inter Tight), thang đơn sắc OKLCH, một màu accent. |
-| Dễ hiểu | Header cột bắt buộc; không con số nào tự giải thích. |
-| Không phô trương | Không badge, không shadow, không icon trang trí; chỉ hairline giữa các dòng. |
-| Trung thực | Repo archived, mới hoặc thiếu dữ liệu hiện "Chưa đủ dữ liệu", không đoán điểm. License không nhận diện được ghi rõ nguồn xác minh. |
-| Bền lâu | Trang tĩnh (SSG), không phụ thuộc xu hướng "terminal aesthetic". |
-| Kỹ đến chi tiết | `tabular-nums`, số căn phải thẳng header, `text-wrap: balance/pretty`, subset tiếng Việt. |
-| Thân thiện môi trường | Không có component library; JS phía client chỉ cho search, lọc, sắp xếp. |
-| Càng ít thiết kế càng tốt | Mỗi trang một H1, một danh sách, một hành động chính. |
+| Innovative | Health Score shows its formula on every tool page instead of being a black box. |
+| Useful | A list view instead of a card grid: name, score, stars and license scan down in columns. |
+| Aesthetic | One typeface (Inter Tight), a monochrome OKLCH scale, one accent color. |
+| Understandable | Column headers are mandatory; no number explains itself. |
+| Unobtrusive | No badges, no shadows, no decorative icons; only hairlines between rows. |
+| Honest | Archived, new or incomplete repos show "Not enough data" rather than a guessed score. Licenses GitHub cannot detect say how they were verified. |
+| Long-lasting | Static pages (SSG), no "hacker terminal" trend styling. |
+| Thorough to the last detail | `tabular-nums`, numbers right-aligned under their headers, `text-wrap: balance/pretty`, sort arrows that never shift the header. |
+| Environmentally friendly | No component library; client JavaScript only for search, filtering, sorting, the palette and the theme. |
+| As little design as possible | One H1, one list and one primary action per page. |
 
-## Don Norman — thiết kế lấy con người làm trung tâm
+## Don Norman: human-centered design
 
-- **Affordance & signifier**: cả dòng là link thật (`<a>` phủ dòng), hover đổi nền; mũi tên sort chỉ hiện ở cột đang sắp xếp; link ngoài có ↗.
-- **Feedback**: đếm kết quả qua `role="status"`, pill hiện số tool khớp theo từ khóa hiện tại.
-- **Mapping**: bấm vào header cột nào thì sắp xếp cột đó.
-- **Constraints**: dữ liệu sai tham chiếu (category, alternative, snapshot) làm build thất bại thay vì tạo link chết.
-- **Mô hình khái niệm**: Health Score chỉ có hai thành phần, dễ nhớ và giải thích được.
+- **Affordances and signifiers**: the whole row is a real link (an `<a>` stretched over the row) and highlights on hover; the sort arrow only appears on the sorted column; external links carry ↗.
+- **Feedback**: the result count lives in a `role="status"` region; filter pills show how many tools match the current search; "Copy badge" confirms with "Copied".
+- **Mapping**: clicking a column header sorts that column.
+- **Constraints**: broken references (category, alternative, snapshot) fail the build instead of shipping dead links.
+- **Conceptual model**: Health Score has only two parts, easy to remember and explain.
 
-## Jakob Nielsen — 10 heuristic
+## Jakob Nielsen: ten usability heuristics
 
-| Heuristic | Áp dụng |
+| Heuristic | Applied |
 | --- | --- |
-| Hiển thị trạng thái hệ thống | Ngày cập nhật dữ liệu ở trang chủ, trang tool và footer. |
-| Khớp với thế giới thực | Tiếng Việt, ngày định dạng `vi-VN`, thuật ngữ dev giữ nguyên (stars, license). |
-| Quyền kiểm soát | `Esc` xóa từ khóa, "xóa bộ lọc" trong trạng thái rỗng, filter không đổi URL. |
-| Nhất quán | Cùng một component list view cho trang chủ, category, alternative-to và "Tool tương tự". |
-| Phòng lỗi | Search khớp cả tag và license; giá trị thiếu luôn xếp cuối khi sort. |
-| Nhận biết thay vì ghi nhớ | Header cột luôn hiển thị; pill hiện số lượng. |
-| Linh hoạt | Phím `/` để focus ô tìm kiếm; hỗ trợ bàn phím đầy đủ. |
-| Tối giản | Không có gì ngoài tên, tagline, điểm, stars, license trong một dòng. |
-| Giúp phục hồi lỗi | Trạng thái rỗng nêu từ khóa và cách thoát; danh mục trống được coi là lỗi dữ liệu, có link tải lại và báo lỗi. |
-| Trợ giúp & tài liệu | Trang `/health-score` giải thích công thức, giới hạn và nguồn. |
+| Visibility of system status | The data date appears on the home page, tool pages and footer. |
+| Match with the real world | Plain English, developer terms kept as they are (stars, license). |
+| User control and freedom | `Esc` clears search and closes the palette; "clear the filters" in the empty state; filters never change the URL. |
+| Consistency and standards | One list component on the home, category, alternative-to and "Similar tools" views. `⌘K` and `/` follow common conventions. |
+| Error prevention | Search matches tags and licenses too; missing values always sort last. |
+| Recognition rather than recall | Column headers always visible; pills show counts; the palette lists every page before you type. |
+| Flexibility and efficiency | `/` focuses search, `⌘K` / `Ctrl K` jumps to any page, full keyboard support. |
+| Aesthetic and minimalist design | Nothing in a row beyond name, tagline, score, stars and license. |
+| Help users recover from errors | The empty state names the query and the way out; an empty directory is treated as a data error with reload and report links. |
+| Help and documentation | `/health-score` explains the formula, its limits and its source. |
 
-## John Maeda — Laws of Simplicity
+## John Maeda: the laws of simplicity
 
-| Luật | Áp dụng |
+| Law | Applied |
 | --- | --- |
-| Reduce | Bỏ contributors khỏi trang tool vì API GitHub không trả số chính xác cho repo lớn. |
-| Organize | Category là nhóm bằng chữ, không bằng màu. |
-| Time | Không chuyển động trừ đổi nền khi hover (100ms) và xoay chevron (tôn trọng `prefers-reduced-motion`). |
-| Learn | Nhìn một dòng là hiểu mọi dòng. |
-| Differences | Màu chỉ dành cho trạng thái: accent cho pill đang chọn, ba màu health cho mức điểm. |
-| Context | Khoảng trắng rộng quanh H1, dày đặc trong danh sách. |
-| Emotion | Chữ lớn, tracking âm ở heading tạo cá tính mà không cần trang trí. |
-| Trust | Mỗi trang alternative-to cần ít nhất 3 tool có câu "vì sao thay thế được" do người biên tập viết. |
-| Failure | Một số thứ để lại: light mode, ⌘K, form submit thuộc giai đoạn sau. |
-| The One | Bớt những thứ hiển nhiên, thêm những thứ có ý nghĩa. |
+| Reduce | Contributor counts were dropped because GitHub does not return exact numbers for large repos. |
+| Organize | Categories are grouped by words, not colors. |
+| Time | No motion except a 100ms background change on hover and the chevron turn (respects `prefers-reduced-motion`). The palette opens instantly because it is used often. |
+| Learn | Read one row and you can read them all. |
+| Differences | Color is reserved for state: the accent for the selected pill and focus, three health colors for score bands. |
+| Context | Generous space around the H1, dense lists. |
+| Emotion | Large type with negative tracking gives character without decoration. |
+| Trust | Each alternative-to page needs at least 3 tools, each with an editor-written "why it replaces" sentence. |
+| Failure | Some things are left out on purpose: compare pages (need real search demand first) and a hosted submission queue. |
+| The one | Subtract the obvious, add the meaningful. |
 
-## Token màu
+## Color
 
-Giá trị lấy từ brief (§6), đã đo độ tương phản WCAG trên nền thực tế:
+Tokens come from the brief (§6). Light values are re-derived rather than inverted. WCAG contrast, measured from the declared OKLCH values:
 
-| Cặp | Tỉ lệ |
-| --- | --- |
-| `--text-primary` / `--bg-base` | 18,99 |
-| `--text-secondary` / `--bg-base` | 5,52 |
-| `--text-secondary` / `--bg-surface` (dòng hover) | 5,07 |
-| `--accent` / `--bg-surface` (số đếm trong pill đang chọn) | 4,82 |
-| `--focus-ring` / `--bg-surface` | 7,26 |
+| Pair | Dark | Light |
+| --- | --- | --- |
+| Primary text / background | 18.99 | 17.34 |
+| Secondary text / background | 5.52 | 5.75 |
+| Secondary text / surface (hovered row) | 5.07 | 5.26 |
+| Accent / surface (count in the selected pill) | 4.82 | 5.16 |
+| Focus ring / surface | 7.26 | 5.16 |
 
-Chữ trắng trên nền `--accent` chỉ đạt 3,61, nên pill đang chọn dùng viền accent thay vì nền accent.
+White text on the accent only reaches 3.61:1 in dark mode, so the selected pill uses an accent border instead of an accent fill. Health dots are decorative (the number carries the meaning) and stay at 3:1 or more against both surfaces.
+
+The theme is set by one attribute, `data-theme` on `<html>`, written by an inline script before first paint. Transitions are disabled for the frame of a theme switch so the change snaps instead of smearing.

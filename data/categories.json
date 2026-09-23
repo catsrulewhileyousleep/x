@@ -1,38 +1,38 @@
 [
   {
     "slug": "coding-agents",
-    "name": "Coding agent",
-    "title": "Coding agent mã nguồn mở",
-    "intro": "Agent và trợ lý lập trình đọc codebase, sửa file và chạy lệnh thay bạn, trong IDE hoặc terminal."
+    "name": "Coding agents",
+    "title": "Open-source AI coding agents",
+    "intro": "Agents and assistants that read your codebase, edit files and run commands for you, in the IDE or the terminal."
   },
   {
     "slug": "local-llm",
-    "name": "Chạy LLM cục bộ",
-    "title": "Công cụ chạy LLM cục bộ",
-    "intro": "Runtime và server để chạy mô hình ngôn ngữ trọng số mở trên phần cứng của bạn, từ laptop đến cụm GPU."
+    "name": "Local LLMs",
+    "title": "Tools for running LLMs locally",
+    "intro": "Runtimes and servers for running open-weight language models on your own hardware, from a laptop to a GPU cluster."
   },
   {
     "slug": "chat-interfaces",
-    "name": "Giao diện chat",
-    "title": "Giao diện chat AI mã nguồn mở",
-    "intro": "Ứng dụng chat tự host hoặc chạy trên máy, dùng với mô hình cục bộ hay qua API của nhà cung cấp."
+    "name": "Chat interfaces",
+    "title": "Open-source AI chat interfaces",
+    "intro": "Self-hosted or desktop chat apps that work with local models or with model provider APIs."
   },
   {
     "slug": "image-generation",
-    "name": "Tạo ảnh",
-    "title": "Công cụ tạo ảnh AI mã nguồn mở",
-    "intro": "Giao diện và engine chạy mô hình tạo ảnh trọng số mở như Stable Diffusion trên GPU của bạn."
+    "name": "Image generation",
+    "title": "Open-source AI image generation tools",
+    "intro": "Interfaces and engines for running open-weight image models such as Stable Diffusion on your GPU."
   },
   {
     "slug": "agent-frameworks",
-    "name": "Framework agent",
-    "title": "Framework xây dựng agent AI",
-    "intro": "Thư viện và công cụ trực quan để thiết kế, điều phối và triển khai agent cùng workflow AI."
+    "name": "Agent frameworks",
+    "title": "Frameworks for building AI agents",
+    "intro": "Libraries and visual tools for designing, orchestrating and deploying agents and AI workflows."
   },
   {
     "slug": "speech-to-text",
-    "name": "Giọng nói thành văn bản",
-    "title": "Công cụ chuyển giọng nói thành văn bản",
-    "intro": "Mô hình và runtime nhận dạng giọng nói chạy cục bộ, hỗ trợ nhiều ngôn ngữ, bao gồm tiếng Việt."
+    "name": "Speech to text",
+    "title": "Open-source speech-to-text tools",
+    "intro": "Speech recognition models and runtimes that run locally and support many languages."
   }
 ]

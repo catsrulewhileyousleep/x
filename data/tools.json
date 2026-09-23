@@ -4,14 +4,21 @@
     "name": "Cline",
     "repo": "cline/cline",
     "category": "coding-agents",
-    "tagline": "Agent lập trình trong VS Code, duyệt từng thao tác trước khi chạy",
+    "tagline": "Coding agent for VS Code that asks before every action",
     "description": [
-      "Cline đọc codebase, tạo và sửa file, chạy lệnh terminal và dùng trình duyệt để kiểm tra kết quả. Mỗi thao tác đều chờ bạn duyệt trước khi thực thi, nên bạn luôn biết agent đang làm gì.",
-      "Bạn tự chọn nhà cung cấp mô hình bằng API key riêng hoặc dùng mô hình chạy cục bộ. Ngoài extension VS Code, Cline còn có CLI và SDK."
+      "Cline reads your codebase, creates and edits files, runs terminal commands and uses a browser to check its work. Every action waits for your approval, so you always know what the agent is doing.",
+      "Bring your own API key for any model provider, or point it at a local model. Beyond the VS Code extension, Cline also ships as a CLI and an SDK."
     ],
-    "tags": ["vs-code", "agent", "mcp"],
+    "tags": [
+      "vs-code",
+      "agent",
+      "mcp"
+    ],
     "alternativeTo": [
-      { "slug": "github-copilot", "why": "Chạy trong VS Code như Copilot, nhưng bạn tự chọn mô hình và duyệt từng thay đổi trước khi áp dụng." }
+      {
+        "slug": "github-copilot",
+        "why": "Lives in VS Code like Copilot, but you pick the model and approve each change before it lands."
+      }
     ]
   },
   {
@@ -19,14 +26,21 @@
     "name": "Continue",
     "repo": "continuedev/continue",
     "category": "coding-agents",
-    "tagline": "Trợ lý lập trình mã nguồn mở, tự chọn mô hình",
+    "tagline": "Open-source coding assistant with the model of your choice",
     "description": [
-      "Continue cung cấp chat, autocomplete và chỉnh sửa code bằng ngôn ngữ tự nhiên ngay trong editor. Cấu hình nằm trong một file, dễ chia sẻ cho cả nhóm.",
-      "Bạn có thể kết nối nhiều nhà cung cấp mô hình khác nhau hoặc trỏ tới mô hình chạy cục bộ để code không rời khỏi máy."
+      "Continue brings chat, autocomplete and natural-language edits into your editor. Configuration lives in a single file that is easy to share with a team.",
+      "Connect it to many model providers, or to a local model so your code never leaves your machine."
     ],
-    "tags": ["vs-code", "jetbrains", "autocomplete"],
+    "tags": [
+      "vs-code",
+      "jetbrains",
+      "autocomplete"
+    ],
     "alternativeTo": [
-      { "slug": "github-copilot", "why": "Có autocomplete và chat trong IDE như Copilot, nhưng không khóa vào một nhà cung cấp mô hình." }
+      {
+        "slug": "github-copilot",
+        "why": "Autocomplete and chat in the IDE like Copilot, without being locked to one model provider."
+      }
     ]
   },
   {
@@ -34,14 +48,21 @@
     "name": "Aider",
     "repo": "Aider-AI/aider",
     "category": "coding-agents",
-    "tagline": "Lập trình cặp với AI ngay trong terminal",
+    "tagline": "AI pair programming in your terminal",
     "description": [
-      "Aider làm việc trực tiếp trên repo git của bạn: bạn mô tả thay đổi, Aider sửa file và tự tạo commit với message rõ ràng, nên mọi thay đổi đều dễ xem lại hoặc hoàn tác.",
-      "Aider dựng bản đồ repo để hiểu ngữ cảnh ở dự án lớn và hoạt động với nhiều mô hình, cả qua API lẫn chạy cục bộ."
+      "Aider works directly on your git repo: describe a change, and Aider edits the files and commits with a clear message, so every change is easy to review or undo.",
+      "It builds a map of the repo to keep context on large projects, and works with many models, over an API or locally."
     ],
-    "tags": ["terminal", "git", "cli"],
+    "tags": [
+      "terminal",
+      "git",
+      "cli"
+    ],
     "alternativeTo": [
-      { "slug": "claude-code", "why": "Cũng làm việc trong terminal trên repo git, nhưng dùng được nhiều mô hình và tự commit từng thay đổi." }
+      {
+        "slug": "claude-code",
+        "why": "Also works in the terminal on a git repo, but runs on many models and commits each change for you."
+      }
     ]
   },
   {
@@ -49,12 +70,16 @@
     "name": "OpenHands",
     "repo": "OpenHands/OpenHands",
     "category": "coding-agents",
-    "tagline": "Nền tảng agent phát triển phần mềm, chạy trong sandbox",
+    "tagline": "Software development agent platform that runs in a sandbox",
     "description": [
-      "OpenHands, trước đây tên OpenDevin, chạy agent có thể sửa code, chạy lệnh và duyệt web bên trong một môi trường cô lập.",
-      "Bạn có thể chạy trên máy cá nhân bằng Docker, dùng CLI, hoặc tích hợp vào quy trình CI để giao việc cho agent."
+      "OpenHands, formerly OpenDevin, runs agents that edit code, run commands and browse the web inside an isolated environment.",
+      "Run it locally with Docker, use the CLI, or wire it into CI to hand tasks to an agent."
     ],
-    "tags": ["agent", "sandbox", "docker"],
+    "tags": [
+      "agent",
+      "sandbox",
+      "docker"
+    ],
     "alternativeTo": []
   },
   {
@@ -62,14 +87,21 @@
     "name": "OpenCode",
     "repo": "anomalyco/opencode",
     "category": "coding-agents",
-    "tagline": "Agent lập trình mã nguồn mở cho terminal",
+    "tagline": "Open-source coding agent for the terminal",
     "description": [
-      "OpenCode là agent lập trình có giao diện dạng TUI trong terminal. Nó đọc repo, đề xuất và áp dụng thay đổi, chạy lệnh để kiểm tra.",
-      "OpenCode không gắn với nhà cung cấp mô hình nào, nên bạn có thể đổi mô hình mà không đổi công cụ."
+      "OpenCode is a coding agent with a terminal UI. It reads your repo, proposes and applies changes, and runs commands to check them.",
+      "It is not tied to any model provider, so you can switch models without switching tools."
     ],
-    "tags": ["terminal", "tui", "cli"],
+    "tags": [
+      "terminal",
+      "tui",
+      "cli"
+    ],
     "alternativeTo": [
-      { "slug": "claude-code", "why": "Trải nghiệm agent trong terminal tương tự, nhưng không phụ thuộc vào một nhà cung cấp mô hình." }
+      {
+        "slug": "claude-code",
+        "why": "A similar terminal agent experience, without depending on a single model provider."
+      }
     ]
   },
   {
@@ -77,14 +109,21 @@
     "name": "Codex CLI",
     "repo": "openai/codex",
     "category": "coding-agents",
-    "tagline": "Agent lập trình gọn nhẹ của OpenAI, chạy trong terminal",
+    "tagline": "OpenAI's lightweight coding agent for the terminal",
     "description": [
-      "Codex CLI đọc repo, sửa file và chạy lệnh ngay trong terminal. Công cụ viết bằng Rust và cài đặt nhanh.",
-      "Các lệnh chạy trong sandbox với mức quyền bạn chọn, từ chỉ đọc đến tự động hoàn toàn."
+      "Codex CLI reads your repo, edits files and runs commands right in the terminal. It is written in Rust and installs quickly.",
+      "Commands run in a sandbox at the permission level you choose, from read-only to fully automatic."
     ],
-    "tags": ["terminal", "cli", "sandbox"],
+    "tags": [
+      "terminal",
+      "cli",
+      "sandbox"
+    ],
     "alternativeTo": [
-      { "slug": "claude-code", "why": "Cùng cách làm việc (đọc repo, sửa file, chạy lệnh), với mã nguồn mở và sandbox có thể cấu hình." }
+      {
+        "slug": "claude-code",
+        "why": "Same way of working (read the repo, edit files, run commands), with open source code and a configurable sandbox."
+      }
     ]
   },
   {
@@ -92,14 +131,21 @@
     "name": "Gemini CLI",
     "repo": "google-gemini/gemini-cli",
     "category": "coding-agents",
-    "tagline": "Agent AI mã nguồn mở của Google cho terminal",
+    "tagline": "Google's open-source AI agent for the terminal",
     "description": [
-      "Gemini CLI mang mô hình Gemini vào terminal để hỏi về codebase, sửa file, chạy lệnh và tự động hóa tác vụ.",
-      "Công cụ hỗ trợ MCP để kết nối thêm công cụ bên ngoài, và có thể dùng trong script hoặc CI."
+      "Gemini CLI brings Gemini models into the terminal to answer questions about your codebase, edit files, run commands and automate tasks.",
+      "It supports MCP for connecting external tools, and works in scripts and CI."
     ],
-    "tags": ["terminal", "cli", "mcp"],
+    "tags": [
+      "terminal",
+      "cli",
+      "mcp"
+    ],
     "alternativeTo": [
-      { "slug": "claude-code", "why": "Agent terminal tương tự, mã nguồn mở, chạy trên mô hình Gemini của Google." }
+      {
+        "slug": "claude-code",
+        "why": "A similar terminal agent, open source and running on Google's Gemini models."
+      }
     ]
   },
   {
@@ -107,15 +153,25 @@
     "name": "Tabby",
     "repo": "TabbyML/tabby",
     "category": "coding-agents",
-    "tagline": "Trợ lý lập trình tự host trên hạ tầng của bạn",
+    "tagline": "Coding assistant you host on your own infrastructure",
     "description": [
-      "Tabby là máy chủ trợ lý lập trình bạn tự triển khai. Tabby cung cấp autocomplete và chat cho các IDE phổ biến, code không rời khỏi hạ tầng của bạn.",
-      "Tabby chạy được trên GPU phổ thông và có trang quản trị cho nhóm."
+      "Tabby is a coding assistant server you deploy yourself. It serves autocomplete and chat to popular IDEs, and your code never leaves your infrastructure.",
+      "It runs on consumer GPUs and includes an admin dashboard for teams."
     ],
-    "tags": ["self-hosted", "autocomplete", "ide"],
-    "licenseOverride": { "spdx": "Apache-2.0", "note": "Thư mục ee/ dùng giấy phép riêng." },
+    "tags": [
+      "self-hosted",
+      "autocomplete",
+      "ide"
+    ],
+    "licenseOverride": {
+      "spdx": "Apache-2.0",
+      "note": "The ee/ directory is under a separate license."
+    },
     "alternativeTo": [
-      { "slug": "github-copilot", "why": "Tự host thay vì gửi code lên máy chủ bên thứ ba, với autocomplete và chat trong IDE." }
+      {
+        "slug": "github-copilot",
+        "why": "Self-hosted instead of sending code to a third-party server, with autocomplete and chat in the IDE."
+      }
     ]
   },
   {
@@ -123,14 +179,21 @@
     "name": "Ollama",
     "repo": "ollama/ollama",
     "category": "local-llm",
-    "tagline": "Chạy mô hình ngôn ngữ trên máy bằng một lệnh",
+    "tagline": "Run language models locally with one command",
     "description": [
-      "Ollama tải và chạy các mô hình trọng số mở chỉ với một lệnh, tự quản lý file mô hình và cấu hình phần cứng.",
-      "Ollama có REST API cục bộ, nên nhiều ứng dụng chat và công cụ lập trình dùng Ollama làm backend."
+      "Ollama downloads and runs open-weight models with a single command, managing model files and hardware configuration for you.",
+      "It exposes a local REST API, so many chat apps and coding tools use Ollama as their backend."
     ],
-    "tags": ["cli", "api", "gguf"],
+    "tags": [
+      "cli",
+      "api",
+      "gguf"
+    ],
     "alternativeTo": [
-      { "slug": "lm-studio", "why": "Chạy mô hình cục bộ như LM Studio, chủ yếu qua CLI và API, với mã nguồn mở." }
+      {
+        "slug": "lm-studio",
+        "why": "Runs models locally like LM Studio, mostly through a CLI and API, and it is open source."
+      }
     ]
   },
   {
@@ -138,14 +201,21 @@
     "name": "llama.cpp",
     "repo": "ggml-org/llama.cpp",
     "category": "local-llm",
-    "tagline": "Suy luận LLM bằng C/C++, chạy trên CPU lẫn GPU",
+    "tagline": "LLM inference in C/C++ on CPU and GPU",
     "description": [
-      "llama.cpp là engine suy luận nền tảng, định nghĩa định dạng GGUF và các kỹ thuật lượng tử hóa mà nhiều công cụ khác dựa vào.",
-      "llama-server đi kèm cung cấp API tương thích OpenAI, đủ để tự host một endpoint mà không cần thêm thành phần nào."
+      "llama.cpp is the foundational inference engine behind the GGUF format and the quantization techniques many other tools rely on.",
+      "The bundled llama-server provides an OpenAI-compatible API, enough to self-host an endpoint with nothing else."
     ],
-    "tags": ["c++", "gguf", "quantization"],
+    "tags": [
+      "c++",
+      "gguf",
+      "quantization"
+    ],
     "alternativeTo": [
-      { "slug": "lm-studio", "why": "Là engine mà LM Studio dùng bên dưới; dùng trực tiếp cho bạn toàn quyền kiểm soát." }
+      {
+        "slug": "lm-studio",
+        "why": "It is the engine LM Studio uses under the hood; using it directly gives you full control."
+      }
     ]
   },
   {
@@ -153,12 +223,16 @@
     "name": "vLLM",
     "repo": "vllm-project/vllm",
     "category": "local-llm",
-    "tagline": "Engine phục vụ LLM thông lượng cao, tiết kiệm bộ nhớ",
+    "tagline": "High-throughput, memory-efficient LLM serving engine",
     "description": [
-      "vLLM tập trung vào phục vụ mô hình ở quy mô lớn: PagedAttention quản lý bộ nhớ KV cache hiệu quả, cho phép xử lý nhiều request đồng thời.",
-      "vLLM có server tương thích OpenAI API, phù hợp khi cần tự host mô hình cho production trên GPU."
+      "vLLM focuses on serving models at scale: PagedAttention manages KV cache memory efficiently so it can handle many concurrent requests.",
+      "It ships an OpenAI-compatible server, a good fit for self-hosting models in production on GPUs."
     ],
-    "tags": ["serving", "gpu", "openai-api"],
+    "tags": [
+      "serving",
+      "gpu",
+      "openai-api"
+    ],
     "alternativeTo": []
   },
   {
@@ -166,14 +240,21 @@
     "name": "LocalAI",
     "repo": "mudler/LocalAI",
     "category": "local-llm",
-    "tagline": "API tương thích OpenAI, chạy cục bộ, không bắt buộc GPU",
+    "tagline": "Local OpenAI-compatible API, no GPU required",
     "description": [
-      "LocalAI thay thế trực tiếp OpenAI API bằng một server chạy trên phần cứng của bạn, hỗ trợ văn bản, ảnh, giọng nói và embedding.",
-      "LocalAI chạy được trên phần cứng phổ thông, không bắt buộc GPU, và nhiều ứng dụng viết cho OpenAI chỉ cần đổi URL."
+      "LocalAI is a drop-in replacement for the OpenAI API that runs on your hardware, covering text, images, speech and embeddings.",
+      "It runs on consumer hardware without a GPU, and many apps written for OpenAI only need a new base URL."
     ],
-    "tags": ["openai-api", "self-hosted", "multimodal"],
+    "tags": [
+      "openai-api",
+      "self-hosted",
+      "multimodal"
+    ],
     "alternativeTo": [
-      { "slug": "lm-studio", "why": "Phơi ra API tương thích OpenAI như chế độ server của LM Studio, thêm cả ảnh và giọng nói." }
+      {
+        "slug": "lm-studio",
+        "why": "Exposes an OpenAI-compatible API like LM Studio's server mode, plus images and speech."
+      }
     ]
   },
   {
@@ -181,15 +262,25 @@
     "name": "llamafile",
     "repo": "mozilla-ai/llamafile",
     "category": "local-llm",
-    "tagline": "Đóng gói và chạy LLM trong một file duy nhất",
+    "tagline": "Package and run an LLM as a single file",
     "description": [
-      "llamafile gộp mô hình và runtime vào một file thực thi, chạy được trên nhiều hệ điều hành mà không cần cài đặt.",
-      "Cách phân phối này phù hợp khi cần chia sẻ một mô hình cho người không rành kỹ thuật, hoặc lưu trữ lâu dài."
+      "llamafile bundles a model and its runtime into one executable that runs on most operating systems with no installation.",
+      "This makes it easy to share a model with non-technical people, or to archive one for the long term."
     ],
-    "tags": ["portable", "gguf", "cli"],
-    "licenseOverride": { "spdx": "Apache-2.0", "note": "GitHub không tự nhận diện được; xác minh thủ công từ file LICENSE." },
+    "tags": [
+      "portable",
+      "gguf",
+      "cli"
+    ],
+    "licenseOverride": {
+      "spdx": "Apache-2.0",
+      "note": "Not detected by GitHub; verified manually from the LICENSE file."
+    },
     "alternativeTo": [
-      { "slug": "lm-studio", "why": "Không cần cài ứng dụng: mô hình và runtime nằm trong một file chạy ngay." }
+      {
+        "slug": "lm-studio",
+        "why": "No app to install: the model and runtime live in one file that runs as is."
+      }
     ]
   },
   {
@@ -197,16 +288,29 @@
     "name": "Jan",
     "repo": "janhq/jan",
     "category": "chat-interfaces",
-    "tagline": "Ứng dụng chat AI chạy hoàn toàn offline trên máy",
+    "tagline": "Chat app that runs fully offline on your computer",
     "description": [
-      "Jan là ứng dụng desktop để tải mô hình và chat ngay trên máy, dùng được cả khi không có mạng.",
-      "Khi cần, Jan cũng kết nối được tới API của các nhà cung cấp đám mây và có server cục bộ tương thích OpenAI."
+      "Jan is a desktop app for downloading models and chatting with them locally, even without a network connection.",
+      "When you need it, Jan also connects to cloud provider APIs and offers a local OpenAI-compatible server."
     ],
-    "tags": ["desktop", "offline", "privacy"],
-    "licenseOverride": { "spdx": "Apache-2.0", "note": "GitHub không tự nhận diện được; xác minh thủ công từ file LICENSE." },
+    "tags": [
+      "desktop",
+      "offline",
+      "privacy"
+    ],
+    "licenseOverride": {
+      "spdx": "Apache-2.0",
+      "note": "Not detected by GitHub; verified manually from the LICENSE file."
+    },
     "alternativeTo": [
-      { "slug": "chatgpt", "why": "Trải nghiệm chat quen thuộc nhưng chạy mô hình trên máy bạn, dữ liệu không rời thiết bị." },
-      { "slug": "lm-studio", "why": "Ứng dụng desktop để tải và chạy mô hình cục bộ, nhưng có mã nguồn mở." }
+      {
+        "slug": "chatgpt",
+        "why": "A familiar chat experience with models running on your machine, so your data never leaves the device."
+      },
+      {
+        "slug": "lm-studio",
+        "why": "A desktop app for downloading and running local models, but open source."
+      }
     ]
   },
   {
@@ -214,14 +318,21 @@
     "name": "LibreChat",
     "repo": "danny-avila/LibreChat",
     "category": "chat-interfaces",
-    "tagline": "Giao diện chat tự host, dùng nhiều nhà cung cấp mô hình",
+    "tagline": "Self-hosted chat interface for many model providers",
     "description": [
-      "LibreChat có giao diện gần giống ChatGPT nhưng cho phép chuyển qua lại giữa nhiều nhà cung cấp mô hình trong cùng một cuộc trò chuyện.",
-      "LibreChat hỗ trợ nhiều người dùng với đăng nhập, agent, MCP và tải file, phù hợp để triển khai nội bộ cho nhóm."
+      "LibreChat looks much like ChatGPT but lets you switch between model providers within the same conversation.",
+      "It supports multiple users with sign-in, agents, MCP and file uploads, a good fit for internal team deployments."
     ],
-    "tags": ["self-hosted", "multi-user", "mcp"],
+    "tags": [
+      "self-hosted",
+      "multi-user",
+      "mcp"
+    ],
     "alternativeTo": [
-      { "slug": "chatgpt", "why": "Giao diện tương tự, tự host cho cả nhóm và không khóa vào một nhà cung cấp mô hình." }
+      {
+        "slug": "chatgpt",
+        "why": "A similar interface, self-hosted for your whole team and not locked to one model provider."
+      }
     ]
   },
   {
@@ -229,14 +340,21 @@
     "name": "NextChat",
     "repo": "ChatGPTNextWeb/NextChat",
     "category": "chat-interfaces",
-    "tagline": "Giao diện chat AI gọn nhẹ, triển khai trong vài phút",
+    "tagline": "Lightweight AI chat interface you can deploy in minutes",
     "description": [
-      "NextChat là giao diện chat nhẹ, chạy trên web hoặc như ứng dụng desktop, triển khai nhanh lên các nền tảng hosting phổ biến.",
-      "Bạn có thể dùng API key riêng và lưu lịch sử trò chuyện ngay trên trình duyệt."
+      "NextChat is a lightweight chat interface that runs on the web or as a desktop app, and deploys quickly to popular hosting platforms.",
+      "Use your own API key and keep conversation history in the browser."
     ],
-    "tags": ["web", "desktop", "lightweight"],
+    "tags": [
+      "web",
+      "desktop",
+      "lightweight"
+    ],
     "alternativeTo": [
-      { "slug": "chatgpt", "why": "Giao diện chat nhẹ, tự triển khai và trả tiền theo lượng dùng API thay vì gói tháng." }
+      {
+        "slug": "chatgpt",
+        "why": "A lightweight chat interface you deploy yourself, paying per API usage instead of a monthly plan."
+      }
     ]
   },
   {
@@ -244,14 +362,21 @@
     "name": "AnythingLLM",
     "repo": "Mintplex-Labs/anything-llm",
     "category": "chat-interfaces",
-    "tagline": "Chat với tài liệu riêng, chạy trên máy hoặc server",
+    "tagline": "Chat with your own documents, locally or on a server",
     "description": [
-      "AnythingLLM gom RAG, agent và chat vào một ứng dụng: nạp tài liệu vào workspace rồi hỏi đáp dựa trên nội dung đó.",
-      "Có bản desktop và bản Docker, dùng được với mô hình cục bộ hoặc qua API."
+      "AnythingLLM combines RAG, agents and chat in one app: load documents into a workspace, then ask questions grounded in them.",
+      "It comes as a desktop app and a Docker image, and works with local models or over an API."
     ],
-    "tags": ["rag", "desktop", "docker"],
+    "tags": [
+      "rag",
+      "desktop",
+      "docker"
+    ],
     "alternativeTo": [
-      { "slug": "chatgpt", "why": "Hỏi đáp trên tài liệu riêng mà không phải tải tài liệu lên dịch vụ bên ngoài." }
+      {
+        "slug": "chatgpt",
+        "why": "Ask questions about private documents without uploading them to an outside service."
+      }
     ]
   },
   {
@@ -259,14 +384,21 @@
     "name": "Stable Diffusion web UI",
     "repo": "AUTOMATIC1111/stable-diffusion-webui",
     "category": "image-generation",
-    "tagline": "Giao diện web cổ điển cho Stable Diffusion, nhiều extension",
+    "tagline": "The classic web interface for Stable Diffusion, with many extensions",
     "description": [
-      "Giao diện trình duyệt với text-to-image, image-to-image, inpainting và upscale. Kho extension cộng đồng rất lớn.",
-      "Nhiều hướng dẫn và extension được viết cho giao diện này, nên dễ tìm tài liệu khi gặp vấn đề."
+      "A browser interface for text-to-image, image-to-image, inpainting and upscaling, with a very large library of community extensions.",
+      "Many guides and extensions target this interface, so help is easy to find."
     ],
-    "tags": ["stable-diffusion", "web-ui", "extensions"],
+    "tags": [
+      "stable-diffusion",
+      "web-ui",
+      "extensions"
+    ],
     "alternativeTo": [
-      { "slug": "midjourney", "why": "Tạo ảnh trên GPU của bạn, có inpainting và extension, không giới hạn theo gói." }
+      {
+        "slug": "midjourney",
+        "why": "Generate images on your own GPU, with inpainting and extensions and no plan limits."
+      }
     ]
   },
   {
@@ -274,14 +406,21 @@
     "name": "ComfyUI",
     "repo": "Comfy-Org/ComfyUI",
     "category": "image-generation",
-    "tagline": "Dựng pipeline tạo ảnh bằng giao diện node",
+    "tagline": "Build image generation pipelines with a node graph",
     "description": [
-      "ComfyUI biểu diễn quy trình tạo ảnh thành đồ thị node, nên bạn kiểm soát và tái sử dụng được từng bước.",
-      "Workflow lưu thành file để chia sẻ, và ComfyUI cũng chạy được như một backend có API."
+      "ComfyUI represents image generation as a graph of nodes, so you can control and reuse every step.",
+      "Workflows save as files you can share, and ComfyUI also runs as a backend with an API."
     ],
-    "tags": ["node-graph", "workflow", "api"],
+    "tags": [
+      "node-graph",
+      "workflow",
+      "api"
+    ],
     "alternativeTo": [
-      { "slug": "midjourney", "why": "Kiểm soát từng bước của pipeline, điều Midjourney không cho can thiệp." }
+      {
+        "slug": "midjourney",
+        "why": "Control every step of the pipeline, which Midjourney does not let you touch."
+      }
     ]
   },
   {
@@ -289,14 +428,21 @@
     "name": "Fooocus",
     "repo": "lllyasviel/Fooocus",
     "category": "image-generation",
-    "tagline": "Tạo ảnh chỉ cần viết prompt, tinh chỉnh đã đặt sẵn",
+    "tagline": "Image generation where you only write the prompt",
     "description": [
-      "Fooocus giấu các tham số kỹ thuật phía sau những lựa chọn mặc định tốt, để bạn tập trung vào prompt.",
-      "Dự án đang ở giai đoạn hỗ trợ dài hạn giới hạn, chủ yếu sửa lỗi."
+      "Fooocus hides technical parameters behind good defaults, so you can focus on the prompt.",
+      "The project is in limited long-term support, mostly receiving bug fixes."
     ],
-    "tags": ["sdxl", "simple", "prompt"],
+    "tags": [
+      "sdxl",
+      "simple",
+      "prompt"
+    ],
     "alternativeTo": [
-      { "slug": "midjourney", "why": "Lấy cảm hứng từ sự đơn giản của Midjourney: viết prompt và nhận ảnh, chạy trên máy bạn." }
+      {
+        "slug": "midjourney",
+        "why": "Inspired by Midjourney's simplicity: write a prompt, get an image, on your own machine."
+      }
     ]
   },
   {
@@ -304,14 +450,21 @@
     "name": "InvokeAI",
     "repo": "invoke-ai/InvokeAI",
     "category": "image-generation",
-    "tagline": "Công cụ sáng tạo ảnh chuyên nghiệp với canvas theo lớp",
+    "tagline": "Professional image creation with a layered canvas",
     "description": [
-      "InvokeAI có canvas để vẽ đè, mở rộng khung và chỉnh sửa ảnh theo lớp, cùng trình quản lý mô hình và workflow.",
-      "Giao diện hướng tới người làm sáng tạo chuyên nghiệp cần quy trình ổn định."
+      "InvokeAI offers a canvas for painting over, outpainting and editing images in layers, along with model and workflow management.",
+      "The interface is aimed at creative professionals who need a stable workflow."
     ],
-    "tags": ["canvas", "stable-diffusion", "workflow"],
+    "tags": [
+      "canvas",
+      "stable-diffusion",
+      "workflow"
+    ],
     "alternativeTo": [
-      { "slug": "midjourney", "why": "Canvas chỉnh sửa theo lớp cho quy trình chuyên nghiệp, thay vì chỉ sinh ảnh từ prompt." }
+      {
+        "slug": "midjourney",
+        "why": "A layered editing canvas for professional workflows, not just images from a prompt."
+      }
     ]
   },
   {
@@ -319,12 +472,16 @@
     "name": "Langflow",
     "repo": "langflow-ai/langflow",
     "category": "agent-frameworks",
-    "tagline": "Dựng agent và workflow AI bằng giao diện kéo thả",
+    "tagline": "Build AI agents and workflows with drag and drop",
     "description": [
-      "Langflow cho phép nối mô hình, công cụ và nguồn dữ liệu bằng giao diện trực quan, rồi chỉnh sâu bằng Python khi cần.",
-      "Mỗi flow có thể triển khai thành API hoặc MCP server."
+      "Langflow lets you connect models, tools and data sources visually, then go deeper in Python when needed.",
+      "Each flow can be deployed as an API or an MCP server."
     ],
-    "tags": ["low-code", "python", "mcp"],
+    "tags": [
+      "low-code",
+      "python",
+      "mcp"
+    ],
     "alternativeTo": []
   },
   {
@@ -332,12 +489,16 @@
     "name": "CrewAI",
     "repo": "crewAIInc/crewAI",
     "category": "agent-frameworks",
-    "tagline": "Framework Python điều phối nhiều agent theo vai trò",
+    "tagline": "Python framework for orchestrating role-based agents",
     "description": [
-      "CrewAI tổ chức nhiều agent thành một nhóm, mỗi agent có vai trò, mục tiêu và công cụ riêng, cùng phối hợp để hoàn thành tác vụ.",
-      "Framework độc lập, không phụ thuộc LangChain."
+      "CrewAI organizes agents into a crew, each with its own role, goal and tools, working together to complete a task.",
+      "The framework is standalone and does not depend on LangChain."
     ],
-    "tags": ["python", "multi-agent", "framework"],
+    "tags": [
+      "python",
+      "multi-agent",
+      "framework"
+    ],
     "alternativeTo": []
   },
   {
@@ -345,12 +506,16 @@
     "name": "LangGraph",
     "repo": "langchain-ai/langgraph",
     "category": "agent-frameworks",
-    "tagline": "Xây agent có trạng thái dưới dạng đồ thị",
+    "tagline": "Build stateful agents as graphs",
     "description": [
-      "LangGraph là framework cấp thấp để điều phối agent chạy lâu, có trạng thái, với khả năng lưu tiến trình và cho người can thiệp giữa chừng.",
-      "LangGraph phù hợp khi cần kiểm soát chính xác luồng xử lý thay vì dùng một agent dựng sẵn."
+      "LangGraph is a low-level framework for orchestrating long-running, stateful agents, with persistence and human-in-the-loop checkpoints.",
+      "It fits when you need precise control over the flow instead of a prebuilt agent."
     ],
-    "tags": ["python", "stateful", "framework"],
+    "tags": [
+      "python",
+      "stateful",
+      "framework"
+    ],
     "alternativeTo": []
   },
   {
@@ -358,12 +523,16 @@
     "name": "smolagents",
     "repo": "huggingface/smolagents",
     "category": "agent-frameworks",
-    "tagline": "Thư viện agent tối giản, agent hành động bằng code",
+    "tagline": "Minimal agent library where agents act in code",
     "description": [
-      "smolagents của Hugging Face giữ phần lõi nhỏ và dễ đọc. Agent viết hành động dưới dạng code Python thay vì JSON.",
-      "Thư viện hoạt động với nhiều mô hình, kể cả mô hình trên Hugging Face Hub."
+      "Hugging Face's smolagents keeps its core small and readable. Agents write their actions as Python code rather than JSON.",
+      "It works with many models, including those on the Hugging Face Hub."
     ],
-    "tags": ["python", "minimal", "framework"],
+    "tags": [
+      "python",
+      "minimal",
+      "framework"
+    ],
     "alternativeTo": []
   },
   {
@@ -371,12 +540,16 @@
     "name": "Whisper",
     "repo": "openai/whisper",
     "category": "speech-to-text",
-    "tagline": "Mô hình nhận dạng giọng nói đa ngôn ngữ của OpenAI",
+    "tagline": "OpenAI's multilingual speech recognition model",
     "description": [
-      "Whisper chuyển giọng nói thành văn bản cho nhiều ngôn ngữ, bao gồm tiếng Việt, và dịch sang tiếng Anh.",
-      "Đây là bản triển khai gốc bằng Python, là cơ sở cho nhiều biến thể nhanh hơn."
+      "Whisper transcribes speech in many languages and can translate it into English.",
+      "This is the original Python implementation, the basis for many faster variants."
     ],
-    "tags": ["python", "transcription", "multilingual"],
+    "tags": [
+      "python",
+      "transcription",
+      "multilingual"
+    ],
     "alternativeTo": []
   },
   {
@@ -384,12 +557,16 @@
     "name": "whisper.cpp",
     "repo": "ggml-org/whisper.cpp",
     "category": "speech-to-text",
-    "tagline": "Whisper viết lại bằng C/C++, chạy nhẹ trên CPU",
+    "tagline": "Whisper rewritten in C/C++, light enough for a CPU",
     "description": [
-      "whisper.cpp chạy mô hình Whisper mà không cần Python, tối ưu cho CPU và Apple Silicon.",
-      "Phù hợp để nhúng vào ứng dụng desktop, di động hoặc thiết bị nhỏ."
+      "whisper.cpp runs Whisper models without Python, optimized for CPUs and Apple Silicon.",
+      "It is well suited to embedding in desktop apps, mobile apps or small devices."
     ],
-    "tags": ["c++", "transcription", "embedded"],
+    "tags": [
+      "c++",
+      "transcription",
+      "embedded"
+    ],
     "alternativeTo": []
   },
   {
@@ -397,12 +574,16 @@
     "name": "faster-whisper",
     "repo": "SYSTRAN/faster-whisper",
     "category": "speech-to-text",
-    "tagline": "Whisper chạy nhanh hơn, tốn ít bộ nhớ hơn nhờ CTranslate2",
+    "tagline": "Faster Whisper with less memory, powered by CTranslate2",
     "description": [
-      "faster-whisper triển khai lại Whisper trên CTranslate2, nhanh hơn bản gốc ở cùng độ chính xác và dùng ít bộ nhớ hơn.",
-      "Hỗ trợ lượng tử hóa 8-bit trên cả CPU và GPU."
+      "faster-whisper reimplements Whisper on CTranslate2, running faster than the original at the same accuracy while using less memory.",
+      "It supports 8-bit quantization on both CPU and GPU."
     ],
-    "tags": ["python", "transcription", "ctranslate2"],
+    "tags": [
+      "python",
+      "transcription",
+      "ctranslate2"
+    ],
     "alternativeTo": []
   }
 ]

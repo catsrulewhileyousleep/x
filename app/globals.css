@@ -1,12 +1,14 @@
 @import "tailwindcss";
 
-/* Tokens from the brief (§6). Components use the semantic Tailwind names below, never raw values. */
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+
+/* Tokens from the brief (§6). Components use the semantic Tailwind names below, never raw values.
+   Dark is the default; an inline script in <head> sets data-theme before first paint. */
 :root {
   --bg-base: oklch(0.13 0 0);
   --bg-surface: oklch(0.19 0 0);
   --text-primary: oklch(0.98 0 0);
   --text-secondary: oklch(0.62 0 0);
-  --text-inverse: oklch(0.13 0 0);
   --border-hairline: oklch(0.24 0 0);
   --accent: oklch(0.62 0.19 275);
   /* Lighter step of the accent hue: 7.3:1 on --bg-surface, used only for focus rings. */
@@ -14,7 +16,24 @@
   --health-high: oklch(0.72 0.17 155);
   --health-mid: oklch(0.8 0.15 85);
   --health-low: oklch(0.63 0.2 25);
+  --image-outline: oklch(1 0 0 / 0.1);
   color-scheme: dark;
+}
+
+/* Light values are re-derived, not inverted: every text pair measured at AA on both surfaces. */
+:root[data-theme="light"] {
+  --bg-base: oklch(0.985 0 0);
+  --bg-surface: oklch(0.955 0 0);
+  --text-primary: oklch(0.2 0 0);
+  --text-secondary: oklch(0.5 0 0);
+  --border-hairline: oklch(0.9 0 0);
+  --accent: oklch(0.52 0.2 275);
+  --focus-ring: oklch(0.52 0.2 275);
+  --health-high: oklch(0.58 0.15 155);
+  --health-mid: oklch(0.63 0.14 70);
+  --health-low: oklch(0.56 0.2 25);
+  --image-outline: oklch(0 0 0 / 0.1);
+  color-scheme: light;
 }
 
 @theme inline {
@@ -28,6 +47,7 @@
   --color-health-high: var(--health-high);
   --color-health-mid: var(--health-mid);
   --color-health-low: var(--health-low);
+  --color-image-outline: var(--image-outline);
   --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -51,8 +71,8 @@
   }
 
   ::selection {
-    background: var(--accent);
-    color: var(--text-inverse);
+    /* Tinted rather than solid, so selected text keeps its own contrast in both themes. */
+    background: color-mix(in oklch, var(--accent) 35%, transparent);
   }
 
   a {

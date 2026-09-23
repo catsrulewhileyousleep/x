@@ -29,7 +29,7 @@ const score = (r: Row) => (r.health.status === "scored" ? r.health.score : null)
 
 function compare(a: Row, b: Row, { key, dir }: Sort) {
   if (key === "name") {
-    const d = a.name.localeCompare(b.name, "vi", { sensitivity: "base" });
+    const d = a.name.localeCompare(b.name, "en", { sensitivity: "base" });
     return dir === "asc" ? d : -d;
   }
   const va = key === "health" ? score(a) : a.stars;
@@ -76,7 +76,7 @@ export function ToolTable({
   return (
     <div>
       <div
-        className={`${grid} items-end border-b border-hairline px-3 pb-2 text-[13px] text-fg-muted`}
+        className={`${grid} items-center border-b border-hairline px-3 pb-2 text-[13px] text-fg-muted`}
       >
         <div className="flex items-center gap-4">
           {head("name", "Tool")}
@@ -165,8 +165,8 @@ function SortButton({
       {align === "start" && arrow}
       <span className="sr-only">
         {active
-          ? `, đang sắp xếp ${sort.dir === "asc" ? "tăng dần" : "giảm dần"}`
-          : ", sắp xếp theo cột này"}
+          ? `, sorted ${sort.dir === "asc" ? "ascending" : "descending"}`
+          : ", sort by this column"}
       </span>
     </button>
   );

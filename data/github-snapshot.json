@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-09-23T05:48:20.687Z",
+  "fetchedAt": "2026-09-23T06:17:46.133Z",
   "repos": {
     "cline/cline": {
       "fullName": "cline/cline",
-      "stars": 69097,
+      "stars": 69100,
       "license": "Apache-2.0",
       "archived": false,
       "isPrivate": false,
@@ -29,7 +29,7 @@
     },
     "Aider-AI/aider": {
       "fullName": "Aider-AI/aider",
-      "stars": 49121,
+      "stars": 49122,
       "license": "Apache-2.0",
       "archived": false,
       "isPrivate": false,
@@ -42,7 +42,7 @@
     },
     "OpenHands/OpenHands": {
       "fullName": "OpenHands/OpenHands",
-      "stars": 88916,
+      "stars": 88921,
       "license": "MIT",
       "archived": false,
       "isPrivate": false,
@@ -55,7 +55,7 @@
     },
     "anomalyco/opencode": {
       "fullName": "anomalyco/opencode",
-      "stars": 209489,
+      "stars": 209497,
       "license": "MIT",
       "archived": false,
       "isPrivate": false,
@@ -68,7 +68,7 @@
     },
     "openai/codex": {
       "fullName": "openai/codex",
-      "stars": 126038,
+      "stars": 126045,
       "license": "Apache-2.0",
       "archived": false,
       "isPrivate": false,
@@ -81,7 +81,7 @@
     },
     "google-gemini/gemini-cli": {
       "fullName": "google-gemini/gemini-cli",
-      "stars": 107131,
+      "stars": 107132,
       "license": "Apache-2.0",
       "archived": false,
       "isPrivate": false,
@@ -107,7 +107,7 @@
     },
     "ollama/ollama": {
       "fullName": "ollama/ollama",
-      "stars": 181500,
+      "stars": 181501,
       "license": "MIT",
       "archived": false,
       "isPrivate": false,
@@ -120,7 +120,7 @@
     },
     "ggml-org/llama.cpp": {
       "fullName": "ggml-org/llama.cpp",
-      "stars": 129254,
+      "stars": 129258,
       "license": "MIT",
       "archived": false,
       "isPrivate": false,
@@ -133,7 +133,7 @@
     },
     "vllm-project/vllm": {
       "fullName": "vllm-project/vllm",
-      "stars": 92467,
+      "stars": 92470,
       "license": "Apache-2.0",
       "archived": false,
       "isPrivate": false,
@@ -159,7 +159,7 @@
     },
     "mozilla-ai/llamafile": {
       "fullName": "mozilla-ai/llamafile",
-      "stars": 26031,
+      "stars": 26032,
       "license": null,
       "archived": false,
       "isPrivate": false,
@@ -172,7 +172,7 @@
     },
     "janhq/jan": {
       "fullName": "janhq/jan",
-      "stars": 44613,
+      "stars": 44614,
       "license": null,
       "archived": false,
       "isPrivate": false,
@@ -185,7 +185,7 @@
     },
     "danny-avila/LibreChat": {
       "fullName": "danny-avila/LibreChat",
-      "stars": 44715,
+      "stars": 44721,
       "license": "MIT",
       "archived": false,
       "isPrivate": false,
@@ -211,7 +211,7 @@
     },
     "Mintplex-Labs/anything-llm": {
       "fullName": "Mintplex-Labs/anything-llm",
-      "stars": 66347,
+      "stars": 66349,
       "license": "MIT",
       "archived": false,
       "isPrivate": false,
@@ -237,7 +237,7 @@
     },
     "Comfy-Org/ComfyUI": {
       "fullName": "Comfy-Org/ComfyUI",
-      "stars": 134560,
+      "stars": 134565,
       "license": "GPL-3.0",
       "archived": false,
       "isPrivate": false,
@@ -276,7 +276,7 @@
     },
     "langflow-ai/langflow": {
       "fullName": "langflow-ai/langflow",
-      "stars": 155157,
+      "stars": 155158,
       "license": "MIT",
       "archived": false,
       "isPrivate": false,
@@ -289,7 +289,7 @@
     },
     "crewAIInc/crewAI": {
       "fullName": "crewAIInc/crewAI",
-      "stars": 58927,
+      "stars": 58928,
       "license": "MIT",
       "archived": false,
       "isPrivate": false,
@@ -315,7 +315,7 @@
     },
     "huggingface/smolagents": {
       "fullName": "huggingface/smolagents",
-      "stars": 29454,
+      "stars": 29455,
       "license": "Apache-2.0",
       "archived": false,
       "isPrivate": false,
@@ -354,7 +354,7 @@
     },
     "SYSTRAN/faster-whisper": {
       "fullName": "SYSTRAN/faster-whisper",
-      "stars": 25524,
+      "stars": 25525,
       "license": "MIT",
       "archived": false,
       "isPrivate": false,
@@ -365,5 +365,6 @@
       "homepage": null,
       "avatarUrl": "https://avatars.githubusercontent.com/u/1520500?v=4"
     }
-  }
+  },
+  "needsReview": []
 }
