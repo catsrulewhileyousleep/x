@@ -164,10 +164,21 @@ export function getAlternative(slug: string) {
 }
 
 /** Published alternative-to pages a tool can link to. */
-export function replacesFor(tool: Tool) {
-  return tool.alternativeTo.flatMap((a) => {
-    const target = getAlternative(a.slug);
-    return target ? [{ ...a, name: target.name }] : [];
+export type Replaces = { slug: string; name: string; why: string; count: number | null };
+
+/**
+ * Everything a tool claims to replace. `count` is the alternative page's tool count when
+ * that page is published; null means too few tools for a page, so the row stays unlinked.
+ */
+export function replacesFor(tool: Tool): Replaces[] {
+  return tool.alternativeTo.map((a) => {
+    const published = getAlternative(a.slug);
+    return {
+      slug: a.slug,
+      name: targetBySlug.get(a.slug)?.name ?? a.slug,
+      why: a.why,
+      count: published ? published.tools.length : null,
+    };
   });
 }
 

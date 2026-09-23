@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { badgeSvg } from "@/lib/badge";
 import { CopyButton } from "@/components/copy-button";
 import { HealthValue } from "@/components/health";
@@ -154,15 +154,55 @@ export default async function ToolPage({ params }: PageProps<"/tool/[slug]">) {
 
       {replaces.length > 0 && (
         <Section title="Replaces" narrow>
-          <ul className="space-y-3 text-[15px] leading-relaxed">
-            {replaces.map((r) => (
-              <li key={r.slug}>
-                <Link href={`/alternative-to/${r.slug}`} className={`font-medium ${ui.link}`}>
-                  {r.name}
-                </Link>
-                <p className="mt-0.5 text-pretty text-fg-muted">{r.why}</p>
-              </li>
-            ))}
+          <p className={`${ui.label} mb-4 max-w-[65ch] text-pretty`}>
+            Closed-source products {tool.name} can stand in for.
+          </p>
+          <ul className="border-t border-hairline">
+            {replaces.map((r) => {
+              const linked = r.count != null;
+              return (
+                <li
+                  key={r.slug}
+                  className={`group relative flex items-baseline justify-between gap-4 border-b border-hairline py-3 pr-2${
+                    linked
+                      ? " transition-[background-color] duration-100 ease-out hover:bg-surface has-[a:focus-visible]:bg-surface has-[a:focus-visible]:outline-2 has-[a:focus-visible]:-outline-offset-2 has-[a:focus-visible]:outline-focus"
+                      : ""
+                  }`}
+                >
+                  <div className="min-w-0">
+                    {linked ? (
+                      <Link
+                        href={`/alternative-to/${r.slug}`}
+                        className="font-medium text-fg outline-none after:absolute after:inset-0"
+                      >
+                        {r.name}
+                      </Link>
+                    ) : (
+                      <span className="font-medium">{r.name}</span>
+                    )}
+                    <p className="mt-0.5 text-[13px] text-pretty text-fg-muted">
+                      {r.why}
+                      {/* The count column is desktop-only; keep the signal on mobile inline. */}
+                      <span className="sm:hidden">
+                        {linked ? ` · ${r.count} alternatives` : " · no page yet"}
+                      </span>
+                    </p>
+                  </div>
+                  {linked ? (
+                    <span className="hidden shrink-0 items-center gap-1 text-[13px] text-fg-muted sm:flex">
+                      {r.count} {r.count === 1 ? "alternative" : "alternatives"}
+                      <ArrowRight
+                        aria-hidden="true"
+                        strokeWidth={1.75}
+                        className="size-3.5 transition-[transform,color] duration-100 ease-out group-hover:translate-x-0.5 group-hover:text-fg"
+                      />
+                    </span>
+                  ) : (
+                    <span className="hidden shrink-0 text-[13px] text-fg-muted sm:block">No page yet</span>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </Section>
       )}
