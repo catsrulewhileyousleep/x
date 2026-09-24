@@ -1,14 +1,36 @@
 {
-  "fetchedAt": "2026-09-23T06:48:05.980Z",
+  "fetchedAt": "2026-09-23T16:25:02.365Z",
   "repos": {
     "cline/cline": {
       "fullName": "cline/cline",
-      "stars": 69102,
+      "stars": 69148,
       "license": "Apache-2.0",
+      "licenseDetails": {
+        "name": "Apache License 2.0",
+        "description": "A permissive license whose main conditions require preservation of copyright and license notices. Contributors provide an express grant of patent rights. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/apache-2.0/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Patent use",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice",
+          "State changes"
+        ],
+        "limitations": [
+          "Trademark use",
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
-      "lastCommitAt": "2026-09-23T04:22:33Z",
+      "lastCommitAt": "2026-09-23T09:34:23Z",
       "createdAt": "2024-07-06T07:28:10Z",
       "language": "TypeScript",
       "homepage": "https://cline.bot",
@@ -16,8 +38,36 @@
     },
     "continuedev/continue": {
       "fullName": "continuedev/continue",
-      "stars": 35997,
+      "stars": 36002,
       "license": "Apache-2.0",
+      "licenseDetails": {
+        "name": "Apache License 2.0",
+        "description": "A permissive license whose main conditions require preservation of copyright and license notices. Contributors provide an express grant of patent rights. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/apache-2.0/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Patent use",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice",
+          "State changes"
+        ],
+        "limitations": [
+          "Trademark use",
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "open-source",
+        "developer-tools",
+        "ai",
+        "agent",
+        "cli"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -29,8 +79,44 @@
     },
     "Aider-AI/aider": {
       "fullName": "Aider-AI/aider",
-      "stars": 49123,
+      "stars": 49133,
       "license": "Apache-2.0",
+      "licenseDetails": {
+        "name": "Apache License 2.0",
+        "description": "A permissive license whose main conditions require preservation of copyright and license notices. Contributors provide an express grant of patent rights. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/apache-2.0/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Patent use",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice",
+          "State changes"
+        ],
+        "limitations": [
+          "Trademark use",
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "chatgpt",
+        "cli",
+        "command-line",
+        "gpt-4",
+        "openai",
+        "gpt-3",
+        "gpt-35-turbo",
+        "claude-3",
+        "gpt-4o",
+        "anthropic",
+        "gemini",
+        "llama",
+        "sonnet"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -42,12 +128,41 @@
     },
     "OpenHands/OpenHands": {
       "fullName": "OpenHands/OpenHands",
-      "stars": 88927,
+      "stars": 88976,
       "license": "MIT",
+      "licenseDetails": {
+        "name": "MIT License",
+        "description": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/mit/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "agent",
+        "artificial-intelligence",
+        "llm",
+        "chatgpt",
+        "claude-ai",
+        "cli",
+        "developer-tools",
+        "gpt",
+        "openai"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
-      "lastCommitAt": "2026-09-23T05:34:56Z",
+      "lastCommitAt": "2026-09-23T15:07:12Z",
       "createdAt": "2024-03-13T03:33:31Z",
       "language": "TypeScript",
       "homepage": "https://openhands.dev",
@@ -55,12 +170,31 @@
     },
     "anomalyco/opencode": {
       "fullName": "anomalyco/opencode",
-      "stars": 209502,
+      "stars": 209612,
       "license": "MIT",
+      "licenseDetails": {
+        "name": "MIT License",
+        "description": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/mit/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "dev",
-      "lastCommitAt": "2026-09-23T04:38:22Z",
+      "lastCommitAt": "2026-09-23T13:59:42Z",
       "createdAt": "2025-04-30T20:08:00Z",
       "language": "TypeScript",
       "homepage": "https://opencode.ai",
@@ -68,12 +202,34 @@
     },
     "openai/codex": {
       "fullName": "openai/codex",
-      "stars": 126052,
+      "stars": 126153,
       "license": "Apache-2.0",
+      "licenseDetails": {
+        "name": "Apache License 2.0",
+        "description": "A permissive license whose main conditions require preservation of copyright and license notices. Contributors provide an express grant of patent rights. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/apache-2.0/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Patent use",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice",
+          "State changes"
+        ],
+        "limitations": [
+          "Trademark use",
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
-      "lastCommitAt": "2026-09-23T05:22:16Z",
+      "lastCommitAt": "2026-09-23T16:16:54Z",
       "createdAt": "2025-04-13T05:37:54Z",
       "language": "Rust",
       "homepage": null,
@@ -81,8 +237,38 @@
     },
     "google-gemini/gemini-cli": {
       "fullName": "google-gemini/gemini-cli",
-      "stars": 107134,
+      "stars": 107136,
       "license": "Apache-2.0",
+      "licenseDetails": {
+        "name": "Apache License 2.0",
+        "description": "A permissive license whose main conditions require preservation of copyright and license notices. Contributors provide an express grant of patent rights. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/apache-2.0/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Patent use",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice",
+          "State changes"
+        ],
+        "limitations": [
+          "Trademark use",
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "gemini",
+        "gemini-api",
+        "ai",
+        "ai-agents",
+        "cli",
+        "mcp-client",
+        "mcp-server"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -96,6 +282,18 @@
       "fullName": "TabbyML/tabby",
       "stars": 33888,
       "license": null,
+      "licenseDetails": null,
+      "topics": [
+        "ai",
+        "codegen",
+        "coding-assistant",
+        "coding-language",
+        "developer-experience",
+        "developer-tools",
+        "gen-ai",
+        "llms",
+        "ide"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -107,8 +305,43 @@
     },
     "ollama/ollama": {
       "fullName": "ollama/ollama",
-      "stars": 181500,
+      "stars": 181522,
       "license": "MIT",
+      "licenseDetails": {
+        "name": "MIT License",
+        "description": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/mit/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "llama",
+        "llm",
+        "llms",
+        "go",
+        "golang",
+        "ollama",
+        "mistral",
+        "gemma",
+        "llama3",
+        "deepseek",
+        "gemma3",
+        "qwen",
+        "gpt-oss",
+        "glm",
+        "minimax"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -120,12 +353,33 @@
     },
     "ggml-org/llama.cpp": {
       "fullName": "ggml-org/llama.cpp",
-      "stars": 129264,
+      "stars": 129316,
       "license": "MIT",
+      "licenseDetails": {
+        "name": "MIT License",
+        "description": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/mit/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "ggml"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "master",
-      "lastCommitAt": "2026-09-23T05:35:24Z",
+      "lastCommitAt": "2026-09-23T16:24:23Z",
       "createdAt": "2023-03-10T18:58:00Z",
       "language": "C++",
       "homepage": "https://llama.app",
@@ -133,12 +387,55 @@
     },
     "vllm-project/vllm": {
       "fullName": "vllm-project/vllm",
-      "stars": 92475,
+      "stars": 92527,
       "license": "Apache-2.0",
+      "licenseDetails": {
+        "name": "Apache License 2.0",
+        "description": "A permissive license whose main conditions require preservation of copyright and license notices. Contributors provide an express grant of patent rights. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/apache-2.0/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Patent use",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice",
+          "State changes"
+        ],
+        "limitations": [
+          "Trademark use",
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "gpt",
+        "llm",
+        "pytorch",
+        "model-serving",
+        "transformer",
+        "llm-serving",
+        "inference",
+        "llama",
+        "amd",
+        "cuda",
+        "tpu",
+        "deepseek",
+        "qwen",
+        "blackwell",
+        "deepseek-v3",
+        "gpt-oss",
+        "kimi",
+        "moe",
+        "openai",
+        "qwen3"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
-      "lastCommitAt": "2026-09-23T06:38:17Z",
+      "lastCommitAt": "2026-09-23T16:16:31Z",
       "createdAt": "2023-02-09T11:23:20Z",
       "language": "Python",
       "homepage": "https://vllm.ai",
@@ -146,21 +443,71 @@
     },
     "mudler/LocalAI": {
       "fullName": "mudler/LocalAI",
-      "stars": 49229,
+      "stars": 49242,
       "license": "MIT",
+      "licenseDetails": {
+        "name": "MIT License",
+        "description": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/mit/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "llama",
+        "ai",
+        "llm",
+        "stable-diffusion",
+        "api",
+        "tts",
+        "musicgen",
+        "mamba",
+        "audio-generation",
+        "image-generation",
+        "text-generation",
+        "rerank",
+        "distributed",
+        "libp2p",
+        "decentralized",
+        "object-detection",
+        "mcp",
+        "agents"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "master",
-      "lastCommitAt": "2026-09-22T15:19:58Z",
+      "lastCommitAt": "2026-09-23T10:39:11Z",
       "createdAt": "2023-03-18T22:58:02Z",
       "language": "Go",
       "homepage": "https://localai.io",
-      "avatarUrl": "https://avatars.githubusercontent.com/u/2420543?v=4"
+      "avatarUrl": "https://avatars.githubusercontent.com/u/2420543?u=16f3e50bb3fb9481949d864f63fe0b85d7afcf7c&v=4"
     },
     "mozilla-ai/llamafile": {
       "fullName": "mozilla-ai/llamafile",
-      "stars": 26032,
+      "stars": 26035,
       "license": null,
+      "licenseDetails": null,
+      "topics": [
+        "cross-platform",
+        "gguf",
+        "llama-cpp",
+        "local-ai",
+        "local-inference",
+        "local-llm",
+        "open-source-ai",
+        "single-file-executable",
+        "speech-to-text"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -172,8 +519,19 @@
     },
     "janhq/jan": {
       "fullName": "janhq/jan",
-      "stars": 44614,
+      "stars": 44620,
       "license": null,
+      "licenseDetails": null,
+      "topics": [
+        "llamacpp",
+        "localai",
+        "self-hosted",
+        "gpt",
+        "tauri",
+        "chatgpt",
+        "llm",
+        "open-source"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -185,8 +543,48 @@
     },
     "danny-avila/LibreChat": {
       "fullName": "danny-avila/LibreChat",
-      "stars": 44724,
+      "stars": 44762,
       "license": "MIT",
+      "licenseDetails": {
+        "name": "MIT License",
+        "description": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/mit/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "ai",
+        "chatgpt",
+        "clone",
+        "chatgpt-clone",
+        "librechat",
+        "anthropic",
+        "claude",
+        "azure",
+        "openai",
+        "vision",
+        "google",
+        "gemini",
+        "webui",
+        "artifacts",
+        "aws",
+        "o1",
+        "deepseek",
+        "responses-api",
+        "gpt-5",
+        "mcp"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -194,12 +592,51 @@
       "createdAt": "2023-02-12T01:06:52Z",
       "language": "TypeScript",
       "homepage": "https://librechat.ai/",
-      "avatarUrl": "https://avatars.githubusercontent.com/u/110412045?v=4"
+      "avatarUrl": "https://avatars.githubusercontent.com/u/110412045?u=14f0d4fe10f128fae5985f573c7221cd13929e2e&v=4"
     },
     "ChatGPTNextWeb/NextChat": {
       "fullName": "ChatGPTNextWeb/NextChat",
-      "stars": 88806,
+      "stars": 88805,
       "license": "MIT",
+      "licenseDetails": {
+        "name": "MIT License",
+        "description": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/mit/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "chatgpt",
+        "nextjs",
+        "vercel",
+        "webui",
+        "cross-platform",
+        "tauri",
+        "tauri-app",
+        "react",
+        "desktop",
+        "gemini",
+        "fe",
+        "gemini-pro",
+        "gemini-server",
+        "gemini-ultra",
+        "ollama",
+        "groq",
+        "claude",
+        "calclaude",
+        "gpt-4o"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -211,8 +648,43 @@
     },
     "Mintplex-Labs/anything-llm": {
       "fullName": "Mintplex-Labs/anything-llm",
-      "stars": 66350,
+      "stars": 66367,
       "license": "MIT",
+      "licenseDetails": {
+        "name": "MIT License",
+        "description": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/mit/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "rag",
+        "localai",
+        "vector-database",
+        "llm",
+        "ai-agents",
+        "multimodal",
+        "agent-harness",
+        "agentic-ai",
+        "hermes-agent",
+        "local-ai",
+        "self-hosted-ai",
+        "agent-computer",
+        "computer-use",
+        "agent-orchestration",
+        "agentic-workflow"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "master",
@@ -224,8 +696,49 @@
     },
     "AUTOMATIC1111/stable-diffusion-webui": {
       "fullName": "AUTOMATIC1111/stable-diffusion-webui",
-      "stars": 165076,
+      "stars": 165082,
       "license": "AGPL-3.0",
+      "licenseDetails": {
+        "name": "GNU Affero General Public License v3.0",
+        "description": "Permissions of this strongest copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. When a modified version is used to provide a service over a network, the complete source code of the modified version must be made available.",
+        "url": "https://choosealicense.com/licenses/agpl-3.0/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Patent use",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice",
+          "State changes",
+          "Disclose source",
+          "Network use is distribution",
+          "Same license"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "deep-learning",
+        "diffusion",
+        "image-generation",
+        "image2image",
+        "img2img",
+        "text2image",
+        "txt2img",
+        "ai",
+        "ai-art",
+        "gradio",
+        "pytorch",
+        "stable-diffusion",
+        "torch",
+        "upscaling",
+        "web",
+        "unstable"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "master",
@@ -233,12 +746,42 @@
       "createdAt": "2022-08-22T14:05:26Z",
       "language": "Python",
       "homepage": null,
-      "avatarUrl": "https://avatars.githubusercontent.com/u/20920490?v=4"
+      "avatarUrl": "https://avatars.githubusercontent.com/u/20920490?u=8bdc7c9401f507e51b55e558baa8184d4ed30c7d&v=4"
     },
     "Comfy-Org/ComfyUI": {
       "fullName": "Comfy-Org/ComfyUI",
-      "stars": 134574,
+      "stars": 134687,
       "license": "GPL-3.0",
+      "licenseDetails": {
+        "name": "GNU General Public License v3.0",
+        "description": "Permissions of this strong copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights.",
+        "url": "https://choosealicense.com/licenses/gpl-3.0/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Patent use",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice",
+          "State changes",
+          "Disclose source",
+          "Same license"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "stable-diffusion",
+        "pytorch",
+        "ai",
+        "python",
+        "comfy",
+        "comfyui"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "master",
@@ -250,8 +793,31 @@
     },
     "lllyasviel/Fooocus": {
       "fullName": "lllyasviel/Fooocus",
-      "stars": 53148,
+      "stars": 53150,
       "license": "GPL-3.0",
+      "licenseDetails": {
+        "name": "GNU General Public License v3.0",
+        "description": "Permissions of this strong copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights.",
+        "url": "https://choosealicense.com/licenses/gpl-3.0/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Patent use",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice",
+          "State changes",
+          "Disclose source",
+          "Same license"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -259,12 +825,48 @@
       "createdAt": "2023-08-09T18:43:40Z",
       "language": "Python",
       "homepage": null,
-      "avatarUrl": "https://avatars.githubusercontent.com/u/19834515?v=4"
+      "avatarUrl": "https://avatars.githubusercontent.com/u/19834515?u=4c7144779a6b13904fec478c4e98e676b91516ee&v=4"
     },
     "invoke-ai/InvokeAI": {
       "fullName": "invoke-ai/InvokeAI",
-      "stars": 28273,
+      "stars": 28277,
       "license": "Apache-2.0",
+      "licenseDetails": {
+        "name": "Apache License 2.0",
+        "description": "A permissive license whose main conditions require preservation of copyright and license notices. Contributors provide an express grant of patent rights. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/apache-2.0/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Patent use",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice",
+          "State changes"
+        ],
+        "limitations": [
+          "Trademark use",
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "ai-art",
+        "artificial-intelligence",
+        "generative-art",
+        "image-generation",
+        "img2img",
+        "inpainting",
+        "latent-diffusion",
+        "linux",
+        "macos",
+        "outpainting",
+        "txt2img",
+        "windows",
+        "stable-diffusion"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -276,8 +878,34 @@
     },
     "langflow-ai/langflow": {
       "fullName": "langflow-ai/langflow",
-      "stars": 155158,
+      "stars": 155176,
       "license": "MIT",
+      "licenseDetails": {
+        "name": "MIT License",
+        "description": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/mit/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "react-flow",
+        "chatgpt",
+        "large-language-models",
+        "generative-ai",
+        "agents",
+        "multiagent"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -289,8 +917,33 @@
     },
     "crewAIInc/crewAI": {
       "fullName": "crewAIInc/crewAI",
-      "stars": 58928,
+      "stars": 58948,
       "license": "MIT",
+      "licenseDetails": {
+        "name": "MIT License",
+        "description": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/mit/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "agents",
+        "ai",
+        "ai-agents",
+        "llms",
+        "aiagentframework"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -302,8 +955,46 @@
     },
     "langchain-ai/langgraph": {
       "fullName": "langchain-ai/langgraph",
-      "stars": 42158,
+      "stars": 42179,
       "license": "MIT",
+      "licenseDetails": {
+        "name": "MIT License",
+        "description": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/mit/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "agents",
+        "ai",
+        "ai-agents",
+        "chatgpt",
+        "deepagents",
+        "enterprise",
+        "framework",
+        "gemini",
+        "generative-ai",
+        "langchain",
+        "langgraph",
+        "llm",
+        "multiagent",
+        "open-source",
+        "openai",
+        "pydantic",
+        "python",
+        "rag"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -315,12 +1006,34 @@
     },
     "huggingface/smolagents": {
       "fullName": "huggingface/smolagents",
-      "stars": 29455,
+      "stars": 29462,
       "license": "Apache-2.0",
+      "licenseDetails": {
+        "name": "Apache License 2.0",
+        "description": "A permissive license whose main conditions require preservation of copyright and license notices. Contributors provide an express grant of patent rights. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/apache-2.0/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Patent use",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice",
+          "State changes"
+        ],
+        "limitations": [
+          "Trademark use",
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
-      "lastCommitAt": "2026-08-22T12:10:32Z",
+      "lastCommitAt": "2026-09-23T13:12:58Z",
       "createdAt": "2024-12-05T11:28:04Z",
       "language": "Python",
       "homepage": "https://huggingface.co/docs/smolagents",
@@ -328,8 +1041,27 @@
     },
     "openai/whisper": {
       "fullName": "openai/whisper",
-      "stars": 109497,
+      "stars": 109511,
       "license": "MIT",
+      "licenseDetails": {
+        "name": "MIT License",
+        "description": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/mit/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -341,12 +1073,38 @@
     },
     "ggml-org/whisper.cpp": {
       "fullName": "ggml-org/whisper.cpp",
-      "stars": 53869,
+      "stars": 53884,
       "license": "MIT",
+      "licenseDetails": {
+        "name": "MIT License",
+        "description": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/mit/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "openai",
+        "speech-to-text",
+        "transformer",
+        "whisper",
+        "inference",
+        "speech-recognition"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "master",
-      "lastCommitAt": "2026-09-22T05:23:38Z",
+      "lastCommitAt": "2026-09-23T09:45:29Z",
       "createdAt": "2022-09-25T18:26:37Z",
       "language": "C++",
       "homepage": null,
@@ -354,8 +1112,36 @@
     },
     "SYSTRAN/faster-whisper": {
       "fullName": "SYSTRAN/faster-whisper",
-      "stars": 25525,
+      "stars": 25532,
       "license": "MIT",
+      "licenseDetails": {
+        "name": "MIT License",
+        "description": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/mit/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "deep-learning",
+        "inference",
+        "quantization",
+        "speech-recognition",
+        "speech-to-text",
+        "transformer",
+        "whisper",
+        "openai"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "master",
@@ -367,12 +1153,19 @@
     },
     "zed-industries/zed": {
       "fullName": "zed-industries/zed",
-      "stars": 90739,
+      "stars": 90763,
       "license": null,
+      "licenseDetails": null,
+      "topics": [
+        "text-editor",
+        "zed",
+        "gpui",
+        "rust-lang"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
-      "lastCommitAt": "2026-09-23T05:50:57Z",
+      "lastCommitAt": "2026-09-23T16:15:20Z",
       "createdAt": "2021-02-20T03:01:06Z",
       "language": "Rust",
       "homepage": "https://zed.dev",
@@ -382,10 +1175,42 @@
       "fullName": "Kilo-Org/kilocode",
       "stars": 27399,
       "license": "MIT",
+      "licenseDetails": {
+        "name": "MIT License",
+        "description": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/mit/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "ai-coding",
+        "vscode",
+        "vscode-extension",
+        "ai-developer-tools",
+        "chatgpt",
+        "claude",
+        "gemini",
+        "sonnet",
+        "ai",
+        "ai-age",
+        "cli",
+        "jetbrains"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
-      "lastCommitAt": "2026-09-23T01:01:37Z",
+      "lastCommitAt": "2026-09-23T16:14:40Z",
       "createdAt": "2025-03-10T15:34:26Z",
       "language": "TypeScript",
       "homepage": "https://kilo.ai/",
@@ -393,8 +1218,42 @@
     },
     "ItzCrazyKns/Vane": {
       "fullName": "ItzCrazyKns/Vane",
-      "stars": 36901,
+      "stars": 36900,
       "license": "MIT",
+      "licenseDetails": {
+        "name": "MIT License",
+        "description": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/mit/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "ai-search-engine",
+        "search-engine",
+        "open-source-ai-search-engine",
+        "perplexica",
+        "artificial-intelligence",
+        "machine-learning",
+        "searxng",
+        "searxng-copilot",
+        "ai-agents",
+        "answering-engine",
+        "llm",
+        "rag",
+        "self-hosted-ai",
+        "vane"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "master",
@@ -402,12 +1261,47 @@
       "createdAt": "2024-04-09T10:51:32Z",
       "language": "TypeScript",
       "homepage": null,
-      "avatarUrl": "https://avatars.githubusercontent.com/u/95534749?v=4"
+      "avatarUrl": "https://avatars.githubusercontent.com/u/95534749?u=9553787232fa5b7cf9d0aa1a689ce3b854e27aeb&v=4"
     },
     "miurla/morphic": {
       "fullName": "miurla/morphic",
-      "stars": 9136,
+      "stars": 9138,
       "license": "Apache-2.0",
+      "licenseDetails": {
+        "name": "Apache License 2.0",
+        "description": "A permissive license whose main conditions require preservation of copyright and license notices. Contributors provide an express grant of patent rights. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/apache-2.0/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Patent use",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice",
+          "State changes"
+        ],
+        "limitations": [
+          "Trademark use",
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "generative-ai",
+        "generative-ui",
+        "nextjs",
+        "react",
+        "tailwindcss",
+        "typescript",
+        "shadcn-ui",
+        "vercel-ai-sdk",
+        "searxng",
+        "tavily",
+        "upstash",
+        "ollama"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -415,12 +1309,57 @@
       "createdAt": "2024-04-05T13:55:29Z",
       "language": "TypeScript",
       "homepage": "https://chat.morphic.sh",
-      "avatarUrl": "https://avatars.githubusercontent.com/u/3412179?v=4"
+      "avatarUrl": "https://avatars.githubusercontent.com/u/3412179?u=6b7897666cc12c97243c3e07f0ec7a4d714e5e6c&v=4"
     },
     "khoj-ai/khoj": {
       "fullName": "khoj-ai/khoj",
-      "stars": 37468,
+      "stars": 37478,
       "license": "AGPL-3.0",
+      "licenseDetails": {
+        "name": "GNU Affero General Public License v3.0",
+        "description": "Permissions of this strongest copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. When a modified version is used to provide a service over a network, the complete source code of the modified version must be made available.",
+        "url": "https://choosealicense.com/licenses/agpl-3.0/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Patent use",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice",
+          "State changes",
+          "Disclose source",
+          "Network use is distribution",
+          "Same license"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "semantic-search",
+        "emacs",
+        "obsidian-md",
+        "chat",
+        "chatgpt",
+        "ai",
+        "llm",
+        "productivity",
+        "agent",
+        "self-hosted",
+        "rag",
+        "whatsapp-ai",
+        "offline-llm",
+        "llamacpp",
+        "obsidian",
+        "llama3",
+        "image-generation",
+        "stt",
+        "assistant",
+        "research"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "master",
@@ -432,8 +1371,38 @@
     },
     "zaidmukaddam/scira": {
       "fullName": "zaidmukaddam/scira",
-      "stars": 11898,
+      "stars": 11899,
       "license": "AGPL-3.0",
+      "licenseDetails": {
+        "name": "GNU Affero General Public License v3.0",
+        "description": "Permissions of this strongest copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. When a modified version is used to provide a service over a network, the complete source code of the modified version must be made available.",
+        "url": "https://choosealicense.com/licenses/agpl-3.0/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Patent use",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice",
+          "State changes",
+          "Disclose source",
+          "Network use is distribution",
+          "Same license"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "ai-search-engine",
+        "scira",
+        "search-engine",
+        "minimalistic-ai-search-engine",
+        "scira-ai"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -441,12 +1410,46 @@
       "createdAt": "2024-08-07T13:29:49Z",
       "language": "TypeScript",
       "homepage": "https://scira.ai",
-      "avatarUrl": "https://avatars.githubusercontent.com/u/76097144?v=4"
+      "avatarUrl": "https://avatars.githubusercontent.com/u/76097144?u=1eedb8b5ff0b4f75c9b20346f1832a55857a150b&v=4"
     },
     "assafelovic/gpt-researcher": {
       "fullName": "assafelovic/gpt-researcher",
-      "stars": 29579,
+      "stars": 29589,
       "license": "Apache-2.0",
+      "licenseDetails": {
+        "name": "Apache License 2.0",
+        "description": "A permissive license whose main conditions require preservation of copyright and license notices. Contributors provide an express grant of patent rights. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/apache-2.0/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Patent use",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice",
+          "State changes"
+        ],
+        "limitations": [
+          "Trademark use",
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "ai",
+        "python",
+        "agent",
+        "automation",
+        "research",
+        "search",
+        "webscraping",
+        "llms",
+        "deepresearch",
+        "mcp",
+        "mcp-server"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -454,12 +1457,41 @@
       "createdAt": "2023-05-12T10:33:54Z",
       "language": "Python",
       "homepage": "https://gptr.dev",
-      "avatarUrl": "https://avatars.githubusercontent.com/u/13554167?v=4"
+      "avatarUrl": "https://avatars.githubusercontent.com/u/13554167?u=95845045a1f76c09988d29132c892c92532848b0&v=4"
     },
     "stanford-oval/storm": {
       "fullName": "stanford-oval/storm",
-      "stars": 31478,
+      "stars": 31492,
       "license": "MIT",
+      "licenseDetails": {
+        "name": "MIT License",
+        "description": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/mit/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "large-language-models",
+        "nlp",
+        "knowledge-curation",
+        "naacl",
+        "report-generation",
+        "retrieval-augmented-generation",
+        "emnlp2024",
+        "agentic-rag",
+        "deep-research"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -471,8 +1503,27 @@
     },
     "resemble-ai/chatterbox": {
       "fullName": "resemble-ai/chatterbox",
-      "stars": 26521,
+      "stars": 26526,
       "license": "MIT",
+      "licenseDetails": {
+        "name": "MIT License",
+        "description": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/mit/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "master",
@@ -484,8 +1535,34 @@
     },
     "RVC-Boss/GPT-SoVITS": {
       "fullName": "RVC-Boss/GPT-SoVITS",
-      "stars": 62065,
+      "stars": 62092,
       "license": "MIT",
+      "licenseDetails": {
+        "name": "MIT License",
+        "description": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/mit/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "text-to-speech",
+        "tts",
+        "vits",
+        "voice-clone",
+        "voice-cloneai",
+        "voice-cloning"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -497,8 +1574,27 @@
     },
     "SWivid/F5-TTS": {
       "fullName": "SWivid/F5-TTS",
-      "stars": 15269,
+      "stars": 15274,
       "license": "MIT",
+      "licenseDetails": {
+        "name": "MIT License",
+        "description": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/mit/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -506,12 +1602,34 @@
       "createdAt": "2024-10-08T13:36:55Z",
       "language": "Python",
       "homepage": "https://arxiv.org/abs/2410.06885",
-      "avatarUrl": "https://avatars.githubusercontent.com/u/45333109?v=4"
+      "avatarUrl": "https://avatars.githubusercontent.com/u/45333109?u=6077671b4cbc60bd35f4ea5995ff22d279c46e16&v=4"
     },
     "hexgrad/kokoro": {
       "fullName": "hexgrad/kokoro",
-      "stars": 8951,
+      "stars": 8962,
       "license": "Apache-2.0",
+      "licenseDetails": {
+        "name": "Apache License 2.0",
+        "description": "A permissive license whose main conditions require preservation of copyright and license notices. Contributors provide an express grant of patent rights. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/apache-2.0/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Patent use",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice",
+          "State changes"
+        ],
+        "limitations": [
+          "Trademark use",
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -519,12 +1637,35 @@
       "createdAt": "2025-01-10T21:37:05Z",
       "language": "JavaScript",
       "homepage": null,
-      "avatarUrl": "https://avatars.githubusercontent.com/u/166769057?v=4"
+      "avatarUrl": "https://avatars.githubusercontent.com/u/166769057?u=930cefcdb68544525db23a4665adf2494c6fa76c&v=4"
     },
     "OHF-Voice/piper1-gpl": {
       "fullName": "OHF-Voice/piper1-gpl",
-      "stars": 5661,
+      "stars": 5666,
       "license": "GPL-3.0",
+      "licenseDetails": {
+        "name": "GNU General Public License v3.0",
+        "description": "Permissions of this strong copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights.",
+        "url": "https://choosealicense.com/licenses/gpl-3.0/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Patent use",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice",
+          "State changes",
+          "Disclose source",
+          "Same license"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -538,6 +1679,29 @@
       "fullName": "idiap/coqui-ai-TTS",
       "stars": 2326,
       "license": "MPL-2.0",
+      "licenseDetails": {
+        "name": "Mozilla Public License 2.0",
+        "description": "Permissions of this weak copyleft license are conditioned on making available source code of licensed files and modifications of those files under the same license (or in certain cases, one of the GNU licenses). Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. However, a larger work using the licensed work may be distributed under different terms and without source code for files added in the larger work.",
+        "url": "https://choosealicense.com/licenses/mpl-2.0/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Patent use",
+          "Private use"
+        ],
+        "conditions": [
+          "Disclose source",
+          "License and copyright notice",
+          "Same license (file)"
+        ],
+        "limitations": [
+          "Liability",
+          "Trademark use",
+          "Warranty"
+        ]
+      },
+      "topics": [],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "dev",
@@ -549,8 +1713,34 @@
     },
     "nari-labs/dia": {
       "fullName": "nari-labs/dia",
-      "stars": 19398,
+      "stars": 19399,
       "license": "Apache-2.0",
+      "licenseDetails": {
+        "name": "Apache License 2.0",
+        "description": "A permissive license whose main conditions require preservation of copyright and license notices. Contributors provide an express grant of patent rights. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/apache-2.0/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Patent use",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice",
+          "State changes"
+        ],
+        "limitations": [
+          "Trademark use",
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "ai",
+        "open-weight",
+        "text-to-speech"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -562,8 +1752,32 @@
     },
     "myshell-ai/OpenVoice": {
       "fullName": "myshell-ai/OpenVoice",
-      "stars": 37627,
+      "stars": 37640,
       "license": "MIT",
+      "licenseDetails": {
+        "name": "MIT License",
+        "description": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/mit/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "text-to-speech",
+        "tts",
+        "voice-clone",
+        "zero-shot-tts"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -575,8 +1789,30 @@
     },
     "exo-explore/exo": {
       "fullName": "exo-explore/exo",
-      "stars": 47616,
+      "stars": 47620,
       "license": "Apache-2.0",
+      "licenseDetails": {
+        "name": "Apache License 2.0",
+        "description": "A permissive license whose main conditions require preservation of copyright and license notices. Contributors provide an express grant of patent rights. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/apache-2.0/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Patent use",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice",
+          "State changes"
+        ],
+        "limitations": [
+          "Trademark use",
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -588,12 +1824,53 @@
     },
     "sgl-project/sglang": {
       "fullName": "sgl-project/sglang",
-      "stars": 36351,
+      "stars": 36377,
       "license": "Apache-2.0",
+      "licenseDetails": {
+        "name": "Apache License 2.0",
+        "description": "A permissive license whose main conditions require preservation of copyright and license notices. Contributors provide an express grant of patent rights. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/apache-2.0/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Patent use",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice",
+          "State changes"
+        ],
+        "limitations": [
+          "Trademark use",
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "cuda",
+        "inference",
+        "llama",
+        "llm",
+        "moe",
+        "transformer",
+        "vlm",
+        "deepseek",
+        "blackwell",
+        "gpt-oss",
+        "diffusion",
+        "attention",
+        "glm",
+        "minimax",
+        "qwen",
+        "qwen-image",
+        "reinforcement-learning",
+        "wan"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
-      "lastCommitAt": "2026-09-23T06:21:04Z",
+      "lastCommitAt": "2026-09-23T15:38:14Z",
       "createdAt": "2024-01-08T04:15:52Z",
       "language": "Python",
       "homepage": "https://sglang.io",
@@ -601,8 +1878,35 @@
     },
     "mlc-ai/mlc-llm": {
       "fullName": "mlc-ai/mlc-llm",
-      "stars": 23182,
+      "stars": 23183,
       "license": "Apache-2.0",
+      "licenseDetails": {
+        "name": "Apache License 2.0",
+        "description": "A permissive license whose main conditions require preservation of copyright and license notices. Contributors provide an express grant of patent rights. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/apache-2.0/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Patent use",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice",
+          "State changes"
+        ],
+        "limitations": [
+          "Trademark use",
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "llm",
+        "machine-learning-compilation",
+        "language-model",
+        "tvm"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -614,8 +1918,32 @@
     },
     "oobabooga/textgen": {
       "fullName": "oobabooga/textgen",
-      "stars": 47696,
+      "stars": 47698,
       "license": "AGPL-3.0",
+      "licenseDetails": {
+        "name": "GNU Affero General Public License v3.0",
+        "description": "Permissions of this strongest copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. When a modified version is used to provide a service over a network, the complete source code of the modified version must be made available.",
+        "url": "https://choosealicense.com/licenses/agpl-3.0/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Patent use",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice",
+          "State changes",
+          "Disclose source",
+          "Network use is distribution",
+          "Same license"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -623,16 +1951,43 @@
       "createdAt": "2022-12-21T04:17:37Z",
       "language": "Python",
       "homepage": null,
-      "avatarUrl": "https://avatars.githubusercontent.com/u/112222186?v=4"
+      "avatarUrl": "https://avatars.githubusercontent.com/u/112222186?u=ca0cae708ff7765997dfe20177855bfc5c0eb5a7&v=4"
     },
     "pydantic/pydantic-ai": {
       "fullName": "pydantic/pydantic-ai",
-      "stars": 20123,
+      "stars": 20131,
       "license": "MIT",
+      "licenseDetails": {
+        "name": "MIT License",
+        "description": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/mit/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "agent-framework",
+        "pydantic",
+        "python",
+        "genai",
+        "llm",
+        "harness",
+        "harness-engineering"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
-      "lastCommitAt": "2026-09-23T02:18:12Z",
+      "lastCommitAt": "2026-09-23T15:35:39Z",
       "createdAt": "2024-06-21T15:55:04Z",
       "language": "Python",
       "homepage": "https://pydantic.dev/pydantic-ai",
@@ -640,12 +1995,40 @@
     },
     "agno-agi/agno": {
       "fullName": "agno-agi/agno",
-      "stars": 42313,
+      "stars": 42319,
       "license": "Apache-2.0",
+      "licenseDetails": {
+        "name": "Apache License 2.0",
+        "description": "A permissive license whose main conditions require preservation of copyright and license notices. Contributors provide an express grant of patent rights. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/apache-2.0/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Patent use",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice",
+          "State changes"
+        ],
+        "limitations": [
+          "Trademark use",
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "developer-tools",
+        "python",
+        "agents",
+        "ai",
+        "ai-agents"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
-      "lastCommitAt": "2026-09-22T11:26:35Z",
+      "lastCommitAt": "2026-09-23T13:13:31Z",
       "createdAt": "2022-05-04T15:23:02Z",
       "language": "Python",
       "homepage": "https://docs.agno.com",
@@ -653,8 +2036,35 @@
     },
     "openai/openai-agents-python": {
       "fullName": "openai/openai-agents-python",
-      "stars": 29652,
+      "stars": 29655,
       "license": "MIT",
+      "licenseDetails": {
+        "name": "MIT License",
+        "description": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/mit/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "agents",
+        "ai",
+        "framework",
+        "llm",
+        "python",
+        "openai",
+        "harness"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -666,8 +2076,35 @@
     },
     "browser-use/browser-use": {
       "fullName": "browser-use/browser-use",
-      "stars": 116002,
+      "stars": 116058,
       "license": "MIT",
+      "licenseDetails": {
+        "name": "MIT License",
+        "description": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+        "url": "https://choosealicense.com/licenses/mit/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "llm",
+        "ai-agents",
+        "ai-tools",
+        "browser-automation",
+        "python",
+        "browser-use",
+        "playwright"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -679,8 +2116,33 @@
     },
     "m-bain/whisperX": {
       "fullName": "m-bain/whisperX",
-      "stars": 24194,
+      "stars": 24206,
       "license": "BSD-2-Clause",
+      "licenseDetails": {
+        "name": "BSD 2-Clause \"Simplified\" License",
+        "description": "A permissive license that comes in two variants, the <a href=\"/licenses/bsd-2-clause/\">BSD 2-Clause</a> and <a href=\"/licenses/bsd-3-clause/\">BSD 3-Clause</a>. Both have very minute differences to the MIT license.",
+        "url": "https://choosealicense.com/licenses/bsd-2-clause/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [
+        "asr",
+        "speech",
+        "speech-recognition",
+        "speech-to-text",
+        "whisper"
+      ],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -688,12 +2150,36 @@
       "createdAt": "2022-12-09T02:34:23Z",
       "language": "Python",
       "homepage": null,
-      "avatarUrl": "https://avatars.githubusercontent.com/u/36994049?v=4"
+      "avatarUrl": "https://avatars.githubusercontent.com/u/36994049?u=0f750a9189a59dd0a5dce0c7d0c6e91f0e42e397&v=4"
     },
     "lllyasviel/stable-diffusion-webui-forge": {
       "fullName": "lllyasviel/stable-diffusion-webui-forge",
-      "stars": 13028,
+      "stars": 13029,
       "license": "AGPL-3.0",
+      "licenseDetails": {
+        "name": "GNU Affero General Public License v3.0",
+        "description": "Permissions of this strongest copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. When a modified version is used to provide a service over a network, the complete source code of the modified version must be made available.",
+        "url": "https://choosealicense.com/licenses/agpl-3.0/",
+        "permissions": [
+          "Commercial use",
+          "Modification",
+          "Distribution",
+          "Patent use",
+          "Private use"
+        ],
+        "conditions": [
+          "License and copyright notice",
+          "State changes",
+          "Disclose source",
+          "Network use is distribution",
+          "Same license"
+        ],
+        "limitations": [
+          "Liability",
+          "Warranty"
+        ]
+      },
+      "topics": [],
       "archived": false,
       "isPrivate": false,
       "defaultBranch": "main",
@@ -701,7 +2187,7 @@
       "createdAt": "2024-01-14T11:39:30Z",
       "language": "Python",
       "homepage": null,
-      "avatarUrl": "https://avatars.githubusercontent.com/u/19834515?v=4"
+      "avatarUrl": "https://avatars.githubusercontent.com/u/19834515?u=4c7144779a6b13904fec478c4e98e676b91516ee&v=4"
     }
   },
   "needsReview": []

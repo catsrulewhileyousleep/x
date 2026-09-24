@@ -7,14 +7,16 @@ export function Section({
   title,
   children,
   narrow = false,
+  compact = false,
 }: {
   title: string;
   children: React.ReactNode;
   narrow?: boolean;
+  compact?: boolean;
 }) {
   const id = idFor(title);
   return (
-    <section aria-labelledby={id} className={`${ui.sectionGap} ${narrow ? "max-w-[65ch]" : ""}`}>
+    <section aria-labelledby={id} className={`${compact ? "mt-10" : ui.sectionGap} ${narrow ? "max-w-[65ch]" : ""}`}>
       <h2 id={id} className="scroll-mt-6 text-[15px] font-medium">
         {title}
       </h2>

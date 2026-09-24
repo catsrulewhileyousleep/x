@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --test lib/*.test.ts",
+    "test": "node --test lib/*.test.ts scripts/*.test.mjs",
     "typecheck": "tsc --noEmit",
     "snapshot": "node scripts/snapshot.mjs",
     "seo:audit": "node scripts/seo-audit.mjs",
