@@ -6,16 +6,16 @@
 
 | Principle | Applied |
 | --- | --- |
-| Innovative | Health Score shows its formula on every tool page instead of being a black box. |
+| Innovative | Every tool page links its Health Score to the published formula instead of treating it as a black box. |
 | Useful | A list view instead of a card grid: name, score, stars and license scan down in columns. |
 | Aesthetic | One typeface (Inter Tight), a monochrome OKLCH scale, one accent color. |
 | Understandable | Column headers are mandatory; no number explains itself. |
-| Unobtrusive | No badges, no shadows, no decorative icons; only hairlines between rows. |
+| Unobtrusive | Directory lists stay quiet; the tool page uses one restrained accent surface to separate the editorial summary from repository data. |
 | Honest | Archived, new or incomplete repos show "Not enough data" rather than a guessed score. Licenses GitHub cannot detect say how they were verified. |
 | Long-lasting | Static pages (SSG), no "hacker terminal" trend styling. |
 | Thorough to the last detail | `tabular-nums`, numbers right-aligned under their headers, `text-wrap: balance/pretty`, sort arrows that never shift the header. |
 | Environmentally friendly | No component library; client JavaScript only for search, filtering, sorting, the palette and the theme. |
-| As little design as possible | One H1, one list and one primary action per page. |
+| As little design as possible | One H1 and a clear primary action; secondary repository metadata stays behind a disclosure. |
 
 ## Don Norman: human-centered design
 
@@ -32,7 +32,7 @@
 | Visibility of system status | The data date appears on the home page, tool pages and footer. |
 | Match with the real world | Plain English, developer terms kept as they are (stars, license). |
 | User control and freedom | `Esc` clears search and closes the palette; "clear the filters" in the empty state; Back returns to the same search, filter, sort and page. Filters never change the URL. |
-| Consistency and standards | One list component on the home, category, alternative-to and "Similar tools" views. `⌘K` and `/` follow common conventions. |
+| Consistency and standards | Home, category, alternative-to and "Similar tools" share one list component. `⌘K` and `/` follow common conventions. |
 | Error prevention | Search matches tags, licenses and the products a tool replaces ("cursor"); filter options that would return nothing are disabled; missing values always sort last. |
 | Recognition rather than recall | Column headers always visible; filter triggers summarize their choice and options show counts; the header marks the current section; the palette lists every page, grouped, before you type. |
 | Flexibility and efficiency | `/` focuses search, `⌘K` / `Ctrl K` jumps to any page, full keyboard support. |
@@ -61,7 +61,7 @@ Consistency comes from having one definition per role, not from discipline:
 
 | Role | Source |
 | --- | --- |
-| Page opening (breadcrumbs, title, one sentence) | `components/page-header.tsx`, on every page. The home page uses the larger `hero` title. |
+| Page opening (breadcrumbs, title, one sentence) | `components/page-header.tsx` on every page. Tool pages use its compact layout. |
 | Titled block | `components/section.tsx`: same heading, same gap before it (`ui.sectionGap`), same space after. |
 | Inline link, navigation link, lede, prose, small label | `lib/ui.ts` |
 | List of tools | `components/tool-table.tsx`: name plus exactly one secondary line |
@@ -82,7 +82,7 @@ A search for `<h1`, `<h2` or an inline `underline` class outside these files sho
 Every fact has one home on a page.
 
 - The data date lives in the footer.
-- Health Score's breakdown sits inside the Health cell, and the license note under the license.
+- The Health Score appears once in the facts strip; extended GitHub topics, license terms and the badge action sit behind a disclosure.
 - On an alternative page, a row's secondary line is the editor's "why it replaces" sentence instead of the tagline, because that is what the page is for.
 - A tool already recommended under "Who it's for" is not listed again under "Similar tools".
 - Free-tier answers state the fact and link the source once.
@@ -94,11 +94,11 @@ The palette and breadcrumbs are navigation, not content, and may name a page tha
 
 Google's June 2026 guidance for AI Overviews and AI Mode is that optimizing for them is still SEO. Pages need to be indexable, eligible for snippets and genuinely useful. No special files or markup are required. So project pages follow the same structure a person needs to decide:
 
-1. **What it is**: name as the H1, tagline as the lede, links to the site and repo.
-2. **Facts**: Health, Stars, License, Language, Last commit, as a `<dl>` with a machine-readable `<time>`.
-3. **About {tool}**: what it does, written by an editor rather than copied from the README.
-4. **Who it's for**: "Good fit" and "Look elsewhere", with a link to the tool that fits better. This is the page's own point of view, the part other directories do not have.
-5. **Replaces**: the alternative-to pages it appears on, each with the reason.
+1. **What it is**: name, tagline, and links to the site and source.
+2. **Facts**: Health, stars, license and language in one compact strip; commit date in repository details.
+3. **About / Who it's for**: editorial description, fit and an alternative when that fit is wrong.
+4. **Replaces**: the alternative-to pages it appears on, each with the reason.
+5. **Repository details**: full license terms and topics on demand.
 6. **Similar tools**: the rest of the category by Health.
 
 On-page rules, enforced by `pnpm seo:audit`:

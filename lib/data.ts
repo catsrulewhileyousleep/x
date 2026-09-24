@@ -36,6 +36,8 @@ type RepoSnapshot = {
   fullName: string;
   stars: number;
   license: string | null;
+  licenseDetails?: LicenseDetails | null;
+  topics?: string[];
   archived: boolean;
   isPrivate: boolean;
   defaultBranch: string;
@@ -46,6 +48,15 @@ type RepoSnapshot = {
   avatarUrl: string | null;
 };
 
+type LicenseDetails = {
+  name: string;
+  description: string | null;
+  url: string | null;
+  permissions: string[];
+  conditions: string[];
+  limitations: string[];
+};
+
 export type Tool = Omit<ToolEntry, "licenseOverride"> & {
   categoryName: string;
   githubUrl: string;
@@ -53,7 +64,9 @@ export type Tool = Omit<ToolEntry, "licenseOverride"> & {
   avatarUrl: string | null;
   stars: number | null;
   license: string | null;
+  licenseDetails: LicenseDetails | null;
   licenseNote: string | null;
+  githubTopics: string[];
   lastCommitAt: string | null;
   createdAt: string | null;
   language: string | null;
@@ -105,7 +118,9 @@ export const tools: Tool[] = entries.map(({ licenseOverride, ...e }) => {
     avatarUrl: repo?.avatarUrl ?? null,
     stars: repo?.stars ?? null,
     license: repo?.license ?? licenseOverride?.spdx ?? null,
+    licenseDetails: repo?.license ? (repo.licenseDetails ?? null) : null,
     licenseNote: repo?.license ? null : (licenseOverride?.note ?? null),
+    githubTopics: repo?.topics ?? [],
     lastCommitAt: repo?.lastCommitAt ?? null,
     createdAt: repo?.createdAt ?? null,
     language: repo?.language ?? null,
@@ -201,6 +216,7 @@ export function toRow(t: Tool, why?: string) {
     category: t.category,
     categoryName: t.categoryName,
     tags: t.tags,
+    githubTopics: t.githubTopics,
     // Names of the products it replaces, so searching "cursor" finds Cursor alternatives.
     replaces: t.alternativeTo.map((a) => targetBySlug.get(a.slug)!.name),
     license: t.license,
@@ -224,7 +240,7 @@ export function commandGroups(): CommandGroup[] {
         href: `/tool/${t.slug}`,
         label: t.name,
         hint: t.categoryName,
-        keywords: [...t.tags, t.tagline],
+        keywords: [...t.tags, ...t.githubTopics, t.tagline],
       })),
     },
     {

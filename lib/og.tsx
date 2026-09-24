@@ -2,6 +2,7 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { siteName } from "@/lib/format";
+import { BrandMark } from "@/components/brand-mark";
 
 export const ogSize = { width: 1200, height: 630 };
 export const ogContentType = "image/png";
@@ -45,7 +46,9 @@ export async function ogImage({ eyebrow, title, subtitle, meta = [] }: {
         }}
       >
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 28, color: C.muted }}>
-          <span style={{ color: C.fg, fontWeight: 600, letterSpacing: "-0.01em" }}>{siteName}</span>
+          <span style={{ display: "flex", alignItems: "center", gap: 12, color: C.fg, fontWeight: 600, letterSpacing: "-0.01em" }}>
+            <BrandMark size={30} color={C.fg} accent="#a894f4" />{siteName}
+          </span>
           {eyebrow && <span>{eyebrow}</span>}
         </div>
 

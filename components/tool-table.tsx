@@ -17,6 +17,7 @@ export type Row = {
   category: string;
   categoryName: string;
   tags: string[];
+  githubTopics: string[];
   replaces: string[];
   license: string | null;
   stars: number | null;

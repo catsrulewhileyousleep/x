@@ -2,15 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
-import { badgeSvg } from "@/lib/badge";
 import { CopyButton } from "@/components/copy-button";
 import { HealthValue } from "@/components/health";
 import { JsonLd } from "@/components/json-ld";
 import { LinkedText } from "@/components/linked-text";
 import { PageHeader } from "@/components/page-header";
 import { Section } from "@/components/section";
-import { Avatar } from "@/components/ui/avatar";
 import { ToolTable } from "@/components/tool-table";
+import { Avatar } from "@/components/ui/avatar";
 import { getTool, replacesFor, similarTools, snapshotAt, toRow, tools, type Tool } from "@/lib/data";
 import { formatDate, formatNumber, siteName, siteUrl } from "@/lib/format";
 import { licenseSuffix, metaDescription } from "@/lib/seo";
@@ -72,113 +71,84 @@ export default async function ToolPage({ params }: PageProps<"/tool/[slug]">) {
   return (
     <article>
       <PageHeader
+        compact
         crumbs={[
           { name: "Categories", href: "/category" },
           { name: tool.categoryName, href: `/category/${tool.category}` },
           { name: tool.name, href: `/tool/${tool.slug}` },
         ]}
-        media={<Avatar src={tool.avatarUrl} name={tool.name} size={48} />}
+        media={<Avatar src={tool.avatarUrl} name={tool.name} size={40} />}
         title={tool.name}
         lede={tool.tagline}
-        actions={
-          <>
-            {tool.website && (
-              <ExternalButton href={tool.website} rel={rel} primary>
-                Visit website
-              </ExternalButton>
-            )}
-            <ExternalButton href={tool.githubUrl} rel={rel} primary={!tool.website}>
-              GitHub
-            </ExternalButton>
-            {/* Inline copy of /badge/[slug].svg so maintainers see what they are embedding. */}
-            <span
-              aria-hidden="true"
-              className="hidden h-5 items-center sm:inline-flex"
-              dangerouslySetInnerHTML={{ __html: badgeSvg(tool.health) }}
-            />
-            <CopyButton
-              text={`[![Health Score](${siteUrl}/badge/${tool.slug}.svg)](${url})`}
-              label="Copy badge"
-              hint="Markdown for a Health Score badge in your README"
-            />
-          </>
-        }
+        actions={<>
+          {tool.website && <ExternalButton href={tool.website} rel={rel} primary>Visit website</ExternalButton>}
+          <ExternalButton href={tool.githubUrl} rel={rel} primary={!tool.website}>GitHub</ExternalButton>
+        </>}
       />
 
-      <dl className={`${ui.headerGap} grid grid-cols-2 gap-x-6 gap-y-5 border-y border-hairline py-5 sm:grid-cols-3 lg:grid-cols-6`}>
-        <Fact label="Health" wide>
-          <span className="flex flex-wrap items-baseline gap-x-3">
-            <HealthValue health={h} />
-            <span className={ui.label}>
-              {h.status === "scored" ? `Popularity ${h.popularity} · Maintenance ${h.maintenance}` : h.reason}
-            </span>
-          </span>
-        </Fact>
-        <Fact label="Stars">
-          <span className="tabular-nums">{tool.stars == null ? "—" : formatNumber(tool.stars)}</span>
-        </Fact>
-        <Fact label="License">
-          {tool.license ?? "Unknown"}
-          {tool.licenseNote && <span className={`mt-1 block text-pretty ${ui.label}`}>{tool.licenseNote}</span>}
-        </Fact>
-        <Fact label="Language">{tool.language ?? "—"}</Fact>
-        <Fact label="Last commit">
-          <time dateTime={tool.lastCommitAt ?? undefined} className="tabular-nums">
-            {formatDate(tool.lastCommitAt)}
-          </time>
-        </Fact>
-        {tool.sponsored && (
-          <Fact label="Listing">
-            <Link href="/sponsor" className={ui.link}>
-              Sponsored
-            </Link>
-          </Fact>
-        )}
-      </dl>
-
-      <Section title={`About ${tool.name}`} narrow>
-        <div className={ui.prose}>
-          {tool.description.map((p) => (
-            <p key={p}>{p}</p>
-          ))}
+      <dl className="mt-8 grid grid-cols-2 gap-x-5 gap-y-4 border-y border-hairline py-4 sm:grid-cols-4">
+        <div className="min-w-0">
+          <dt><Link href="/health-score" className={`${ui.label} hover:text-fg`}>Health</Link></dt>
+          <dd className="mt-1"><HealthValue health={h} /></dd>
         </div>
-      </Section>
+        <Fact label="Stars"><span className="tabular-nums">{tool.stars == null ? "—" : formatNumber(tool.stars)}</span></Fact>
+        <Fact label="License">{tool.license ?? "Unknown"}</Fact>
+        <Fact label="Language">{tool.language ?? "—"}</Fact>
+      </dl>
+      {tool.licenseNote && <p className="mt-2 text-[12px] text-fg-muted">{tool.licenseNote}</p>}
+      {tool.sponsored && <p className="mt-2 text-[12px]"><Link href="/sponsor" className={ui.link}>Sponsored listing</Link></p>}
 
-      <Section title="Who it’s for" narrow>
-        <dl className="space-y-4 text-[15px] leading-relaxed text-pretty">
-          <div>
-            <dt className={ui.label}>Good fit</dt>
-            <dd className="mt-0.5">{tool.fit}</dd>
+      <div className="lg:grid lg:grid-cols-2 lg:gap-10">
+        <Section title={`About ${tool.name}`} narrow compact>
+          <div className={ui.prose}>
+            {tool.description.map((p) => <p key={p}>{p}</p>)}
           </div>
-          <div>
-            <dt className={ui.label}>Look elsewhere</dt>
-            <dd className="mt-0.5">
-              <LinkedText
-                text={tool.elsewhere.text}
-                links={elsewhere.map((t) => ({ name: t.name, href: `/tool/${t.slug}` }))}
-              />
-            </dd>
-          </div>
-        </dl>
-      </Section>
-
-      {replaces.length > 0 && (
-        <Section title="Replaces" narrow>
-          <ul className="space-y-3 text-[15px] leading-relaxed">
-            {replaces.map((r) => (
-              <li key={r.slug}>
-                <Link href={`/alternative-to/${r.slug}`} className={`font-medium ${ui.link}`}>
-                  {r.name}
-                </Link>
-                <p className="mt-0.5 text-pretty text-fg-muted">{r.why}</p>
-              </li>
-            ))}
-          </ul>
         </Section>
-      )}
+        <Section title="Who it’s for" narrow compact>
+          <dl className="space-y-4 text-[15px] leading-relaxed text-pretty">
+            <div>
+              <dt className={ui.label}>Good fit</dt>
+              <dd className="mt-0.5">{tool.fit}</dd>
+            </div>
+            <div>
+              <dt className={ui.label}>Look elsewhere</dt>
+              <dd className="mt-0.5"><LinkedText text={tool.elsewhere.text} links={elsewhere.map((t) => ({ name: t.name, href: `/tool/${t.slug}` }))} /></dd>
+            </div>
+          </dl>
+        </Section>
+      </div>
+
+      {replaces.length > 0 && <Section title="Replaces" narrow compact>
+        <ul className="space-y-3 text-[15px] leading-relaxed">
+          {replaces.map((r) => <li key={r.slug}>
+            <Link href={`/alternative-to/${r.slug}`} className={`font-medium ${ui.link}`}>{r.name}</Link>
+            <p className="mt-0.5 text-pretty text-fg-muted">{r.why}</p>
+          </li>)}
+        </ul>
+      </Section>}
+
+      <details className="mt-10 block max-w-[65ch] border-t border-hairline pt-4 text-[13px]">
+        <summary className="w-fit cursor-pointer text-fg-muted hover:text-fg">Repository details</summary>
+        <div className="mt-4 space-y-4 text-pretty">
+          <p>Last commit · <time dateTime={tool.lastCommitAt ?? undefined}>{formatDate(tool.lastCommitAt)}</time></p>
+          {tool.githubTopics.length > 0 && <p><span className="font-medium">Topics</span> · {tool.githubTopics.join(" · ")}</p>}
+          {tool.licenseDetails && <div>
+            <p className="font-medium">{tool.licenseDetails.name}</p>
+            {tool.licenseDetails.description && <p className="mt-1">{tool.licenseDetails.description}</p>}
+            <dl className="mt-3 space-y-2">{(["permissions", "conditions", "limitations"] as const).map((key) =>
+              tool.licenseDetails![key].length > 0 && <div key={key}>
+                <dt className="font-medium">{key[0].toUpperCase() + key.slice(1)}</dt>
+                <dd>{tool.licenseDetails![key].join(" · ")}</dd>
+              </div>
+            )}</dl>
+            {tool.licenseDetails.url && <a href={tool.licenseDetails.url} target="_blank" rel="noopener noreferrer" className={`${ui.link} mt-3 inline-block`}>License guide</a>}
+          </div>}
+          <CopyButton text={`[![Health Score](${siteUrl}/badge/${tool.slug}.svg)](${url})`} label="Copy badge" hint="Markdown for a Health Score badge in your README" />
+        </div>
+      </details>
 
       {similar.length > 0 && (
-        <Section title="Similar tools">
+        <Section title="Similar tools" compact>
           <ToolTable rows={similar.map((t) => toRow(t))} sortable={false} label="Similar tools" />
         </Section>
       )}
@@ -226,9 +196,9 @@ export default async function ToolPage({ params }: PageProps<"/tool/[slug]">) {
   );
 }
 
-function Fact({ label, wide = false, children }: { label: string; wide?: boolean; children: React.ReactNode }) {
+function Fact({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className={`min-w-0 ${wide ? "col-span-2" : ""}`}>
+    <div className="min-w-0">
       <dt className={ui.label}>{label}</dt>
       <dd className="mt-1">{children}</dd>
     </div>
@@ -250,7 +220,7 @@ function ExternalButton({
     <a
       href={href}
       rel={rel}
-      className={`inline-flex h-9 items-center gap-1.5 rounded-lg px-3.5 text-[13px] font-medium transition-[background-color,scale] duration-100 ease-out active:scale-[0.96] ${
+      className={`inline-flex h-10 items-center gap-1.5 rounded-lg px-4 text-[13px] font-medium transition-[background-color,scale] duration-100 ease-out active:scale-[0.96] ${
         primary ? "bg-fg text-canvas hover:bg-fg/90" : "border border-hairline text-fg hover:bg-surface"
       }`}
     >

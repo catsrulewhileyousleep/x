@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Inter_Tight } from "next/font/google";
 import { commandGroups, snapshotAt } from "@/lib/data";
 import { CommandPalette } from "@/components/command-palette";
+import { BrandMark } from "@/components/brand-mark";
 import { NavLink } from "@/components/nav-link";
 import { Providers } from "@/components/providers";
 import { ui } from "@/lib/ui";
@@ -45,8 +46,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </a>
 
         <header className="mx-auto grid w-full max-w-5xl grid-cols-[1fr_auto] items-center gap-y-1 px-5 pt-4 pb-2 sm:flex sm:gap-6 sm:px-8 sm:py-5">
-          <Link href="/" className="-mx-1 px-1 py-2 text-[15px] font-semibold tracking-tight">
-            {siteName}
+          <Link href="/" className="-mx-1 inline-flex items-center gap-2 px-1 py-2 text-[15px] font-semibold tracking-tight">
+            <BrandMark size={22} />
+            <span>{siteName}</span>
           </Link>
           <nav
             aria-label="Main"
